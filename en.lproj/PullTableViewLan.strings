@@ -1,0 +1,13 @@
+/* 
+  PullTableViewLan.strings
+  ConcreteCloud
+
+  Created by 长浩 张 on 2017/3/29.
+  Copyright © 2017年 北京创鑫汇智科技发展有限公司. All rights reserved.
+*/
+"Pull down to refresh..." = "Pull down to refresh...";
+"Loading..." = "Loading...";
+"Release to refresh..." = "Release to refresh...";
+
+
+"Release to load more..." = "Release to load more...";

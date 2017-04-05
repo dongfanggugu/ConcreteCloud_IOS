@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="rent_driver_cell" id="7Yf-af-Gw4" customClass="RentDriverCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Yf-af-Gw4" id="DWo-Hf-0G2">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROh-cN-dC2">
+                        <rect key="frame" x="8" y="8" width="359" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c91-PM-7u4">
+                        <rect key="frame" x="8" y="36.5" width="359" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="c91-PM-7u4" firstAttribute="leading" secondItem="ROh-cN-dC2" secondAttribute="leading" id="5c6-Ir-49Y"/>
+                    <constraint firstItem="c91-PM-7u4" firstAttribute="width" secondItem="ROh-cN-dC2" secondAttribute="width" id="DFO-fk-ffq"/>
+                    <constraint firstItem="c91-PM-7u4" firstAttribute="top" secondItem="ROh-cN-dC2" secondAttribute="bottom" constant="8" id="GoG-MV-1HC"/>
+                    <constraint firstItem="c91-PM-7u4" firstAttribute="height" secondItem="ROh-cN-dC2" secondAttribute="height" id="IHc-a6-tpq"/>
+                    <constraint firstAttribute="bottom" secondItem="c91-PM-7u4" secondAttribute="bottom" constant="8" id="LQ8-rV-dqa"/>
+                    <constraint firstItem="c91-PM-7u4" firstAttribute="trailing" secondItem="ROh-cN-dC2" secondAttribute="trailing" id="PtA-QP-bSO"/>
+                    <constraint firstItem="ROh-cN-dC2" firstAttribute="top" secondItem="DWo-Hf-0G2" secondAttribute="top" constant="8" id="VDp-95-30D"/>
+                    <constraint firstAttribute="trailing" secondItem="ROh-cN-dC2" secondAttribute="trailing" constant="8" id="msJ-sV-JaL"/>
+                    <constraint firstItem="ROh-cN-dC2" firstAttribute="leading" secondItem="DWo-Hf-0G2" secondAttribute="leading" constant="8" id="rMl-WB-epv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lbName" destination="ROh-cN-dC2" id="wwO-J0-aMe"/>
+                <outlet property="lbTel" destination="c91-PM-7u4" id="ruh-m2-uhb"/>
+            </connections>
+            <point key="canvasLocation" x="-13" y="-6"/>
+        </tableViewCell>
+    </objects>
+</document>

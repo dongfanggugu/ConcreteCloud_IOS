@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sup_order_dis_cell" id="LMT-fn-hom" customClass="SupOrderDisCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LMT-fn-hom" id="2u3-D6-0ZY">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8CR-BQ-gcE">
+                        <rect key="frame" x="16" y="0.0" width="1" height="89"/>
+                        <color key="backgroundColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="VDN-Sq-VZK"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="order_track_future.png" translatesAutoresizingMaskIntoConstraints="NO" id="C1C-5m-yAd">
+                        <rect key="frame" x="7" y="8" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="VME-rD-X5x"/>
+                            <constraint firstAttribute="height" constant="20" id="woQ-NA-eeZ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车辆指派" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jK-Cd-cTv">
+                        <rect key="frame" x="37" y="8" width="100" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="pqq-Y4-lN9"/>
+                            <constraint firstAttribute="width" constant="100" id="yZU-8m-cK9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-11-11 12:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3L-Oz-6ED">
+                        <rect key="frame" x="145" y="10" width="222" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="7Rk-18-FXm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfx-fX-FT5">
+                        <rect key="frame" x="53" y="47.5" width="100" height="26"/>
+                        <color key="backgroundColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="4vZ-Gt-XCD"/>
+                            <constraint firstAttribute="height" constant="26" id="t2o-Bj-GOn"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="车辆指派">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="w3L-Oz-6ED" firstAttribute="leading" secondItem="0jK-Cd-cTv" secondAttribute="trailing" constant="8" id="0oF-no-32n"/>
+                    <constraint firstItem="8CR-BQ-gcE" firstAttribute="top" secondItem="2u3-D6-0ZY" secondAttribute="top" id="8Sr-P7-8pS"/>
+                    <constraint firstItem="w3L-Oz-6ED" firstAttribute="centerY" secondItem="0jK-Cd-cTv" secondAttribute="centerY" id="9yl-kX-2iz"/>
+                    <constraint firstAttribute="trailing" secondItem="w3L-Oz-6ED" secondAttribute="trailing" constant="8" id="MtW-q5-qUA"/>
+                    <constraint firstAttribute="bottom" secondItem="Nfx-fX-FT5" secondAttribute="bottom" constant="16" id="SCR-1v-sVw"/>
+                    <constraint firstItem="C1C-5m-yAd" firstAttribute="top" secondItem="2u3-D6-0ZY" secondAttribute="top" constant="8" id="YAV-I1-FcT"/>
+                    <constraint firstItem="C1C-5m-yAd" firstAttribute="centerX" secondItem="8CR-BQ-gcE" secondAttribute="centerX" id="bnf-rl-6IS"/>
+                    <constraint firstItem="8CR-BQ-gcE" firstAttribute="leading" secondItem="2u3-D6-0ZY" secondAttribute="leading" constant="16" id="ceo-6G-7Rb"/>
+                    <constraint firstItem="0jK-Cd-cTv" firstAttribute="leading" secondItem="C1C-5m-yAd" secondAttribute="trailing" constant="10" id="gdn-QF-WSn"/>
+                    <constraint firstItem="0jK-Cd-cTv" firstAttribute="centerY" secondItem="C1C-5m-yAd" secondAttribute="centerY" id="ioy-9X-ZLn"/>
+                    <constraint firstItem="Nfx-fX-FT5" firstAttribute="leading" secondItem="8CR-BQ-gcE" secondAttribute="trailing" constant="36" id="psJ-w8-w6k"/>
+                    <constraint firstAttribute="bottom" secondItem="8CR-BQ-gcE" secondAttribute="bottom" id="uUW-QO-C7W"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btnDis" destination="Nfx-fX-FT5" id="nix-Cp-utn"/>
+                <outlet property="ivProcess" destination="C1C-5m-yAd" id="5xe-mH-4hs"/>
+                <outlet property="lbDate" destination="w3L-Oz-6ED" id="dyo-cs-cub"/>
+                <outlet property="lbTitle" destination="0jK-Cd-cTv" id="MIG-l6-GaH"/>
+            </connections>
+            <point key="canvasLocation" x="-92.5" y="-6"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="order_track_future.png" width="28" height="28"/>
+    </resources>
+</document>

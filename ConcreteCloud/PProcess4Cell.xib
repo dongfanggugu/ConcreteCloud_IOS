@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bRA-Qe-2Wd" customClass="PProcess4Cell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bRA-Qe-2Wd" id="zsg-48-R0C">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ouU-c1-ZY7">
+                        <rect key="frame" x="16" y="0.0" width="1" height="74"/>
+                        <color key="backgroundColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="V7c-Lg-kXI"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="order_track_future.png" translatesAutoresizingMaskIntoConstraints="NO" id="pBG-01-IJB">
+                        <rect key="frame" x="7" y="8" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="BfH-ei-bYY"/>
+                            <constraint firstAttribute="height" constant="20" id="joC-Go-bLe"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单完成" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crh-I2-yJM">
+                        <rect key="frame" x="37" y="10" width="80" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="3lk-of-u5Y"/>
+                            <constraint firstAttribute="width" constant="80" id="LZv-k3-ZuC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9aC-zM-XDj">
+                        <rect key="frame" x="37" y="35" width="100" height="24"/>
+                        <color key="backgroundColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="Lr6-OA-Y2n"/>
+                            <constraint firstAttribute="width" constant="100" id="TYA-7b-8d0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="确认">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ks-vY-If5">
+                        <rect key="frame" x="167" y="8" width="200" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="C3r-7i-Obg"/>
+                            <constraint firstAttribute="height" constant="21" id="mwu-XA-r7E"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="pBG-01-IJB" firstAttribute="top" secondItem="zsg-48-R0C" secondAttribute="top" constant="8" id="JZU-6v-2Pu"/>
+                    <constraint firstItem="ouU-c1-ZY7" firstAttribute="leading" secondItem="zsg-48-R0C" secondAttribute="leading" constant="16" id="LpM-n8-4ys"/>
+                    <constraint firstItem="ouU-c1-ZY7" firstAttribute="centerX" secondItem="pBG-01-IJB" secondAttribute="centerX" id="WfH-Cs-yyZ"/>
+                    <constraint firstItem="crh-I2-yJM" firstAttribute="centerY" secondItem="pBG-01-IJB" secondAttribute="centerY" id="aet-pC-ohJ"/>
+                    <constraint firstItem="9aC-zM-XDj" firstAttribute="leading" secondItem="crh-I2-yJM" secondAttribute="leading" id="dxA-QX-sR7"/>
+                    <constraint firstItem="ouU-c1-ZY7" firstAttribute="top" secondItem="zsg-48-R0C" secondAttribute="top" id="gq1-kl-pLO"/>
+                    <constraint firstItem="9aC-zM-XDj" firstAttribute="top" secondItem="crh-I2-yJM" secondAttribute="bottom" constant="8" id="jRa-DQ-hDv"/>
+                    <constraint firstItem="0Ks-vY-If5" firstAttribute="top" secondItem="zsg-48-R0C" secondAttribute="top" constant="8" id="kgQ-Jy-iYk"/>
+                    <constraint firstAttribute="trailing" secondItem="0Ks-vY-If5" secondAttribute="trailing" constant="8" id="mZX-Rx-Xvb"/>
+                    <constraint firstItem="crh-I2-yJM" firstAttribute="leading" secondItem="pBG-01-IJB" secondAttribute="trailing" constant="10" id="mbc-8H-Rdu"/>
+                    <constraint firstAttribute="bottom" secondItem="ouU-c1-ZY7" secondAttribute="bottom" id="tWI-Sb-czX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btnConfirm" destination="9aC-zM-XDj" id="rVt-FZ-xq4"/>
+                <outlet property="ivProcess" destination="pBG-01-IJB" id="xfQ-PX-mS1"/>
+                <outlet property="lbDate" destination="0Ks-vY-If5" id="Jot-jH-b3I"/>
+                <outlet property="lbTitle" destination="crh-I2-yJM" id="dCF-TR-lzb"/>
+            </connections>
+            <point key="canvasLocation" x="-112.5" y="-40"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="order_track_future.png" width="28" height="28"/>
+    </resources>
+</document>

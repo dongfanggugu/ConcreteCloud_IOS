@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="key_edit_btn_cell" id="L4O-XM-aAp" customClass="KeyEditBtnCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L4O-XM-aAp" id="8QR-wR-xXg">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbg-x6-pVk">
+                        <rect key="frame" x="8" y="8" width="150" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="2CJ-jm-Sny"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="订货量" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="diZ-PL-BNy">
+                        <rect key="frame" x="166" y="8" width="153" height="27"/>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSH-Kn-UC4">
+                        <rect key="frame" x="327" y="1" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="3XF-RV-Oqd"/>
+                            <constraint firstAttribute="width" constant="40" id="tDB-M0-KFv"/>
+                        </constraints>
+                        <state key="normal" image="location_point.png">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="TSH-Kn-UC4" secondAttribute="trailing" constant="8" id="0Go-Sg-Lbq"/>
+                    <constraint firstItem="diZ-PL-BNy" firstAttribute="leading" secondItem="rbg-x6-pVk" secondAttribute="trailing" constant="8" id="WVb-61-DkO"/>
+                    <constraint firstItem="diZ-PL-BNy" firstAttribute="top" secondItem="8QR-wR-xXg" secondAttribute="top" constant="8" id="ZX2-GQ-EXI"/>
+                    <constraint firstAttribute="bottom" secondItem="diZ-PL-BNy" secondAttribute="bottom" constant="8" id="bbg-Tz-o9y"/>
+                    <constraint firstItem="TSH-Kn-UC4" firstAttribute="leading" secondItem="diZ-PL-BNy" secondAttribute="trailing" constant="8" id="gm7-Tk-I0Q"/>
+                    <constraint firstAttribute="bottom" secondItem="rbg-x6-pVk" secondAttribute="bottom" constant="8" id="kmZ-11-Eh8"/>
+                    <constraint firstItem="TSH-Kn-UC4" firstAttribute="centerY" secondItem="8QR-wR-xXg" secondAttribute="centerY" id="p1c-u7-Dtn"/>
+                    <constraint firstItem="rbg-x6-pVk" firstAttribute="leading" secondItem="8QR-wR-xXg" secondAttribute="leading" constant="8" id="qs3-Hg-tqd"/>
+                    <constraint firstItem="rbg-x6-pVk" firstAttribute="top" secondItem="8QR-wR-xXg" secondAttribute="top" constant="8" id="scM-i6-1rq"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btn" destination="TSH-Kn-UC4" id="Jw7-ig-JTh"/>
+                <outlet property="lbKey" destination="rbg-x6-pVk" id="ztC-Ef-2m6"/>
+                <outlet property="tfValue" destination="diZ-PL-BNy" id="vrc-BX-dWw"/>
+            </connections>
+            <point key="canvasLocation" x="-500" y="-128"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="location_point.png" width="64" height="64"/>
+    </resources>
+</document>

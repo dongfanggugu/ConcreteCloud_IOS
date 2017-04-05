@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="s_process1_cell" id="tNH-ea-nt7" customClass="SProcess1Cell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tNH-ea-nt7" id="zyz-Q7-cBK">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXt-tQ-JEf">
+                        <rect key="frame" x="16" y="0.0" width="1" height="80"/>
+                        <color key="backgroundColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="6Uu-qH-fNh"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单已提交" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="il3-dr-1YV">
+                        <rect key="frame" x="37" y="8" width="100" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="LeC-oi-vuj"/>
+                            <constraint firstAttribute="width" constant="100" id="nXH-X7-091"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-01-12 12:11:11" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYP-2I-dks">
+                        <rect key="frame" x="137" y="10" width="230" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="51N-w4-iVf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="order_track_pass.png" translatesAutoresizingMaskIntoConstraints="NO" id="jLG-aV-9Ct">
+                        <rect key="frame" x="7" y="8" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="Dng-B0-6xR"/>
+                            <constraint firstAttribute="height" constant="20" id="Rzi-76-tOJ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请耐心等待搅拌站确认" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6Q-Yu-RU7">
+                        <rect key="frame" x="37" y="36" width="318" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="Qaw-VL-CoO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jLG-aV-9Ct" firstAttribute="top" secondItem="zyz-Q7-cBK" secondAttribute="top" constant="8" id="5Ba-R3-axN"/>
+                    <constraint firstAttribute="trailing" secondItem="S6Q-Yu-RU7" secondAttribute="trailing" constant="20" id="KV4-I4-j9p"/>
+                    <constraint firstItem="S6Q-Yu-RU7" firstAttribute="leading" secondItem="il3-dr-1YV" secondAttribute="leading" id="Nd8-a2-2GV"/>
+                    <constraint firstAttribute="trailing" secondItem="iYP-2I-dks" secondAttribute="trailing" constant="8" id="Q1i-ac-X7O"/>
+                    <constraint firstItem="S6Q-Yu-RU7" firstAttribute="leading" secondItem="NXt-tQ-JEf" secondAttribute="trailing" constant="20" id="ROX-AY-tlg"/>
+                    <constraint firstItem="jLG-aV-9Ct" firstAttribute="centerX" secondItem="NXt-tQ-JEf" secondAttribute="centerX" id="Yff-06-4dd"/>
+                    <constraint firstItem="il3-dr-1YV" firstAttribute="leading" secondItem="jLG-aV-9Ct" secondAttribute="trailing" constant="10" id="adL-nE-9hq"/>
+                    <constraint firstItem="il3-dr-1YV" firstAttribute="centerY" secondItem="jLG-aV-9Ct" secondAttribute="centerY" id="kPw-fQ-p8X"/>
+                    <constraint firstItem="NXt-tQ-JEf" firstAttribute="top" secondItem="zyz-Q7-cBK" secondAttribute="top" id="lAQ-m4-0u3"/>
+                    <constraint firstItem="iYP-2I-dks" firstAttribute="centerY" secondItem="il3-dr-1YV" secondAttribute="centerY" id="q0n-NE-1Ng"/>
+                    <constraint firstItem="NXt-tQ-JEf" firstAttribute="leading" secondItem="zyz-Q7-cBK" secondAttribute="leading" constant="16" id="qia-3J-jqY"/>
+                    <constraint firstAttribute="bottom" secondItem="NXt-tQ-JEf" secondAttribute="bottom" id="vla-Zq-3Qy"/>
+                    <constraint firstItem="S6Q-Yu-RU7" firstAttribute="top" secondItem="il3-dr-1YV" secondAttribute="bottom" constant="8" id="z1F-he-I4j"/>
+                    <constraint firstItem="iYP-2I-dks" firstAttribute="leading" secondItem="il3-dr-1YV" secondAttribute="trailing" id="ze6-BN-qa1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="ivProcess" destination="jLG-aV-9Ct" id="uhf-hy-K9L"/>
+                <outlet property="lbDate" destination="iYP-2I-dks" id="QjQ-1G-HhJ"/>
+                <outlet property="lbTip" destination="S6Q-Yu-RU7" id="EU0-q7-jPo"/>
+            </connections>
+            <point key="canvasLocation" x="-124.5" y="-159"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="order_track_pass.png" width="28" height="28"/>
+    </resources>
+</document>

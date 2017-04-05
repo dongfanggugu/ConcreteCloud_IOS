@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TankerRelaxController">
+            <connections>
+                <outlet property="tableView" destination="V9j-7K-wHc" id="YtD-jj-zsF"/>
+                <outlet property="view" destination="iN0-l3-epB" id="JjP-W6-V8i"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无执行中运输单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOW-pN-ppE">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="RyQ-G8-a5w"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="V9j-7K-wHc">
+                    <rect key="frame" x="0.0" y="40" width="375" height="627"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="JOW-pN-ppE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4Cf-gS-icT"/>
+                <constraint firstItem="V9j-7K-wHc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9dQ-7S-m9l"/>
+                <constraint firstAttribute="trailing" secondItem="JOW-pN-ppE" secondAttribute="trailing" id="C7C-yg-tHS"/>
+                <constraint firstAttribute="trailing" secondItem="V9j-7K-wHc" secondAttribute="trailing" id="TNc-jZ-Lk0"/>
+                <constraint firstItem="JOW-pN-ppE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dFZ-CF-idn"/>
+                <constraint firstItem="V9j-7K-wHc" firstAttribute="top" secondItem="JOW-pN-ppE" secondAttribute="bottom" id="sGq-pJ-lPh"/>
+                <constraint firstAttribute="bottom" secondItem="V9j-7K-wHc" secondAttribute="bottom" id="xXZ-Jv-cY9"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

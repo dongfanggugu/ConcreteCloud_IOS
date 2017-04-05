@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "V1.1Beta"; ObjectID = "CCk-RQ-6QC"; */
+"CCk-RQ-6QC.text" = "V1.1Beta";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "DLs-60-C0M"; */
+"DLs-60-C0M.normalTitle" = "注册";
+
+/* Class = "UITextField"; placeholder = "手机号"; ObjectID = "IHc-cj-09i"; */
+"IHc-cj-09i.placeholder" = "手机号";
+
+/* Class = "UITextField"; placeholder = "密码"; ObjectID = "qrn-DF-O0H"; */
+"qrn-DF-O0H.placeholder" = "密码";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "xZm-jU-Nq3"; */
+"xZm-jU-Nq3.normalTitle" = "登录";
