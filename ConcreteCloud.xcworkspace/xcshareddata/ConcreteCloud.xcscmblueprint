@@ -1,18 +1,18 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "1D6D76788B14FCAB4AA07D1D729F95B0EEBFB2CD",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C017120E2B85EB4D24D807E67A2F23E428EC1DD6",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "13522D1F805E3EF962E6C9D3C59181EBF96AF6C0" : 9223372036854775807,
-    "704C3404BF97DCCBDE1253F804D9492A27C3F34A" : 9223372036854775807,
-    "1D6D76788B14FCAB4AA07D1D729F95B0EEBFB2CD" : 9223372036854775807
+    "C017120E2B85EB4D24D807E67A2F23E428EC1DD6" : 9223372036854775807,
+    "704C3404BF97DCCBDE1253F804D9492A27C3F34A" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "60207874-8150-4D48-A341-4A005675E482",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "13522D1F805E3EF962E6C9D3C59181EBF96AF6C0" : "elevatorman_ios\/",
-    "704C3404BF97DCCBDE1253F804D9492A27C3F34A" : "..\/AndroidStudioProjects\/concretecloud",
-    "1D6D76788B14FCAB4AA07D1D729F95B0EEBFB2CD" : "concretecloud_ios\/"
+    "C017120E2B85EB4D24D807E67A2F23E428EC1DD6" : "ConcreteCloud_IOS\/",
+    "704C3404BF97DCCBDE1253F804D9492A27C3F34A" : "..\/AndroidStudioProjects\/concretecloud"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "ConcreteCloud",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -24,14 +24,14 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "13522D1F805E3EF962E6C9D3C59181EBF96AF6C0"
     },
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "code.csdn.net:haohaofang\/concretecloud_ios.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1D6D76788B14FCAB4AA07D1D729F95B0EEBFB2CD"
-    },
-    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "code.csdn.net:haohaofang\/concretecloud.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "704C3404BF97DCCBDE1253F804D9492A27C3F34A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "code.csdn.net:haohaofang\/concretecloud_ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C017120E2B85EB4D24D807E67A2F23E428EC1DD6"
     }
   ]
 }
