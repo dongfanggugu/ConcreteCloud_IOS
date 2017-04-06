@@ -36,6 +36,12 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnDetail;
 
+@property (weak, nonatomic) IBOutlet UIImageView *ivVehicle;
+
+@property (strong, nonatomic) UIImage *vehicleRelax;
+
+@property (strong, nonatomic) UIImage *vehicleBusy;
+
 @end
 
 @implementation PProcess3Cell
@@ -127,9 +133,20 @@
 
 - (void)setTotal:(CGFloat)total complete:(CGFloat)complete way:(CGFloat)way
 {
+    
+    //设置车图片
+    if (way > 0) {
+        _ivVehicle.image = _vehicleBusy;
+        
+    } else {
+        _ivVehicle.image = _vehicleRelax;
+    }
+    
+    
     _lbWay.text = [NSString stringWithFormat:@"%.2lf", way];
     
     NSString *process = [NSString stringWithFormat:@"%.2lf/%.2lf", complete, total];
+    
     _lbProcess.text = process;
     
     if (total <= 0)
@@ -319,6 +336,26 @@
 - (void)setSupplierMode
 {
     _btnDetail.hidden = YES;
+}
+
+- (void)setGoodsName:(NSString *)goodsName
+{
+    if ([goodsName isEqualToString:SHAZI]
+        || [goodsName isEqualToString:SHIZI]
+        || [goodsName isEqualToString:OTHERS]) {
+        
+        _vehicleRelax = [UIImage imageNamed:@"icon_car_gray"];
+        
+        _vehicleBusy = [UIImage imageNamed:@"icon_car_type4"];
+        
+    } else if ([goodsName isEqualToString:WAIJIAJI]) {
+        _vehicleRelax = [UIImage imageNamed:@"icon_car_gray5"];
+        _vehicleBusy = [UIImage imageNamed:@"icon_car_type5"];
+        
+    } else {
+        _vehicleRelax = [UIImage imageNamed:@"icon_car_gray6"];
+        _vehicleBusy = [UIImage imageNamed:@"icon_car_type6"];
+    }
 }
 
 @end

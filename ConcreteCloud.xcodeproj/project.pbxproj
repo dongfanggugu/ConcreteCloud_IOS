@@ -439,6 +439,9 @@
 		65EA6ABD1E4D4F7D0080C72B /* CarryInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EA6ABC1E4D4F7D0080C72B /* CarryInfoCell.m */; };
 		65EA6AC01E4D5E6D0080C72B /* VideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EA6ABF1E4D5E6D0080C72B /* VideoPlayerController.m */; };
 		65EA6AC21E4D619B0080C72B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EA6AC11E4D619B0080C72B /* MediaPlayer.framework */; };
+		65EBFF501E9632C100602BA4 /* icon_car_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EBFF4D1E9632C100602BA4 /* icon_car_gray.png */; };
+		65EBFF511E9632C100602BA4 /* icon_car_gray5.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EBFF4E1E9632C100602BA4 /* icon_car_gray5.png */; };
+		65EBFF521E9632C100602BA4 /* icon_car_gray6.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EBFF4F1E9632C100602BA4 /* icon_car_gray6.png */; };
 		65EEEB201E70E9E50095432B /* RentVehicleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EEEB1F1E70E9E50095432B /* RentVehicleController.m */; };
 		65EEEB231E70ED630095432B /* RentVehicleRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EEEB221E70ED630095432B /* RentVehicleRequest.m */; };
 		65EEEB261E711C9F0095432B /* RentTankerRelaxController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EEEB251E711C9F0095432B /* RentTankerRelaxController.m */; };
@@ -1225,6 +1228,9 @@
 		65EA6ABE1E4D5E5D0080C72B /* VideoPlayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPlayerController.h; sourceTree = "<group>"; };
 		65EA6ABF1E4D5E6D0080C72B /* VideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerController.m; sourceTree = "<group>"; };
 		65EA6AC11E4D619B0080C72B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		65EBFF4D1E9632C100602BA4 /* icon_car_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_car_gray.png; sourceTree = "<group>"; };
+		65EBFF4E1E9632C100602BA4 /* icon_car_gray5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_car_gray5.png; sourceTree = "<group>"; };
+		65EBFF4F1E9632C100602BA4 /* icon_car_gray6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_car_gray6.png; sourceTree = "<group>"; };
 		65EEEB1E1E70E9D80095432B /* RentVehicleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RentVehicleController.h; sourceTree = "<group>"; };
 		65EEEB1F1E70E9E50095432B /* RentVehicleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RentVehicleController.m; sourceTree = "<group>"; };
 		65EEEB211E70ED570095432B /* RentVehicleRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RentVehicleRequest.h; sourceTree = "<group>"; };
@@ -1652,6 +1658,9 @@
 				655DDB2A1E55D19600848D7C /* icon_mix_point.png */,
 				65698EEC1E5BE46800B21D1B /* icon_mix_unauth.png */,
 				65EA42A81DE5287500BC48BB /* icon_more_normal.png */,
+				65EBFF4D1E9632C100602BA4 /* icon_car_gray.png */,
+				65EBFF4E1E9632C100602BA4 /* icon_car_gray5.png */,
+				65EBFF4F1E9632C100602BA4 /* icon_car_gray6.png */,
 				652FF3111E8CED7E00CF98A4 /* icon_tanker_gray.png */,
 				65EA42AD1DE52F8D00BC48BB /* icon_msg.png */,
 				65ADC6AA1E4C114E0020FF69 /* icon_my_order.png */,
@@ -2570,6 +2579,7 @@
 				658450AC1E5AB340003CFAA5 /* icon_pump3.png in Resources */,
 				65EA42B01DE5334200BC48BB /* SnapTitleView.xib in Resources */,
 				657FBC581E31A8910029C41C /* order_track_pass.png in Resources */,
+				65EBFF521E9632C100602BA4 /* icon_car_gray6.png in Resources */,
 				65D863921E80CA18006E7A1C /* KeyEditBtnCell.xib in Resources */,
 				65D8639F1E80F134006E7A1C /* icon_location_pin.png in Resources */,
 				657FBC721E31F9350029C41C /* PDetailController.xib in Resources */,
@@ -2646,6 +2656,7 @@
 				652812111DFA40B1007FC33E /* icon_add.png in Resources */,
 				651779B21E0122AF00A759AC /* KeyMultiEditCell.xib in Resources */,
 				65D863771E7BBA2D006E7A1C /* icon_video_sel.png in Resources */,
+				65EBFF511E9632C100602BA4 /* icon_car_gray5.png in Resources */,
 				652FF2FF1E8B908900CF98A4 /* ReceiverVoiceNodePlaying.png in Resources */,
 				65698F731E63BEDB00B21D1B /* ACheckVideoCell.xib in Resources */,
 				65D863971E80D05D006E7A1C /* location_point.png in Resources */,
@@ -2669,6 +2680,7 @@
 				65EEEB6E1E768EBE0095432B /* RentDriverCell.xib in Resources */,
 				652811FD1DF93574007FC33E /* icon_person.png in Resources */,
 				65DC02071DE3D6BE005F86A4 /* Purchaser.storyboard in Resources */,
+				65EBFF501E9632C100602BA4 /* icon_car_gray.png in Resources */,
 				652FF3011E8B908F00CF98A4 /* SenderAppNodeBkg_HL.png in Resources */,
 				65B68B981E5BCE750092C13A /* HzsInfoView.xib in Resources */,
 				65DC02041DE3D0B9005F86A4 /* icon_mainpage@3x.png in Resources */,
@@ -3167,7 +3179,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -3209,7 +3221,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

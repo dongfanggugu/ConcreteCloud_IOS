@@ -162,7 +162,7 @@
 - (void)setTotal:(CGFloat)total complete:(CGFloat)complete way:(CGFloat)way
 {
     
-    if (complete > 0)
+    if (way > 0)
     {
         _ivVehicle.image = [UIImage imageNamed:@"icon_tanker_trace"];
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,16 +23,41 @@
                         <constraint firstAttribute="width" constant="300" id="g5g-7u-HIl"/>
                     </constraints>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZr-1O-h0c">
+                    <rect key="frame" x="37" y="433" width="300" height="66"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0VG-U2-b8e">
+                            <rect key="frame" x="120" y="19" width="60" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="72b-lX-7tr"/>
+                                <constraint firstAttribute="height" constant="28" id="gGo-FM-dLg"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="取消"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="0VG-U2-b8e" firstAttribute="centerY" secondItem="UZr-1O-h0c" secondAttribute="centerY" id="0YQ-Ul-cr1"/>
+                        <constraint firstAttribute="height" constant="66" id="2Cs-gv-dK5"/>
+                        <constraint firstItem="0VG-U2-b8e" firstAttribute="centerX" secondItem="UZr-1O-h0c" secondAttribute="centerX" id="iXf-Mg-9Vw"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Fxq-9Z-WOC" firstAttribute="centerY" secondItem="ey3-9L-Hjt" secondAttribute="centerY" id="Mnh-1e-tH4"/>
                 <constraint firstItem="Fxq-9Z-WOC" firstAttribute="centerX" secondItem="ey3-9L-Hjt" secondAttribute="centerX" id="OH9-sn-HG4"/>
+                <constraint firstItem="UZr-1O-h0c" firstAttribute="trailing" secondItem="Fxq-9Z-WOC" secondAttribute="trailing" id="hk2-8U-fyK"/>
+                <constraint firstItem="UZr-1O-h0c" firstAttribute="leading" secondItem="Fxq-9Z-WOC" secondAttribute="leading" id="jo2-0p-SC3"/>
+                <constraint firstItem="UZr-1O-h0c" firstAttribute="top" secondItem="Fxq-9Z-WOC" secondAttribute="bottom" id="x2r-e1-qvc"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="btnCancel" destination="0VG-U2-b8e" id="mvk-qq-T5A"/>
                 <outlet property="tableView" destination="Fxq-9Z-WOC" id="Ge7-qZ-h7b"/>
             </connections>
             <point key="canvasLocation" x="-227.5" y="-114.5"/>

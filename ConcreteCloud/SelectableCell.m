@@ -16,7 +16,7 @@
 
 @property (strong, nonatomic) NSArray<ListDialogDataDelegate> *arrayData;
 
-@property (strong, nonatomic) UIView *view;
+@property (weak, nonatomic) UIView *view;
 
 @property (strong, nonatomic) NSString *content;
 
@@ -86,6 +86,11 @@
     ListDialogView *dialog = [ListDialogView viewFromNib];
     [dialog setData:_arrayData];
     dialog.delegate = self;
+    
+    dialog.frame = _view.frame;
+    
+    //dialog.center = _view.center;
+    
     
     [_view addSubview:dialog];
 }

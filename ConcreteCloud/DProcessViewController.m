@@ -285,6 +285,8 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate>
     {
         DProcess3Cell *cell = [DProcess3Cell cellFromNib];
         
+        cell.lbDate.text = _orderInfo.reviewTime;
+        
         _cell = cell;
         [cell setTotal:100 complete:0 way:0];
         

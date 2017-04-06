@@ -152,7 +152,7 @@
     
     if (_vehicleType == TANKER)
     {
-        _lbWeight.text = [NSString stringWithFormat:@"%.1lf吨", info.weight];
+        _lbWeight.text = [NSString stringWithFormat:@"%.1lf立方米", info.weight];
         
         [[Config shareConfig] setLastVehicle:info.plateNum];
         [[Config shareConfig] setLastVehicleId:info.vehicleId];

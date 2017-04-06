@@ -186,7 +186,7 @@
     HzsAddTaskRequest *request = [[HzsAddTaskRequest alloc]init];
     request.hzsOrderId = orderId;
     request.vehicleId = [[Config shareConfig] getLastVehicleId];
-    request.number = _lbLoad.text.floatValue;
+    request.number = [[[Config shareConfig] getLastVehicleLoad] floatValue];
     
     [[HttpClient shareClient] view:self.view post:URL_ADD_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         HzsAddTaskResponse *response = [[HzsAddTaskResponse alloc] initWithDictionary:responseObject];
@@ -302,7 +302,18 @@
     {
         KeyValueBtnCell *cell = [KeyValueBtnCell cellFromNib];
         cell.lbKey.text = @"运载量";
-        cell.lbValue.text = [[Config shareConfig] getLastVehicleLoad];
+        
+        NSString *load = [[Config shareConfig] getLastVehicleLoad];
+        
+        if (load) {
+            
+            cell.lbValue.text = [NSString stringWithFormat:@"%@立方米", load];
+            
+        } else {
+             cell.lbValue.text = @"";
+        }
+       
+        
         
         _lbLoad = cell.lbValue;
         
@@ -484,7 +495,7 @@
 - (void)onOKDismiss:(NSString *)content
 {
     [[Config shareConfig] setLastVehicleLoad:content];
-    _lbLoad.text = content;
+    _lbLoad.text = [NSString stringWithFormat:@"%@立方米", content];;
 }
 
 @end

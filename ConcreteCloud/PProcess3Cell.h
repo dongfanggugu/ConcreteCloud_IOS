@@ -45,6 +45,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *viewTotal;
 
+@property (copy, nonatomic) NSString *goodsName;
+
 @end
 
 

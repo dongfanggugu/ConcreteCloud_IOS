@@ -239,8 +239,10 @@
     else if (3 == indexPath.row)
     {
         PProcess3Cell *cell = [PProcess3Cell cellFromNib];
+        cell.goodsName = _orderInfo.goodsName;
         
         _cell = cell;
+        
         [cell setTotal:100 complete:0 way:0];
         
         
