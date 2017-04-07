@@ -43,6 +43,12 @@
 
 @property (copy, nonatomic) NSString *plateNum;
 
+//到达工地时间
+@property (copy, nonatomic) NSString *arriveSiteTime;
+
+//回到搅拌站时间
+@property (copy, nonatomic) NSString *backHzsTime;
+
 //启运时间
 @property (copy, nonatomic) NSString *startTime;
 

@@ -442,6 +442,7 @@
 		65EBFF501E9632C100602BA4 /* icon_car_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EBFF4D1E9632C100602BA4 /* icon_car_gray.png */; };
 		65EBFF511E9632C100602BA4 /* icon_car_gray5.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EBFF4E1E9632C100602BA4 /* icon_car_gray5.png */; };
 		65EBFF521E9632C100602BA4 /* icon_car_gray6.png in Resources */ = {isa = PBXBuildFile; fileRef = 65EBFF4F1E9632C100602BA4 /* icon_car_gray6.png */; };
+		65EBFF551E972B8B00602BA4 /* CustomLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EBFF541E972B8B00602BA4 /* CustomLocation.m */; };
 		65EEEB201E70E9E50095432B /* RentVehicleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EEEB1F1E70E9E50095432B /* RentVehicleController.m */; };
 		65EEEB231E70ED630095432B /* RentVehicleRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EEEB221E70ED630095432B /* RentVehicleRequest.m */; };
 		65EEEB261E711C9F0095432B /* RentTankerRelaxController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EEEB251E711C9F0095432B /* RentTankerRelaxController.m */; };
@@ -1231,6 +1232,8 @@
 		65EBFF4D1E9632C100602BA4 /* icon_car_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_car_gray.png; sourceTree = "<group>"; };
 		65EBFF4E1E9632C100602BA4 /* icon_car_gray5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_car_gray5.png; sourceTree = "<group>"; };
 		65EBFF4F1E9632C100602BA4 /* icon_car_gray6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_car_gray6.png; sourceTree = "<group>"; };
+		65EBFF531E972B8B00602BA4 /* CustomLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLocation.h; sourceTree = "<group>"; };
+		65EBFF541E972B8B00602BA4 /* CustomLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLocation.m; sourceTree = "<group>"; };
 		65EEEB1E1E70E9D80095432B /* RentVehicleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RentVehicleController.h; sourceTree = "<group>"; };
 		65EEEB1F1E70E9E50095432B /* RentVehicleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RentVehicleController.m; sourceTree = "<group>"; };
 		65EEEB211E70ED570095432B /* RentVehicleRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RentVehicleRequest.h; sourceTree = "<group>"; };
@@ -1921,6 +1924,8 @@
 				65C92BCF1DEBC0DE0086051A /* Config.m */,
 				65D8637F1E7BD9CC006E7A1C /* Location.h */,
 				65D863801E7BD9D4006E7A1C /* Location.m */,
+				65EBFF531E972B8B00602BA4 /* CustomLocation.h */,
+				65EBFF541E972B8B00602BA4 /* CustomLocation.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -3009,6 +3014,7 @@
 				656230B31E65183700335819 /* UpWorkRequest.m in Sources */,
 				65C310891DF55038005F4BA8 /* MessageListRequest.m in Sources */,
 				651779AB1E00E61F00A759AC /* DatePickerDialog.m in Sources */,
+				65EBFF551E972B8B00602BA4 /* CustomLocation.m in Sources */,
 				65515BF91E7A571A00386A0C /* CheckController.m in Sources */,
 				65698F451E5ECA9100B21D1B /* SitePumpController.m in Sources */,
 				65C310831DF5466F005F4BA8 /* ResponseArrary.m in Sources */,

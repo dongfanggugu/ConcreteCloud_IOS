@@ -95,8 +95,8 @@ typedef NS_ENUM(NSInteger, WORK_STATE)
     CGRect frame = controller.view.frame;
     frame.origin.x = 0;
     frame.origin.y = 94;
-    frame.size.width = self.view.frame.size.width;
-    frame.size.height = self.view.frame.size.height - 94 - 49;
+    frame.size.width = self.screenWidth;
+    frame.size.height = self.screenHeight - 94 - 49;
     
     controller.view.frame = frame;
     

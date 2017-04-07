@@ -17,6 +17,8 @@
 
 @property (strong, nonatomic) DTrackInfo *trackInfo;
 
+@property (assign, nonatomic) G_Vehicle_Type vehicleType;
+
 @end
 
 

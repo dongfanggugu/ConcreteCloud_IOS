@@ -82,7 +82,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 80)];
+    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 80)];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
     
@@ -96,7 +96,7 @@
     
     _tableView.tableFooterView = footView;
     
-    btn.center = CGPointMake(self.view.frame.size.width / 2, 40);
+    btn.center = CGPointMake(self.screenWidth / 2, 40);
     [footView addSubview:btn];
     
 }
@@ -397,7 +397,9 @@
     listDialog.tag = 1001;
     
     listDialog.delegate = self;
-    [self.view addSubview:listDialog];
+
+    [listDialog show];
+    
 }
 
 - (void)showPartListDialogView
@@ -408,7 +410,7 @@
     
     if ([site isEqualToString:SITE_INIT])
     {
-        [HUDClass showHUDWithLabel:@"请先选择工程" view:self.view];
+        [HUDClass showHUDWithText:@"请先选择工程"];
         return;
     }
     
@@ -429,7 +431,7 @@
     
     listDialog.delegate = self;
     
-    [self.view addSubview:listDialog];
+    [listDialog show];
 }
 
 #pragma mark -- ListDialogViewDelegate

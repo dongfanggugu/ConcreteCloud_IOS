@@ -115,7 +115,7 @@
     
     dialog.tag = 1001;
     
-    [_view addSubview:dialog];
+    [dialog show];
 }
 
 - (void)showRightDialog
@@ -127,7 +127,7 @@
     
     dialog.tag = 1002;
     
-    [_view addSubview:dialog];
+    [dialog show];
 }
 
 - (NSString *)getLeftContentValue
@@ -187,32 +187,35 @@
 
 - (void)onSelectDialogTag:(NSInteger)tag content:(NSString *)content
 {
-    if (1001 == tag)
-    {
+    if (1001 == tag) {
         _leftContent = content;
-        _ivFlagLeft.image = [UIImage imageNamed:@"icon_down"];
         _lbLeftContent.text = content;
         
-        if (_afterSelectedLeft)
-        {
+        if (_afterSelectedLeft) {
             _afterSelectedLeft(@"", content);
         }
-    }
-    else if (1002 == tag)
-    {
+    } else if (1002 == tag) {
         _rightContent = content;
-        _ivFlagRight.image = [UIImage imageNamed:@"icon_down"];
         _lbRightContent.text = content;
         
-        if (_afterSelectedRight)
-        {
+        if (_afterSelectedRight) {
             _afterSelectedRight(@"", content);
         }
     }
+    
+    _ivFlagLeft.image = [UIImage imageNamed:@"icon_down"];
+    _ivFlagRight.image = [UIImage imageNamed:@"icon_down"];
 }
 
 - (void)onSelectItem:(NSString *)key content:(NSString *)content
 {
+    
+}
+
+- (void)onDismiss
+{
+    _ivFlagLeft.image = [UIImage imageNamed:@"icon_down"];
+    _ivFlagRight.image = [UIImage imageNamed:@"icon_down"];
     
 }
 

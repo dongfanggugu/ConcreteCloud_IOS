@@ -27,24 +27,15 @@
     //商品类型
     NSMutableArray<id<ListDialogDataDelegate>> *_arrayGoods;
     
-    NSString *_goodsName;
-    
     //强度等级
     NSMutableArray<DicInfo *> *_arrayLevel;
-    
-    NSString *_level;
     
     //抗渗等级
     NSMutableArray<DicInfo *> *_arrayKsdj;
     
-    NSString *_ksdj;
-    
     //塌落度
     NSMutableArray<DicInfo *> *_arraySlump;
     
-    NSString *_slump;
-    
-    NSString *_slumpDiv;
     
     //静态行的起始序号
     NSInteger _dyIndex;
@@ -67,6 +58,31 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+
+@property (copy, nonatomic) NSString *goodsName;
+
+@property (copy, nonatomic) NSString *level;
+
+@property (copy, nonatomic) NSString *ksdj;
+
+@property (copy, nonatomic) NSString *slump;
+
+@property (copy, nonatomic) NSString *slumpDiv;
+
+//保存cell状态,用于解决滑出屏幕之后滑回来后文本小时问题
+@property (weak, nonatomic) SelectableCell *hntLevelCell;
+
+@property (weak, nonatomic) SelectableCell *sjdjqdCell;
+
+@property (weak, nonatomic) SelectableCell *ksdjCell;
+
+@property (weak, nonatomic) TaluoduCell *taluoduCell;
+
+@property (weak, nonatomic) KeyEditCell *amountCell;
+
+@property (weak, nonatomic) KeyValueCell *useTimeCell;
+
+@property (weak, nonatomic) KeyEditCell *partCell;
 
 
 @end
@@ -197,8 +213,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         SelectableCell *cell = [SelectableCell viewFromNib];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -208,10 +223,11 @@
         [cell setContentValue:_goodsName];
         
         __weak typeof(self) weakSelf = self;
+
         
         void (^block)(NSString *key, NSString *content) = ^(NSString *key, NSString *content) {
             
-            _goodsName = content;
+            weakSelf.goodsName = content;
             [weakSelf.tableView reloadData];
             
         };
@@ -221,108 +237,135 @@
 
         return cell;
 
-    }
-    else if (1 == indexPath.row)
-    {
-        SelectableCell *cell = [SelectableCell viewFromNib];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    } else if (1 == indexPath.row) {
         
-        if ([_goodsName isEqualToString:HNT])
-        {
-            cell.lbKey.text = @"强度等级";
+        if ([_goodsName isEqualToString:HNT]) {
             
-            DicRequest *request = [[DicRequest alloc] init];
-            request.type = LEVEL;
+            if (_hntLevelCell) {
+                return _hntLevelCell;
+                
+            } else {
             
-            __weak typeof(self) weakSelf = self;
-            
-            [[HttpClient shareClient] view:self.view post:URL_P_DICS parameters:[request parsToDictionary]
-                                   success:^(NSURLSessionDataTask *task, id responseObject) {
-                                       DicResponse *response = [[DicResponse alloc] initWithDictionary:responseObject];
-                                       [_arrayLevel removeAllObjects];
-                                       [_arrayLevel addObjectsFromArray:response.body];
-                                       
-                                       _level = _arrayLevel[0].value;
-                                       
-                                       [cell setView:weakSelf.view data:[_arrayLevel copy]];
-                                       
-                                       [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
+                SelectableCell *cell = [SelectableCell viewFromNib];
+                
+                _hntLevelCell = cell;
+                
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+                cell.lbKey.text = @"强度等级";
+                
+                
+                DicRequest *request = [[DicRequest alloc] init];
+                request.type = LEVEL;
+                
+                __weak typeof(self) weakSelf = self;
+                
+                [[HttpClient shareClient] view:self.view post:URL_P_DICS parameters:[request parsToDictionary]
+                                       success:^(NSURLSessionDataTask *task, id responseObject) {
+                                           DicResponse *response = [[DicResponse alloc] initWithDictionary:responseObject];
+                                           [_arrayLevel removeAllObjects];
+                                           [_arrayLevel addObjectsFromArray:response.body];
                                            
-                                           _level = content;
+                                           _level = _arrayLevel[0].value;
+                                           
+                                           [cell setView:weakSelf.view data:[_arrayLevel copy]];
+                                           
+                                           [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
+                                               
+                                               weakSelf.level = content;
+                                           }];
+                                           
+                                           
+                                       } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                                           
                                        }];
-                                       
-                                       
-                                   } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-                                       
-                                   }];
+                return cell;
+            }
+            
+        } else {
+            
+            if (_sjdjqdCell) {
+                return _sjdjqdCell;
+                
+            } else {
+            
+                SelectableCell *cell = [SelectableCell viewFromNib];
+                _sjdjqdCell = cell;
+                
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.lbKey.text = @"强度等级";
+                
+                DicRequest *request = [[DicRequest alloc] init];
+                request.type = SJQDDJ;
+                
+                __weak typeof(self) weakSelf = self;
+                
+                [[HttpClient shareClient] view:self.view post:URL_P_DICS parameters:[request parsToDictionary]
+                                       success:^(NSURLSessionDataTask *task, id responseObject) {
+                                           DicResponse *response = [[DicResponse alloc] initWithDictionary:responseObject];
+                                           [_arrayLevel removeAllObjects];
+                                           [_arrayLevel addObjectsFromArray:response.body];
+                                           
+                                           _level = _arrayLevel[0].value;
+                                           
+                                           [cell setView:weakSelf.view data:[_arrayLevel copy]];
+                                           
+                                           [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
+                                               
+                                               weakSelf.level = content;
+                                           }];
+                                           
+                                           
+                                       } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                                           
+                                       }];
+                
+                return cell;
+                
+            }
         }
-        else
-        {
-            cell.lbKey.text = @"强度等级";
+    
+    } else if (2 == indexPath.row) {
+        if ([_goodsName isEqualToString:HNT]) {
             
-            DicRequest *request = [[DicRequest alloc] init];
-            request.type = SJQDDJ;
+            if (_ksdjCell) {
+                return _ksdjCell;
             
-            __weak typeof(self) weakSelf = self;
-            
-            [[HttpClient shareClient] view:self.view post:URL_P_DICS parameters:[request parsToDictionary]
-                                   success:^(NSURLSessionDataTask *task, id responseObject) {
-                                       DicResponse *response = [[DicResponse alloc] initWithDictionary:responseObject];
-                                       [_arrayLevel removeAllObjects];
-                                       [_arrayLevel addObjectsFromArray:response.body];
-                                       
-                                       _level = _arrayLevel[0].value;
-                                       
-                                       [cell setView:weakSelf.view data:[_arrayLevel copy]];
-                                       
-                                       [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
+            } else {
+                SelectableCell *cell = [SelectableCell viewFromNib];
+                _ksdjCell = cell;
+                
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+                cell.lbKey.text = @"抗渗等级";
+                
+                DicRequest *request = [[DicRequest alloc] init];
+                request.type = KSDJ;
+                
+                __weak typeof(self) weakSelf = self;
+                
+                [[HttpClient shareClient] view:self.view post:URL_P_DICS parameters:[request parsToDictionary]
+                                       success:^(NSURLSessionDataTask *task, id responseObject) {
+                                           DicResponse *response = [[DicResponse alloc] initWithDictionary:responseObject];
+                                           [_arrayKsdj removeAllObjects];
+                                           [_arrayKsdj addObjectsFromArray:response.body];
                                            
-                                           _level = content;
-                                       }];
-                                       
-                                       
-                                   } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-                                       
-                                   }];
-
-        }
-        return cell;
-    }
-    else if (2 == indexPath.row)
-    {
-        if ([_goodsName isEqualToString:HNT])
-        {
-            SelectableCell *cell = [SelectableCell viewFromNib];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            cell.lbKey.text = @"抗渗等级";
-            
-            DicRequest *request = [[DicRequest alloc] init];
-            request.type = KSDJ;
-            
-            __weak typeof(self) weakSelf = self;
-            
-            [[HttpClient shareClient] view:self.view post:URL_P_DICS parameters:[request parsToDictionary]
-                                   success:^(NSURLSessionDataTask *task, id responseObject) {
-                                       DicResponse *response = [[DicResponse alloc] initWithDictionary:responseObject];
-                                       [_arrayKsdj removeAllObjects];
-                                       [_arrayKsdj addObjectsFromArray:response.body];
-                                       
-                                       _ksdj = _arrayKsdj[0].value;
-                                       
-                                       [cell setView:weakSelf.view data:[_arrayKsdj copy]];
-                                       
-                                       [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
+                                           _ksdj = _arrayKsdj[0].value;
                                            
-                                           _ksdj = content;
+                                           [cell setView:weakSelf.view data:[_arrayKsdj copy]];
+                                           
+                                           [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
+                                               
+                                               weakSelf.ksdj = content;
+                                           }];
+                                           
+                                           
+                                       } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                                           
                                        }];
-                                       
-                                       
-                                   } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-                                       
-                                   }];
-            
-            return cell;
+                
+                return cell;
+            }
         }
     }
     else if (3 == indexPath.row)
@@ -330,99 +373,128 @@
         
          if ([_goodsName isEqualToString:HNT])
          {
-             TaluoduCell *cell = [TaluoduCell viewFromNib];
-             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-             
-             if ([_goodsName isEqualToString:HNT])
-             {
+             if (_taluoduCell) {
+                 return _taluoduCell;
                  
-                 DicRequest *request = [[DicRequest alloc] init];
-                 request.type = SLUMP;
+             } else {
+                 TaluoduCell *cell = [TaluoduCell viewFromNib];
+                 _taluoduCell = cell;
                  
-                 __weak typeof(self) weakSelf = self;
+                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                  
-                 [[HttpClient shareClient] view:self.view post:URL_P_DICS parameters:[request parsToDictionary]
-                                        success:^(NSURLSessionDataTask *task, id responseObject) {
-                                            DicResponse *response = [[DicResponse alloc] initWithDictionary:responseObject];
-                                            [_arraySlump removeAllObjects];
-                                            [_arraySlump addObjectsFromArray:response.body];
-                                            
-                                            _slump = _arraySlump[0].value;
-                                            _slumpDiv = @"10";
-                                            
-                                            [cell setView:weakSelf.view data:[_arraySlump copy]];
-                                            
-                                            [cell setLeftAfterSelectedListener:^(NSString *key, NSString *content) {
+                 if ([_goodsName isEqualToString:HNT])
+                 {
+                     
+                     DicRequest *request = [[DicRequest alloc] init];
+                     request.type = SLUMP;
+                     
+                     __weak typeof(self) weakSelf = self;
+                     
+                     [[HttpClient shareClient] view:self.view post:URL_P_DICS parameters:[request parsToDictionary]
+                                            success:^(NSURLSessionDataTask *task, id responseObject) {
+                                                DicResponse *response = [[DicResponse alloc] initWithDictionary:responseObject];
+                                                [_arraySlump removeAllObjects];
+                                                [_arraySlump addObjectsFromArray:response.body];
                                                 
-                                                _slump = content;
-                                            }];
-                                            
-                                            [cell setRightAfterSelectedListener:^(NSString *key, NSString *content) {
+                                                _slump = _arraySlump[0].value;
+                                                _slumpDiv = @"10";
                                                 
-                                                _slumpDiv = content;
+                                                [cell setView:weakSelf.view data:[_arraySlump copy]];
+                                                
+                                                [cell setLeftAfterSelectedListener:^(NSString *key, NSString *content) {
+                                                    
+                                                    weakSelf.slump = content;
+                                                }];
+                                                
+                                                [cell setRightAfterSelectedListener:^(NSString *key, NSString *content) {
+                                                    
+                                                    weakSelf.slumpDiv = content;
+                                                }];
+                                                
+                                                
+                                            } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                                                
                                             }];
-                                            
-                                            
-                                        } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-                                            
-                                        }];
+                 }
+                 
+                 return cell;
              }
-             
-             return cell;
          }
     }
     
-    if (_dyIndex == indexPath.row)
-    {
-        KeyEditCell *cell = [KeyEditCell viewFromNib];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.lbKey.text = @"订货量";
-        
-        cell.tfValue.placeholder = @"订货量";
-        cell.tfValue.keyboardType = UIKeyboardTypeDecimalPad;
-        
-        cell.lbUnit.hidden = NO;
-        cell.lbUnit.text = @"m³";
-        
-        _tfAmount = cell.tfValue;
-        
-        return cell;
+    if (_dyIndex == indexPath.row) {
+        if (_amountCell) {
+            return _amountCell;
+            
+        } else {
+            KeyEditCell *cell = [KeyEditCell viewFromNib];
+            _amountCell = cell;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.lbKey.text = @"订货量";
+            
+            cell.tfValue.placeholder = @"订货量";
+            cell.tfValue.keyboardType = UIKeyboardTypeDecimalPad;
+            
+            cell.lbUnit.hidden = NO;
+            cell.lbUnit.text = @"m³";
+            
+            _tfAmount = cell.tfValue;
+            
+            return cell;
+        }
     }
     else if (_dyIndex + 1 == indexPath.row)
     {
-        KeyValueCell *cell = [KeyValueCell viewFromNib];
+        if (_useTimeCell) {
+            return _useTimeCell;
         
-        CGFloat width = self.view.frame.size.width;
-        cell.valueWidth.constant = width - 150 - 8 - 8 - 8;
+        } else {
         
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        cell.lbValue.textAlignment = NSTextAlignmentLeft;
-        cell.lbKey.text = @"浇筑时间";
-        cell.lbValue.text = @"点击选择浇筑时间";
-        
-        
-        cell.lbValue.userInteractionEnabled = YES;
-        
-        _lbArriveDate = cell.lbValue;
-        
-        [cell.lbValue addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDatePicker)]];
-        
-        return cell;
+            KeyValueCell *cell = [KeyValueCell viewFromNib];
+            _useTimeCell = cell;
+            
+            CGFloat width = self.view.frame.size.width;
+            cell.valueWidth.constant = width - 150 - 8 - 8 - 8;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            cell.lbValue.textAlignment = NSTextAlignmentLeft;
+            cell.lbKey.text = @"浇筑时间";
+            cell.lbValue.text = @"点击选择浇筑时间";
+            
+            
+            cell.lbValue.userInteractionEnabled = YES;
+            
+            _lbArriveDate = cell.lbValue;
+            
+            [cell.lbValue addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                       action:@selector(showDatePicker)]];
+            
+            return cell;
+        }
     }
     else if (_dyIndex + 2 == indexPath.row)
     {
-        KeyEditCell *cell = [KeyEditCell viewFromNib];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.lbKey.text = @"浇筑部位";
-        
-        cell.tfValue.placeholder = @"浇筑部位";
-        
-        cell.lbUnit.hidden = YES;
-        
-        _tfCastPart = cell.tfValue;
-        
-        return cell;
+        if (_partCell) {
+            return _partCell;
+            
+        } else {
+            
+            KeyEditCell *cell = [KeyEditCell viewFromNib];
+            _partCell = cell;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.lbKey.text = @"浇筑部位";
+            
+            cell.tfValue.placeholder = @"浇筑部位";
+            
+            cell.lbUnit.hidden = YES;
+            
+            _tfCastPart = cell.tfValue;
+            
+            return cell;
+        }
     }
     else if (_dyIndex + 3 == indexPath.row)
     {
@@ -470,7 +542,7 @@
     DatePickerDialog *dialog = [DatePickerDialog viewFromNib];
     dialog.delegate = self;
     
-    [self.view addSubview:dialog];
+    [dialog show];
 }
 
 #pragma mark - DatePickerDelegate

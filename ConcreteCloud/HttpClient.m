@@ -62,7 +62,7 @@
     hud = [HUDClass showLoadingHUD:view];
     
     [self POST:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-       // NSLog(@"zhenhao-----response:%@", responseObject);
+        NSLog(@"zhenhao-----response:%@", responseObject);
   
         [HUDClass hideLoadingHUD:hud];
         

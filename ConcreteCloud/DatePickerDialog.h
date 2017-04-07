@@ -21,6 +21,8 @@
 
 - (void)setDateMode;
 
+- (void)show;
+
 @property (weak, nonatomic) id<DatePickerDialogDelegate> delegate;
 
 @end

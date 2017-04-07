@@ -43,6 +43,10 @@
 
 - (void)cancel
 {
+    if (_delegate && [_delegate respondsToSelector:@selector(onDismiss)]) {
+        [_delegate onDismiss];
+    }
+    
     if ([self superview]) {
         [self removeFromSuperview];
     }
@@ -100,6 +104,19 @@
     return cell;
 }
 
+
+- (void)show
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    UIWindow *window = appDelegate.window;
+    
+    self.frame = window.bounds;
+    
+    [window addSubview:self];
+    
+    [window bringSubviewToFront:self];
+}
 
 #pragma mark - UITableViewDeleagate
 

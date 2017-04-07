@@ -36,6 +36,8 @@
 
 @property (nonatomic) __block UIBackgroundTaskIdentifier bgTask;
 
+@property (strong, nonatomic) CustomLocation *customLocation;
+
 @end
 
 @implementation TankerArrivedController
@@ -175,15 +177,6 @@
     //取消接收定位通知
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-//    if (_locationTimer)
-//    {
-//        [_locationTimer invalidate];
-//    }
-//    
-//    if (_bgCheckTimer)
-//    {
-//        [_bgCheckTimer invalidate];
-//    }
 }
 
 
@@ -337,22 +330,19 @@
         
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
-        if (appDelegate.bgCheckTimer)
-        {
+        if (appDelegate.bgCheckTimer) {
             [appDelegate.bgCheckTimer invalidate];
             
             appDelegate.bgCheckTimer = nil;
         }
         
         
-        if (appDelegate.locationTimer)
-        {
+        if (appDelegate.locationTimer) {
             [appDelegate.locationTimer invalidate];
             appDelegate.locationTimer = nil;
         }
         
-        if (_delegate && [_delegate respondsToSelector:@selector(onClickHzs)])
-        {
+        if (_delegate && [_delegate respondsToSelector:@selector(onClickHzs)]) {
             [_delegate onClickHzs];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
@@ -360,8 +350,106 @@
     }];
 }
 
+
+/**
+ 退货流程:三次确认,然后定位,获取距离限制,计算是否距离符合限制,最后退货
+ */
 - (void)clickBack
 {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                             message:@"确定要退灰?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self showBackAgain];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    
+}
+
+- (void)showBackAgain
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                             message:@"再次确定要退灰?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self showBackLast];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
+- (void)showBackLast
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                             message:@"最后确定要退灰?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self customLoaction];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
+- (void)customLoaction
+{
+    _customLocation = [[CustomLocation alloc] initLocationWith:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCustomLocationComplete:)
+                                                 name:Custom_Location_Complete object:nil];
+    
+    [_customLocation startLocationService];
+}
+
+
+- (void)onCustomLocationComplete:(NSNotification *)notify
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:Custom_Location_Complete object:nil];
+    
+    _customLocation = nil;
+    
+    NSDictionary *userInfo = notify.userInfo;
+    
+    if (!userInfo) {
+        
+        [HUDClass showHUDWithText:@"定位失败,请检查网络和定位设置再试!"];
+        return;
+    }
+    
+    BMKUserLocation *userLocation = userInfo[User_Location];
+    
+    [self getDisLimit:userLocation.location.coordinate];
+}
+
+- (void)taskBackWithLimit:(NSInteger)limit location:(CLLocationCoordinate2D)location
+{
+    CLLocationCoordinate2D siteLocation;
+    
+    siteLocation.latitude = _trackInfo.hzs_Order.siteLat;
+    siteLocation.longitude = _trackInfo.hzs_Order.siteLng;
+    
+    NSInteger dis = (NSInteger)[CustomLocation distancePoint:location with:siteLocation];
+    
+    if (dis > limit) {
+        [HUDClass showHUDWithText:@"您距离工地太远,无法退灰"];
+        return;
+    }
+    
     TaskFinishRequest *request = [[TaskFinishRequest alloc] init];
     request.hzsOrderProcessId = _trackInfo.trackId;
     request.back = @"1";
@@ -369,8 +457,8 @@
     [[HttpClient shareClient] view:self.view post:URL_FINISH_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         _trackInfo.state = @"-1";
         
-        if (_btnBack)
-        {
+        [HUDClass showHUDWithText:@"退灰成功!"];
+        if (_btnBack) {
             [_btnBack removeFromSuperview];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
@@ -380,10 +468,28 @@
 
 - (void)record
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickRecord:)])
-    {
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickRecord:)]) {
         [_delegate onClickRecord:_trackInfo];
     }
+}
+#pragma mark - 网络请求
+
+- (void)getDisLimit:(CLLocationCoordinate2D)coor
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    
+    param[@"hzsId"] = [[Config shareConfig] getBranchId];
+    
+    [[HttpClient shareClient] view:self.view post:URL_START_UP_LIMIT parameters:param
+                           success:^(NSURLSessionDataTask *task, id responseObject) {
+                               NSInteger limit = [[[responseObject objectForKey:@"body"] objectForKey:@"region"] integerValue];
+                               
+                               NSLog(@"limit:%ld", limit);
+                               [self taskBackWithLimit:limit location:coor];
+                               
+                           } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                               
+                           }];
 }
 
 #pragma mark - UITableViewDelegate

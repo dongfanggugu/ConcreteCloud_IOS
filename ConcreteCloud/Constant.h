@@ -17,10 +17,14 @@
 
 #pragma mark- 订单类型
 
-typedef NS_ENUM(NSInteger, Order_Type)
-{
+typedef NS_ENUM(NSInteger, Order_Type) {
     Order_A = 2,
     Order_B = 1
+};
+
+typedef NS_ENUM(NSInteger, G_Vehicle_Type) {
+    Vehicle_Tanker,
+    Vehicle_Pump
 };
 
 #pragma mark - 商品字典表
@@ -81,6 +85,10 @@ typedef NS_ENUM(NSInteger, Order_Type)
 #define Location_Complete @"location_complete"
 
 #define User_Location @"user_location"
+
+#define User_Custom @"user_custom"
+
+#define Custom_Location_Complete @"custom_location_complete"
 
 
 #pragma mark -- 商品类型

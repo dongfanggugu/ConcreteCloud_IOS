@@ -23,6 +23,8 @@
 #import "Obj2Dic.h"
 #import "Colors.h"
 #import "Config.h"
+#import "Location.h"
+#import "CustomLocation.h"
 
 #ifdef DEBUG
 #define NSLog(FORMAT, ...) fprintf(stderr,"\n %s:%d   %s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],__LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);

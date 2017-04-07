@@ -16,8 +16,6 @@
 
 @property (strong, nonatomic) NSArray<ListDialogDataDelegate> *arrayData;
 
-@property (weak, nonatomic) UIView *view;
-
 @property (strong, nonatomic) NSString *content;
 
 @property (strong, nonatomic) NSString *key;
@@ -50,15 +48,13 @@
     return @"selectable_cell";
 }
 
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    
     _ivFlag.image = [UIImage imageNamed:@"icon_down"];
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
+    
     _lbContent.userInteractionEnabled = YES;
     
     [_lbContent addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDialog)]];
@@ -70,7 +66,6 @@
     {
         return;
     }
-    _view = view;
     _arrayData = arrayData;
     
     id<ListDialogDataDelegate> info = arrayData[0];
@@ -86,13 +81,7 @@
     ListDialogView *dialog = [ListDialogView viewFromNib];
     [dialog setData:_arrayData];
     dialog.delegate = self;
-    
-    dialog.frame = _view.frame;
-    
-    //dialog.center = _view.center;
-    
-    
-    [_view addSubview:dialog];
+    [dialog show];
 }
 
 - (NSString *)getKeyValue
@@ -146,19 +135,19 @@
     _ivFlag.image = [UIImage imageNamed:@"icon_down"];
     _lbContent.text = _content;
     
-    if (_afterSelected != nil)
-    {
+    if (_afterSelected != nil) {
         _afterSelected(key, content);
-    }
-    else
-    {
-        
     }
 }
 
 - (void)onSelectDialogTag:(NSInteger)tag content:(NSString *)content
 {
     
+}
+
+- (void)onDismiss
+{
+    _ivFlag.image = [UIImage imageNamed:@"icon_down"];
 }
 
 @end

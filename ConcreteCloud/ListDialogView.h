@@ -28,6 +28,8 @@
 
 - (void)onSelectDialogTag:(NSInteger)tag key:(NSString *)key content:(NSString *)content;
 
+- (void)onDismiss;
+
 @end
 
 #pragma mark - ListDialogView
@@ -38,6 +40,7 @@
 
 - (void)setData:(NSArray<id<ListDialogDataDelegate>> *)arrayData;
 
+- (void)show;
 
 @property (strong, nonatomic) NSArray<id<ListDialogDataDelegate>> *arrayData;
 

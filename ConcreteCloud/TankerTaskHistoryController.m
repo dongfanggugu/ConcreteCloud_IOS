@@ -201,8 +201,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    TankerTaskDetailController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"tanker_task_detail_controller"];
+    TankerTaskDetailController *controller = [self.storyboard
+                                              instantiateViewControllerWithIdentifier:@"tanker_task_detail_controller"];
     controller.trackInfo = _arrayCheck[indexPath.row];
+    controller.vehicleType = Vehicle_Tanker;
+    
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
     self.hidesBottomBarWhenPushed = NO;

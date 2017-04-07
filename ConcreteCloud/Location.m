@@ -72,19 +72,10 @@
 {
     CLLocationCoordinate2D coor = userLocation.location.coordinate;
     
-    NSLog(@"lat:%lf", coor.latitude);
-    
-    NSLog(@"lng:%lf", coor.longitude);
-    
-    NSLog(@"title:%@", userLocation.title);
-    
-    NSLog(@"location complete");
-    
     //关闭定位
     [_locService stopUserLocationService];
     
     _locService = nil;
-    
     
     
     NSLog(@"before send notify");
