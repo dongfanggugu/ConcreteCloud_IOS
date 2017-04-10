@@ -11,7 +11,15 @@
 
 #import "TitleViewController.h"
 
+typedef NS_ENUM(NSInteger, DOrderEnterType) {
+    DispaterProcess,
+    Dispaterhistory,
+    Purchaser
+};
+
 @interface DOrderController: TitleViewController
+
+@property (assign, nonatomic) DOrderEnterType enterType;
 
 
 @end

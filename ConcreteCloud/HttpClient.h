@@ -19,6 +19,8 @@ typedef NS_ENUM(NSInteger, Fail_Type)
 
 @interface HttpClient : AFHTTPSessionManager
 
++ (void)attempDealloc;
+
 + (instancetype)shareClient;
 
 - (void)view:(UIView *)view post:(NSString *)url parameters:(id)parameters

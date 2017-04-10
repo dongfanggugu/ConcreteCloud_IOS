@@ -15,6 +15,8 @@
 
 - (CGFloat)viewHeight;
 
+- (void)addOnCloseClickListener:(void(^)())onClickClose;
+
 @property (weak, nonatomic) IBOutlet UILabel *lbSupplierName;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbContactUser;

@@ -26,7 +26,7 @@
 #import "DialogEditView.h"
 
 
-@interface LoginController()<DialogEditViewDelegate>
+@interface LoginController()<DialogEditViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 
@@ -82,6 +82,16 @@
     
     _lbVersion.userInteractionEnabled = YES;
     [_lbVersion addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeIP)]];
+
+    _tfPassword.delegate = self;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)changeIP
@@ -92,7 +102,7 @@
     dialog.tfContent.placeholder = @"服务器地址,包含端口";
     dialog.tfContent.text = [[Config shareConfig] getServer];
     
-    [self.view addSubview:dialog];
+    [dialog show];
 
 }
 
@@ -101,6 +111,8 @@
 - (void)onOKDismiss:(NSString *)content
 {
     [[Config shareConfig] setServer:content];
+    
+    [HttpClient attempDealloc];
 }
 
 - (void)initData

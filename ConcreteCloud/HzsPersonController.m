@@ -35,6 +35,7 @@
 
 @property (strong, nonatomic) PersonHeaderView *personHeaderView;
 
+@property (assign, nonatomic) G_Agent_Type agentType;
 
 @end
 
@@ -43,10 +44,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initData];
     [self setNaviTitle:@"我的"];
     [self initView];
 }
 
+
+- (void)initData
+{
+    _agentType = [[[Config shareConfig] getType] integerValue];
+}
 
 - (void)initView
 {
@@ -84,13 +91,26 @@
     
     if (0 == indexPath.row)
     {
-        cell.lbKey.text = @"搅拌站";
+        
+        if (Agent_Hzs ==  _agentType) {
+            cell.lbKey.text = @"搅拌站";
+            
+        } else if (Agent_Site == _agentType) {
+            cell.lbKey.text = @"工程";
+            
+        } else if (Agent_Supplier == _agentType) {
+            cell.lbKey.text = @"供应商";
+            
+        } else if (Agent_Renter == _agentType) {
+            cell.lbKey.text = @"租赁商";
+        }
+        
         cell.lbValue.text = [[Config shareConfig] getBranchName];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     else if (1 == indexPath.row)
     {
-        cell.lbKey.text = @"搅拌站地址";
+        cell.lbKey.text = @"地址";
         cell.lbValue.text = [[Config shareConfig] getBranchAddress];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -181,13 +201,16 @@
         appDelegate.bgCheckTimer = nil;
     }
     
-    
     if (appDelegate.locationTimer)
     {
         [appDelegate.locationTimer invalidate];
         appDelegate.locationTimer = nil;
     }
     
+    if (appDelegate.disAndTimeTimer) {
+        [appDelegate.disAndTimeTimer invalidate];
+        appDelegate.disAndTimeTimer = nil;
+    }
     
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     

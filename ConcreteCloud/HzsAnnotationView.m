@@ -105,6 +105,12 @@
     _infoView.frame = CGRectMake(- width / 2 + 10, - height + 20, width, height);
     
     
+    __weak typeof (self) weakSelf = self;
+    [_infoView addOnCloseClickListener:^{
+        [weakSelf hideInfoWindow];
+    }];
+    
+    
     if (_hideOperation)
     {
         _infoView.btn.hidden = YES;

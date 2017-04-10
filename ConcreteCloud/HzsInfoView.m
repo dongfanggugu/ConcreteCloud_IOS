@@ -12,9 +12,13 @@
 @interface HzsInfoView()
 {
     void(^_onClickBtn)();
+    
+    void(^_onClickClose)();
 }
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *addHeight;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnClose;
 
 @end
 
@@ -40,17 +44,32 @@
     self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
 }
 
-- (void)addOnBtnClickListener:(void (^)())onClickBtn
+- (void)addOnBtnClickListener:(void(^)())onClickBtn
 {
     _onClickBtn = onClickBtn;
     
     [_btn addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
 }
 
+
+- (void)addOnCloseClickListener:(void(^)())onClickClose
+{
+    _onClickClose = onClickClose;
+    
+    [_btnClose addTarget:self action:@selector(clickClose) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
+- (void)clickClose
+{
+    if (_onClickClose) {
+        _onClickClose();
+    }
+}
+
 - (void)clickBtn
 {
-    if (_onClickBtn)
-    {
+    if (_onClickBtn) {
         _onClickBtn();
     }
 }

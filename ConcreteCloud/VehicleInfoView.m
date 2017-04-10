@@ -11,7 +11,11 @@
 
 @interface VehicleInfoView()
 
+@property (weak, nonatomic) IBOutlet UIButton *btnClose;
+
 @property (strong, nonatomic) void(^onClickDetail)();
+
+@property (strong, nonatomic) void(^onClickClose)();
 
 @end
 
@@ -20,8 +24,7 @@
 + (id)viewFromNib
 {
     NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"VehicleInfoView" owner:nil options:nil];
-    if (0 == array.count)
-    {
+    if (0 == array.count) {
         return nil;
     }
     
@@ -36,7 +39,6 @@
 
 - (void)setOnClickDetailListener:(void (^)())onClickDetail
 {
-    NSLog(@"set on click detail");
     _onClickDetail = onClickDetail;
     
     _btnDetail.userInteractionEnabled = YES;
@@ -44,9 +46,24 @@
     [_btnDetail addTarget:self action:@selector(clickDetail) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)addOnCloseClickListener:(void(^)())onClickClose
+{
+    _onClickClose = onClickClose;
+    
+    [_btnClose addTarget:self action:@selector(clickClose) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
+- (void)clickClose
+{
+    if (_onClickClose) {
+        _onClickClose();
+    }
+}
+
+
 - (void)clickDetail
 {
-    NSLog(@"click detail");
     _onClickDetail();
 }
 

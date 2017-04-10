@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PMoreController.h"
+#import "DOrderController.h"
 
 
 #pragma mark - PMoreCell
@@ -78,17 +79,14 @@
 {
     PMoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"p_more_cell"];
     
-    if (nil == cell)
-    {
+    if (nil == cell) {
         cell = [[PMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"p_more_cell"];
     }
     
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         cell.label.text = @"混凝土订单";
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         cell.label.text = @"我的";
     }
     
@@ -104,7 +102,10 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Dispatcher" bundle:nil];
         
-        UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"d_order_controller"];
+        DOrderController *controller = [board instantiateViewControllerWithIdentifier:@"d_order_controller"];
+        controller.enterType = Purchaser;
+        
+        controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
     }
     else if (1 == indexPath.row)

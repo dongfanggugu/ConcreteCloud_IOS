@@ -25,6 +25,8 @@
 
 - (void)setOnClickDetailListener:(void(^)())onClickDetail;
 
+- (void)addOnCloseClickListener:(void(^)())onClickClose;
+
 @end
 
 #endif /* VehicleInfoView_h */

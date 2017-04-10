@@ -11,6 +11,7 @@
 #import "KeyValueCell.h"
 #import "ArrivedSiteRequest.h"
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Search/BMKRouteSearch.h>
 #import "JZLocationConverter.h"
 #import <MapKit/MKMapItem.h>
 #import <MapKit/MKTypes.h>
@@ -19,7 +20,8 @@
 
 
 
-@interface TankerOnWayController()<UITableViewDelegate, UITableViewDataSource, AVAudioPlayerDelegate>
+@interface TankerOnWayController()<UITableViewDelegate, UITableViewDataSource, AVAudioPlayerDelegate,
+                                    BMKRouteSearchDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -30,6 +32,10 @@
 @property (nonatomic, strong) AVAudioPlayer *avAudioPlayer;
 
 @property (nonatomic) __block UIBackgroundTaskIdentifier bgTask;
+
+@property (strong, nonatomic) BMKRouteSearch *routeSearch;
+
+@property (strong, nonatomic) CustomLocation *customLocation;
 
 @end
 
@@ -44,17 +50,109 @@
                                                  name:Location_Complete object:nil];
     [self startCheckBgRemain];
     [self startBgLocation];
+    [self startDisAndTime];
     
     [self initView];
+    
 }
 
 - (void)dealloc
 {
-    NSLog(@"TankerOnWayController dealloc");
     //取消接收定位通知
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 }
+
+- (void)routePlan:(CGFloat)lat lng:(CGFloat)lng
+{
+    BMKRouteSearch *routeSearch = [[BMKRouteSearch alloc] init];
+    routeSearch.delegate = self;
+    
+    BMKDrivingRoutePlanOption *options = [[BMKDrivingRoutePlanOption alloc] init];
+    
+    options.drivingRequestTrafficType = BMK_DRIVING_REQUEST_TRAFFICE_TYPE_PATH_AND_TRAFFICE;
+    
+    BMKPlanNode *start = [[BMKPlanNode alloc] init];
+    
+    CLLocationCoordinate2D coorStart;
+    coorStart.latitude = lat;
+    coorStart.longitude = lng;
+    
+    start.pt = coorStart;
+    
+    BMKPlanNode *end = [[BMKPlanNode alloc] init];
+    CLLocationCoordinate2D coorEnd;
+    coorEnd.latitude = _trackInfo.hzs_Order.siteLat;
+    coorEnd.longitude = _trackInfo.hzs_Order.siteLng;
+    end.pt = coorEnd;
+    
+    options.from = start;
+    options.to = end;
+    
+    BOOL suc = [routeSearch drivingSearch:options];
+    
+    if (suc) {
+        NSLog(@"路线查找成功");
+    }
+    
+}
+
+
+#pragma mark - BMKRouteSearchDelegate
+
+- (void)onGetDrivingRouteResult:(BMKRouteSearch *)searcher result:(BMKDrivingRouteResult *)result errorCode:(BMKSearchErrorCode)error
+{
+    searcher.delegate = nil;
+//    if (routeSearch) {
+//        routeSearch.delegate = nil;
+//        routeSearch = nil;
+//    }
+    
+    if (error == BMK_SEARCH_NO_ERROR) {
+        
+        NSInteger hour = 0;
+        NSInteger minute = 0;
+        NSInteger second = 0;
+        
+        NSInteger dis = 0;
+        
+        for (BMKDrivingRouteLine *node in result.routes) {
+            
+            hour += node.duration.hours;
+            minute += node.duration.minutes;
+            second += node.duration.seconds;
+            
+            dis += node.distance;
+        }
+        
+        NSInteger duration = 60 * hour + minute;
+        
+        NSLog(@"duration:%ld分钟", duration);
+        
+        CGFloat distance = (CGFloat)dis / 1000;
+        
+        NSLog(@"distance:%lf公里", distance);
+        
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        
+        param[@"time"] = [NSNumber numberWithInteger:duration];
+        
+        
+        param[@"distance"] = [NSNumber numberWithFloat:distance];
+        
+        param[@"hzsOrderProcessId"] = _trackInfo.trackId;
+        
+        [[HttpClient shareClient] post:URL_A_DIS_TIME parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *errr, Fail_Type failType) {
+            
+        }];
+        
+    } else {
+        NSLog(@"error code:%u", error);
+    }
+}
+
 
 - (void)initView
 {
@@ -133,9 +231,7 @@
             });
             
         }];
-    }
-    else
-    {
+    } else {
         NSLog(@"left time >> 61");
     }
 }
@@ -150,23 +246,66 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    if (!appDelegate.locationTimer)
-    {
+    if (!appDelegate.locationTimer) {
         appDelegate.locationTimer = [NSTimer scheduledTimerWithTimeInterval:30 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            [[Location sharedLocation] startLocationService];
+            
         }];
         
     }
 }
 
+
+/**
+ 距离和时间预估定时器
+ */
+- (void)startDisAndTime
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    _customLocation = [[CustomLocation alloc] init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCustomLocationComplete:)
+                                                 name:Custom_Location_Complete object:nil];
+    
+    __weak typeof (self) weakSelf = self;
+    
+    if (!appDelegate.disAndTimeTimer)
+    {
+        appDelegate.disAndTimeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 * 60 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            
+            [weakSelf.customLocation startLocationService];
+        }];
+        
+    }
+}
+
+
+
 #pragma mark - 定位完成
+
+- (void)onCustomLocationComplete:(NSNotification *)notify
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:Custom_Location_Complete object:nil];
+    
+    NSDictionary *userInfo = notify.userInfo;
+    
+    if (!userInfo) {
+        NSLog(@"定位失败");
+        return;
+    } else {
+        NSLog(@"定位成功");
+    }
+    
+    BMKUserLocation *userLocation = userInfo[User_Location];
+    
+    [self routePlan:userLocation.location.coordinate.latitude lng:userLocation.location.coordinate.longitude];
+}
 
 - (void)onLocationComplete:(NSNotification *)notify
 {
     NSDictionary *userInfo = notify.userInfo;
     
-    if (!userInfo)
-    {
+    if (!userInfo) {
         NSLog(@"定位失败");
         return;
     }
@@ -300,18 +439,21 @@
         
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
-        if (appDelegate.bgCheckTimer)
-        {
+        if (appDelegate.bgCheckTimer) {
             [appDelegate.bgCheckTimer invalidate];
             
             appDelegate.bgCheckTimer = nil;
         }
         
         
-        if (appDelegate.locationTimer)
-        {
+        if (appDelegate.locationTimer) {
             [appDelegate.locationTimer invalidate];
             appDelegate.locationTimer = nil;
+        }
+        
+        if (appDelegate.disAndTimeTimer) {
+            [appDelegate.disAndTimeTimer invalidate];
+            appDelegate.disAndTimeTimer = nil;
         }
         
         if (_delegate && [_delegate respondsToSelector:@selector(onClickArrived:)])

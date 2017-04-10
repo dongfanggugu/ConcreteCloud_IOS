@@ -286,4 +286,7 @@
 //调度员获取混凝土订单运输详情
 #define URL_A_CARRY_DETAIL @"getHzsOrderAllTransportProcess"
 
+//A单距离和时间预估
+#define URL_A_DIS_TIME @"checkTimeAndDistanceWithHzsOrderProcess"
+
 #endif /* NetConstant_h */

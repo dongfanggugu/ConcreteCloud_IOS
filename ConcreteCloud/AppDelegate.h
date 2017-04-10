@@ -16,6 +16,8 @@
 
 @property (strong, nonatomic) NSTimer *bgCheckTimer;
 
+@property (strong, nonatomic) NSTimer *disAndTimeTimer;
+
 
 @end
 

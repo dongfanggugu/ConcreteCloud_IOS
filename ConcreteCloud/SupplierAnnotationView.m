@@ -61,8 +61,7 @@
 
 - (void)showInfoWindow
 {
-    if (_infoView)
-    {
+    if (_infoView) {
         [self hideInfoWindow];
     }
     _infoView = [SupplierInfoView viewFromNib];
@@ -79,7 +78,14 @@
     [self addSubview:_infoView];
     
     //保证弹出框显示在最上层
-    [[self superview] bringSubviewToFront:self];}
+    [[self superview] bringSubviewToFront:self];
+    
+    __weak typeof (self) weakSelf = self;
+    
+    [_infoView addOnCloseClickListener:^{
+        [weakSelf hideInfoWindow];
+    }];
+}
 
 - (void)hideInfoWindow
 {

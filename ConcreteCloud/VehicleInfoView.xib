@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -85,10 +85,16 @@
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <state key="normal" title="查看轨迹"/>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wmF-FK-vjO">
+                            <rect key="frame" x="177" y="8" width="25" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="close.png"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <gestureRecognizers/>
                     <connections>
+                        <outlet property="btnClose" destination="wmF-FK-vjO" id="pa2-5p-oIo"/>
                         <outlet property="btnDetail" destination="mV6-q7-Chw" id="25A-2m-7Nb"/>
                         <outlet property="lbDriver" destination="hRi-vm-bkH" id="Blz-N7-ezp"/>
                         <outlet property="lbLoad" destination="Dc8-6j-J9q" id="RxX-ci-2qn"/>
@@ -102,6 +108,7 @@
         </view>
     </objects>
     <resources>
+        <image name="close.png" width="64" height="64"/>
         <image name="icon_info_window.png" width="350" height="238"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

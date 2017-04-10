@@ -37,7 +37,10 @@
 {
     [super viewDidLoad];
     [self setSegmentTitleLeft:@"进行中" right:@"历史订单"];
-    [self initNaviLeftWithText:@"订单概览"];
+    
+    if (_enterType != Purchaser) {
+        [self initNaviLeftWithText:@"订单概览"];
+    }
     [self initView];
     
     [self initData];

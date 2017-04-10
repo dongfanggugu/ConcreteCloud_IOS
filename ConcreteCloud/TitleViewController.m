@@ -224,14 +224,14 @@
     
     CGRect frame = _mNavigationBar.frame;
     
-    UIButton *btn= [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 20)];
+    UIButton *btn= [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 20)];
     
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn setTitle:text forState:UIControlStateNormal];
     
-    btn.titleLabel.font = [UIFont systemFontOfSize:13];
+    btn.titleLabel.font = [UIFont systemFontOfSize:12];
     
-    btn.center = CGPointMake(50, frame.size.height - 44 / 2);
+    btn.center = CGPointMake(38, frame.size.height - 44 / 2);
     
     btn.layer.masksToBounds = YES;
     

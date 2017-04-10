@@ -31,37 +31,32 @@
         return nil;
     }
     
-    return [[array[0] subviews] objectAtIndex:0];
+    return array[0];
 }
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    _curSel = 0;
-    [self updateView];
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
     self.layer.masksToBounds = YES;
-    self.layer.cornerRadius = 18;
+    self.layer.cornerRadius = 15;
     
     self.layer.borderWidth = 1;
     self.layer.borderColor = [UIColor whiteColor].CGColor;
     
     [_btnLeft addTarget:self action:@selector(onClickLeft) forControlEvents:UIControlEventTouchUpInside];
     [_btnRight addTarget:self action:@selector(onClickRight) forControlEvents:UIControlEventTouchUpInside];
+    
+    _curSel = 0;
+    [self updateView];
 }
+
 
 /**
  点击左侧标签
  **/
 - (void)onClickLeft
 {
-    if (_delegate)
-    {
+    if (_delegate) {
         [_delegate onClickLeft];
         _curSel = 0;
         [self updateView];
@@ -73,8 +68,7 @@
  **/
 - (void)onClickRight
 {
-    if (_delegate)
-    {
+    if (_delegate) {
         [_delegate onClickRight];
         _curSel = 1;
         [self updateView];
@@ -83,14 +77,12 @@
 
 - (void)updateView
 {
-    if (0 == _curSel)
-    {
+    if (0 == _curSel) {
         
         [_btnLeft setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_btnRight setTitleColor:[Utils getColorByRGB:COLOR_SEGMENT_UNSEL] forState:UIControlStateNormal];
     }
-    else if (1 == _curSel)
-    {
+    else if (1 == _curSel) {
         [_btnLeft setTitleColor:[Utils getColorByRGB:COLOR_SEGMENT_UNSEL] forState:UIControlStateNormal];
         [_btnRight setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }

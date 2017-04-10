@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -92,6 +92,14 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5H-m4-lCB">
+                    <rect key="frame" x="194" y="8" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="GF2-K5-6m2"/>
+                        <constraint firstAttribute="height" constant="25" id="Piz-C4-ezi"/>
+                    </constraints>
+                    <state key="normal" image="close.png"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -116,9 +124,11 @@
                 <constraint firstItem="ILA-vq-lgM" firstAttribute="leading" secondItem="89B-gt-c7N" secondAttribute="leading" constant="8" id="dtr-Lc-8dh"/>
                 <constraint firstItem="YDL-Kb-XL6" firstAttribute="leading" secondItem="Ruu-TU-j3e" secondAttribute="trailing" constant="8" id="eQM-Ww-cKo"/>
                 <constraint firstAttribute="trailing" secondItem="9Br-TH-3xm" secondAttribute="trailing" constant="8" id="fv1-XN-ruX"/>
+                <constraint firstItem="T5H-m4-lCB" firstAttribute="top" secondItem="89B-gt-c7N" secondAttribute="top" constant="8" id="i55-Mo-dk3"/>
                 <constraint firstItem="bNs-6c-7kr" firstAttribute="top" secondItem="ILA-vq-lgM" secondAttribute="bottom" constant="8" id="ird-j6-6fr"/>
                 <constraint firstItem="lA7-Dw-Dpo" firstAttribute="top" secondItem="89B-gt-c7N" secondAttribute="top" constant="8" id="k6B-TU-9Lz"/>
                 <constraint firstItem="YDL-Kb-XL6" firstAttribute="top" secondItem="Ruu-TU-j3e" secondAttribute="top" id="lGE-vP-jyg"/>
+                <constraint firstAttribute="trailing" secondItem="T5H-m4-lCB" secondAttribute="trailing" constant="8" id="nio-Nw-yg0"/>
                 <constraint firstItem="YDL-Kb-XL6" firstAttribute="leading" secondItem="Ruu-TU-j3e" secondAttribute="trailing" constant="8" id="pHW-Va-718"/>
                 <constraint firstItem="EDD-Dt-XI0" firstAttribute="leading" secondItem="ILA-vq-lgM" secondAttribute="trailing" constant="8" id="qM1-ti-I4K"/>
                 <constraint firstItem="9Br-TH-3xm" firstAttribute="leading" secondItem="bNs-6c-7kr" secondAttribute="trailing" constant="8" id="rv8-E9-Q83"/>
@@ -136,6 +146,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="addHeight" destination="hWs-lH-IMl" id="gQc-Vp-1jM"/>
+                <outlet property="btnClose" destination="T5H-m4-lCB" id="sjf-vI-ccV"/>
                 <outlet property="lbAddress" destination="YDL-Kb-XL6" id="s1c-Oc-E7x"/>
                 <outlet property="lbContactTel" destination="9Br-TH-3xm" id="BEL-rs-gLk"/>
                 <outlet property="lbContactUser" destination="EDD-Dt-XI0" id="JIM-RP-vQw"/>
@@ -145,6 +156,7 @@
         </view>
     </objects>
     <resources>
+        <image name="close.png" width="64" height="64"/>
         <image name="icon_info_window.png" width="350" height="238"/>
     </resources>
 </document>

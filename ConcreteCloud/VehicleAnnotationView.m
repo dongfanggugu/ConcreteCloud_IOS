@@ -141,6 +141,12 @@
     
     [[self superview] bringSubviewToFront:self];
     
+    __weak typeof (self) weakSelf = self;
+    
+    [_infoView addOnCloseClickListener:^{
+        [weakSelf hideInfoWindow];
+    }];
+    
 }
 
 - (void)hideInfoWindow

@@ -17,6 +17,9 @@
 
 - (void)addOnBtnClickListener:(void(^)())onClickBtn;
 
+- (void)addOnCloseClickListener:(void(^)())onClickClose;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *lbHzsName;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbContactUser;

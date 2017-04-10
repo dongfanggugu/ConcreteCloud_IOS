@@ -27,6 +27,15 @@ typedef NS_ENUM(NSInteger, G_Vehicle_Type) {
     Vehicle_Pump
 };
 
+#pragma mark - 机构类型
+
+typedef NS_ENUM(NSInteger, G_Agent_Type) {
+    Agent_Hzs = 1,
+    Agent_Site,
+    Agent_Supplier,
+    Agent_Renter
+};
+
 #pragma mark - 商品字典表
 //供应商商品
 #define GOODS @"supplierGoods"

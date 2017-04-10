@@ -10,8 +10,13 @@
 #import "SupplierInfoView.h"
 
 @interface SupplierInfoView()
+{
+    void(^_onClickClose)();
+}
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *addHeight;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnClose;
 
 @end
 
@@ -36,6 +41,20 @@
     self.layer.masksToBounds = YES;
     self.layer.cornerRadius = 5;
     self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+}
+
+- (void)addOnCloseClickListener:(void(^)())onClickClose
+{
+    _onClickClose = onClickClose;
+    
+    [_btnClose addTarget:self action:@selector(clickClose) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)clickClose
+{
+    if (_onClickClose) {
+        _onClickClose();
+    }
 }
 
 

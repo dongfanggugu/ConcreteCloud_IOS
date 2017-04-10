@@ -13,25 +13,35 @@
 
 @interface HttpClient()
 
+@property (nonatomic ,strong)NSString * URLString;
+
 @end
 
 @implementation HttpClient
 
 
+static HttpClient *_shareClient = nil;
+
+static dispatch_once_t onceToken;
+
 + (instancetype)shareClient
 {
-    static HttpClient *shareClient = nil;
-    static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        shareClient = [[HttpClient alloc] initWithBaseURL:[NSURL URLWithString:[Utils getServer]]];
-        shareClient.requestSerializer = [AFJSONRequestSerializer serializer];
-        shareClient.responseSerializer = [AFJSONResponseSerializer serializer];
-        shareClient.responseSerializer.acceptableContentTypes
-        = [shareClient.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+        _shareClient = [[HttpClient alloc] initWithBaseURL:[NSURL URLWithString:[Utils getServer]]];
+        _shareClient.requestSerializer = [AFJSONRequestSerializer serializer];
+        _shareClient.responseSerializer = [AFJSONResponseSerializer serializer];
+        _shareClient.responseSerializer.acceptableContentTypes
+        = [_shareClient.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     });
     
-    return shareClient;
+    return _shareClient;
+}
+
++ (void)attempDealloc
+{
+    onceToken = 0;
+    _shareClient = nil;
 }
 
 - (void)view:(UIView *)view post:(NSString *)url parameters:(id)parameters

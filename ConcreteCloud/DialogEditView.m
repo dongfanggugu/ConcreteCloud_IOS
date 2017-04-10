@@ -52,6 +52,17 @@
     [self removeFromSuperview];
 }
 
+- (void)show
+{
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    self.frame = delegate.window.bounds;
+    
+    [delegate.window addSubview:self];
+    
+    [delegate.window bringSubviewToFront:self];
+}
+
 - (void)onClickCancel
 {
     [self removeFromSuperview];

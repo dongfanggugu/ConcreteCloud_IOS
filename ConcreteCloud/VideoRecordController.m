@@ -47,8 +47,7 @@
 {
     [super viewWillDisappear:animated];
     
-    if (_timer && [_timer isValid])
-    {
+    if (_timer && [_timer isValid]) {
         [_timer invalidate];
         _timer = nil;
     }
@@ -128,18 +127,15 @@
     
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
     
-    if ([session canAddInput:inputVideo])
-    {
+    if ([session canAddInput:inputVideo]) {
         [session addInput:inputVideo];
     }
     
-    if ([session canAddInput:inputAudio])
-    {
+    if ([session canAddInput:inputAudio]) {
         [session addInput:inputAudio];
     }
     
-    if ([session canAddOutput:output])
-    {
+    if ([session canAddOutput:output]) {
         [session addOutput:output];
     }
     
