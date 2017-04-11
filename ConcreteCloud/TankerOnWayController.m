@@ -33,8 +33,6 @@
 
 @property (nonatomic) __block UIBackgroundTaskIdentifier bgTask;
 
-@property (strong, nonatomic) BMKRouteSearch *routeSearch;
-
 @property (strong, nonatomic) CustomLocation *customLocation;
 
 @end
@@ -103,10 +101,6 @@
 - (void)onGetDrivingRouteResult:(BMKRouteSearch *)searcher result:(BMKDrivingRouteResult *)result errorCode:(BMKSearchErrorCode)error
 {
     searcher.delegate = nil;
-//    if (routeSearch) {
-//        routeSearch.delegate = nil;
-//        routeSearch = nil;
-//    }
     
     if (error == BMK_SEARCH_NO_ERROR) {
         
@@ -192,8 +186,7 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    if (!appDelegate.bgCheckTimer)
-    {
+    if (!appDelegate.bgCheckTimer) {
         
         appDelegate.bgCheckTimer = [NSTimer scheduledTimerWithTimeInterval:60 repeats:YES block:^(NSTimer * _Nonnull timer) {
             
@@ -207,19 +200,18 @@
     
     NSLog(@"left time:%lf", [[UIApplication sharedApplication] backgroundTimeRemaining]);
     
-    if([[UIApplication sharedApplication] backgroundTimeRemaining] < 61.0)
-    {
+    if([[UIApplication sharedApplication] backgroundTimeRemaining] < 61.0) {
         NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"temp" ofType:@"mp3"];
         NSURL *audioUrl = [NSURL fileURLWithPath:audioPath];
         
-        if(!_avAudioPlayer)
-        {
+        if(!_avAudioPlayer) {
             _avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioUrl error:nil];
             _avAudioPlayer.delegate = self;
             _avAudioPlayer.volume = 0.0f;
             [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
                                              withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
         }
+        
         [_avAudioPlayer play];
         
         _bgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
@@ -264,14 +256,16 @@
     
     _customLocation = [[CustomLocation alloc] init];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCustomLocationComplete:)
-                                                 name:Custom_Location_Complete object:nil];
+    
     
     __weak typeof (self) weakSelf = self;
     
     if (!appDelegate.disAndTimeTimer)
     {
-        appDelegate.disAndTimeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 * 60 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        appDelegate.disAndTimeTimer = [NSTimer scheduledTimerWithTimeInterval:3 * 60 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            
+            [[NSNotificationCenter defaultCenter] addObserver:weakSelf selector:@selector(onCustomLocationComplete:)
+                                                         name:Custom_Location_Complete object:nil];
             
             [weakSelf.customLocation startLocationService];
         }];

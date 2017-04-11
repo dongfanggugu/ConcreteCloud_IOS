@@ -12,6 +12,7 @@
 #import "ACheckVideoCell.h"
 #import "TaskFinishRequest.h"
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Search/BMKRouteSearch.h>
 #import "JZLocationConverter.h"
 #import <MapKit/MKMapItem.h>
 #import <MapKit/MKTypes.h>
@@ -20,7 +21,8 @@
 #import "AppDelegate.h"
 
 
-@interface TankerArrivedController()<UITableViewDelegate, UITableViewDataSource, AVAudioPlayerDelegate>
+@interface TankerArrivedController()<UITableViewDelegate, UITableViewDataSource, AVAudioPlayerDelegate,
+                                    BMKRouteSearchDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -38,6 +40,8 @@
 
 @property (strong, nonatomic) CustomLocation *customLocation;
 
+@property (strong, nonatomic) CustomLocation *disAndTimeLocation;
+
 @end
 
 @implementation TankerArrivedController
@@ -51,6 +55,7 @@
                                                  name:Location_Complete object:nil];
     [self startCheckBgRemain];
     [self startBgLocation];
+    [self startDisAndTime];
     
     [self initView];
 }
@@ -60,6 +65,100 @@
     [super viewWillDisappear:animated];
     
 }
+
+
+
+/**
+ 路径查找
+
+ @param lat 起始点纬度
+ @param lng 起始点经度
+ */
+- (void)routePlan:(CGFloat)lat lng:(CGFloat)lng
+{
+    BMKRouteSearch *routeSearch = [[BMKRouteSearch alloc] init];
+    routeSearch.delegate = self;
+    
+    BMKDrivingRoutePlanOption *options = [[BMKDrivingRoutePlanOption alloc] init];
+    
+    options.drivingRequestTrafficType = BMK_DRIVING_REQUEST_TRAFFICE_TYPE_PATH_AND_TRAFFICE;
+    
+    BMKPlanNode *start = [[BMKPlanNode alloc] init];
+    
+    CLLocationCoordinate2D coorStart;
+    coorStart.latitude = lat;
+    coorStart.longitude = lng;
+    
+    start.pt = coorStart;
+    
+    BMKPlanNode *end = [[BMKPlanNode alloc] init];
+    CLLocationCoordinate2D coorEnd;
+    coorEnd.latitude = _trackInfo.hzs_Order.siteLat;
+    coorEnd.longitude = _trackInfo.hzs_Order.siteLng;
+    end.pt = coorEnd;
+    
+    options.from = start;
+    options.to = end;
+    
+    BOOL suc = [routeSearch drivingSearch:options];
+    
+    if (suc) {
+        NSLog(@"路线查找成功");
+    }
+    
+}
+
+#pragma mark - BMKRouteSearchDelegate
+
+- (void)onGetDrivingRouteResult:(BMKRouteSearch *)searcher result:(BMKDrivingRouteResult *)result errorCode:(BMKSearchErrorCode)error
+{
+    searcher.delegate = nil;
+    
+    if (error == BMK_SEARCH_NO_ERROR) {
+        
+        NSInteger hour = 0;
+        NSInteger minute = 0;
+        NSInteger second = 0;
+        
+        NSInteger dis = 0;
+        
+        for (BMKDrivingRouteLine *node in result.routes) {
+            
+            hour += node.duration.hours;
+            minute += node.duration.minutes;
+            second += node.duration.seconds;
+            
+            dis += node.distance;
+        }
+        
+        NSInteger duration = 60 * hour + minute;
+        
+        NSLog(@"duration:%ld分钟", duration);
+        
+        CGFloat distance = (CGFloat)dis / 1000;
+        
+        NSLog(@"distance:%lf公里", distance);
+        
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        
+        param[@"time"] = [NSNumber numberWithInteger:duration];
+        
+        
+        param[@"distance"] = [NSNumber numberWithFloat:distance];
+        
+        param[@"hzsOrderProcessId"] = _trackInfo.trackId;
+        
+        [[HttpClient shareClient] post:URL_A_DIS_TIME parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *errr, Fail_Type failType) {
+            
+        }];
+        
+    } else {
+        NSLog(@"error code:%u", error);
+    }
+}
+
 
 #pragma mark - 后台一直运行
 
@@ -129,8 +228,32 @@
     
     if (!appDelegate.locationTimer)
     {
-        appDelegate.locationTimer = [NSTimer scheduledTimerWithTimeInterval:30 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        appDelegate.locationTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 * 60 repeats:YES block:^(NSTimer * _Nonnull timer) {
             [[Location sharedLocation] startLocationService];
+        }];
+        
+    }
+}
+
+/**
+ 距离和时间预估定时器
+ */
+- (void)startDisAndTime
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    _disAndTimeLocation = [[CustomLocation alloc] init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDisAndTimeLocationComplete:)
+                                                 name:Custom_Location_Complete object:nil];
+    
+    __weak typeof (self) weakSelf = self;
+    
+    if (!appDelegate.disAndTimeTimer)
+    {
+        appDelegate.disAndTimeTimer = [NSTimer scheduledTimerWithTimeInterval:3 * 60 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            
+            [weakSelf.disAndTimeLocation startLocationService];
         }];
         
     }
@@ -142,10 +265,11 @@
 {
     NSDictionary *userInfo = notify.userInfo;
     
-    if (!userInfo)
-    {
-        NSLog(@"定位失败");
+    if (!userInfo) {
+        NSLog(@"位置定位失败");
         return;
+    } else {
+        NSLog(@"位置定位完成")
     }
     
     BMKUserLocation *userLocation = userInfo[User_Location];
@@ -168,6 +292,39 @@
         
     }];
     
+}
+
+- (void)onCustomLocationComplete:(NSNotification *)notify
+{
+    _customLocation = nil;
+    
+    NSDictionary *userInfo = notify.userInfo;
+    
+    if (!userInfo) {
+        
+        [HUDClass showHUDWithText:@"定位失败,请检查网络和定位设置再试!"];
+        return;
+    }
+    
+    BMKUserLocation *userLocation = userInfo[User_Location];
+    
+    [self getDisLimit:userLocation.location.coordinate];
+}
+
+- (void)onDisAndTimeLocationComplete:(NSNotification *)notify
+{
+    NSDictionary *userInfo = notify.userInfo;
+    
+    if (!userInfo) {
+        NSLog(@"时间距离定位失败");
+        return;
+    } else {
+        NSLog(@"时间距离定位成功");
+    }
+    
+    BMKUserLocation *userLocation = userInfo[User_Location];
+    
+    [self routePlan:userLocation.location.coordinate.latitude lng:userLocation.location.coordinate.longitude];
 }
 
 - (void)dealloc
@@ -342,6 +499,11 @@
             appDelegate.locationTimer = nil;
         }
         
+        if (appDelegate.disAndTimeTimer) {
+            [appDelegate.disAndTimeTimer invalidate];
+            appDelegate.disAndTimeTimer = nil;
+        }
+        
         if (_delegate && [_delegate respondsToSelector:@selector(onClickHzs)]) {
             [_delegate onClickHzs];
         }
@@ -416,25 +578,6 @@
     [_customLocation startLocationService];
 }
 
-
-- (void)onCustomLocationComplete:(NSNotification *)notify
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:Custom_Location_Complete object:nil];
-    
-    _customLocation = nil;
-    
-    NSDictionary *userInfo = notify.userInfo;
-    
-    if (!userInfo) {
-        
-        [HUDClass showHUDWithText:@"定位失败,请检查网络和定位设置再试!"];
-        return;
-    }
-    
-    BMKUserLocation *userLocation = userInfo[User_Location];
-    
-    [self getDisLimit:userLocation.location.coordinate];
-}
 
 - (void)taskBackWithLimit:(NSInteger)limit location:(CLLocationCoordinate2D)location
 {

@@ -18,10 +18,11 @@
 #import <MapKit/MKMapItem.h>
 #import <MapKit/MKTypes.h>
 #import "Location.h"
+#import <BaiduMapAPI_Search/BMKRouteSearch.h>
 
 
 @interface SupplierDriverProcessController()<UITableViewDelegate, UITableViewDataSource, PullTableViewDelegate,
-                                            UIScrollViewDelegate, AVAudioPlayerDelegate>
+                                            UIScrollViewDelegate, AVAudioPlayerDelegate, BMKRouteSearchDelegate>
 
 @property (strong, nonatomic) PullTableView *tableView;
 
@@ -37,13 +38,11 @@
 
 @property (strong, nonatomic) UIButton *btnStart;
 
-//@property (strong, nonatomic) NSTimer *locationTimer;
-//
-//@property (strong, nonatomic) NSTimer *bgCheckTimer;
-
 @property (strong, nonatomic) AVAudioPlayer *avAudioPlayer;
 
 @property (nonatomic) __block UIBackgroundTaskIdentifier bgTask;
+
+@property (strong, nonatomic) CustomLocation *customLocation;
 
 @end
 
@@ -63,6 +62,92 @@
     [self getTask];
 }
 
+
+- (void)routePlan:(CGFloat)lat lng:(CGFloat)lng
+{
+    BMKRouteSearch *routeSearch = [[BMKRouteSearch alloc] init];
+    routeSearch.delegate = self;
+    
+    BMKDrivingRoutePlanOption *options = [[BMKDrivingRoutePlanOption alloc] init];
+    
+    options.drivingRequestTrafficType = BMK_DRIVING_REQUEST_TRAFFICE_TYPE_PATH_AND_TRAFFICE;
+    
+    BMKPlanNode *start = [[BMKPlanNode alloc] init];
+    
+    CLLocationCoordinate2D coorStart;
+    coorStart.latitude = lat;
+    coorStart.longitude = lng;
+    
+    start.pt = coorStart;
+    
+    BMKPlanNode *end = [[BMKPlanNode alloc] init];
+    CLLocationCoordinate2D coorEnd;
+    coorEnd.latitude = _hzsInfo.lat;
+    coorEnd.longitude = _hzsInfo.lng;
+    end.pt = coorEnd;
+    
+    options.from = start;
+    options.to = end;
+    
+    BOOL suc = [routeSearch drivingSearch:options];
+    
+    if (suc) {
+        NSLog(@"路线查找成功");
+    }
+    
+}
+
+
+#pragma mark - BMKRouteSearchDelegate
+
+- (void)onGetDrivingRouteResult:(BMKRouteSearch *)searcher result:(BMKDrivingRouteResult *)result errorCode:(BMKSearchErrorCode)error
+{
+    searcher.delegate = nil;
+    
+    if (error == BMK_SEARCH_NO_ERROR) {
+        
+        NSInteger hour = 0;
+        NSInteger minute = 0;
+        NSInteger second = 0;
+        
+        NSInteger dis = 0;
+        
+        for (BMKDrivingRouteLine *node in result.routes) {
+            
+            hour += node.duration.hours;
+            minute += node.duration.minutes;
+            second += node.duration.seconds;
+            
+            dis += node.distance;
+        }
+        
+        NSInteger duration = 60 * hour + minute;
+        
+        NSLog(@"duration:%ld分钟", duration);
+        
+        CGFloat distance = (CGFloat)dis / 1000;
+        
+        NSLog(@"distance:%lf公里", distance);
+        
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        
+        param[@"time"] = [NSNumber numberWithInteger:duration];
+        
+        param[@"distance"] = [NSNumber numberWithFloat:distance];
+        
+        param[@"supplierOrderProcessId"] = _trackInfo.processId;
+        
+        [[HttpClient shareClient] post:URL_B_DIS_TIME parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *errr, Fail_Type failType) {
+            
+        }];
+        
+    } else {
+        NSLog(@"error code:%u", error);
+    }
+}
+
 #pragma mark - 后台一直运行
 
 /**
@@ -72,12 +157,11 @@
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    if (delegate.bgCheckTimer)
-    {
+    if (delegate.bgCheckTimer) {
         return;
     }
     
-    delegate.bgCheckTimer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self
+    delegate.bgCheckTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self
                                                            selector:@selector(timerAdvanced:) userInfo:nil repeats:YES];
 }
 
@@ -88,8 +172,7 @@
         NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"temp" ofType:@"mp3"];
         NSURL *audioUrl = [NSURL fileURLWithPath:audioPath];
         
-        if(!_avAudioPlayer)
-        {
+        if(!_avAudioPlayer) {
             _avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioUrl error:nil];
             _avAudioPlayer.delegate = self;
             _avAudioPlayer.volume = 0.0f;
@@ -109,9 +192,7 @@
             });
             
         }];
-    }
-    else
-    {
+    } else {
         NSLog(@"left time >> 61");
     }
 }
@@ -126,15 +207,58 @@
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    if (!delegate.locationTimer)
-    {
-        delegate.locationTimer = [NSTimer scheduledTimerWithTimeInterval:30 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    if (!delegate.locationTimer) {
+        delegate.locationTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 * 60 repeats:YES block:^(NSTimer * _Nonnull timer) {
             [[Location sharedLocation] startLocationService];
         }];
     }
 }
 
+/**
+ 距离和时间预估定时器
+ */
+- (void)startDisAndTime
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    _customLocation = [[CustomLocation alloc] init];
+    
+    
+    
+    __weak typeof (self) weakSelf = self;
+    
+    if (!appDelegate.disAndTimeTimer)
+    {
+        appDelegate.disAndTimeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 * 60 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            
+            [[NSNotificationCenter defaultCenter] addObserver:weakSelf selector:@selector(onCustomLocationComplete:)
+                                                         name:Custom_Location_Complete object:nil];
+            
+            [weakSelf.customLocation startLocationService];
+        }];
+        
+    }
+}
+
 #pragma mark - 定位完成
+
+- (void)onCustomLocationComplete:(NSNotification *)notify
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:Custom_Location_Complete object:nil];
+    
+    NSDictionary *userInfo = notify.userInfo;
+    
+    if (!userInfo) {
+        NSLog(@"定位失败");
+        return;
+    } else {
+        NSLog(@"定位成功");
+    }
+    
+    BMKUserLocation *userLocation = userInfo[User_Location];
+    
+    [self routePlan:userLocation.location.coordinate.latitude lng:userLocation.location.coordinate.longitude];
+}
 
 - (void)onLocationComplete:(NSNotification *)notify
 {
@@ -171,10 +295,8 @@
 
 - (void)dealloc
 {
-    NSLog(@"SupplierDriverProcessController dealloc");
-    [self stopLocationService];
+    
 }
-
 
 - (void)initData
 {
@@ -184,7 +306,6 @@
 - (void)setHasTask:(BOOL)hasTask
 {
     _hasTask = hasTask;
-    
     if (hasTask)
     {
         _btnStart.hidden = NO;
@@ -273,23 +394,21 @@
     
     NSInteger state = _trackInfo.state.integerValue;
     
-    if (1 == state)
-    {
+    if (1 == state) {
         SupStartUpRequest *request = [[SupStartUpRequest alloc] init];
         
         
         request.taskId = _trackInfo.processId;
         
-        [[HttpClient shareClient] view:self.view post:URL_SUP_START parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient shareClient] view:self.view post:URL_SUP_START parameters:[request parsToDictionary]
+                               success:^(NSURLSessionDataTask *task, id responseObject) {
             _trackInfo.state = @"2";
             [self start];
         } failure:^(NSURLSessionDataTask *task, NSError *errr) {
             
         }];
         
-    }
-    else if (state >= 2)
-    {
+    } else if (state >= 2) {
         [self clickFinish];
     }
 }
@@ -304,6 +423,7 @@
                                                  name:Location_Complete object:nil];
     [self startCheckBgRemain];
     [self startBgLocation];
+    [self startDisAndTime];
 }
 
 - (void)stopLocationService
@@ -313,18 +433,21 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    if (appDelegate.bgCheckTimer)
-    {
+    if (appDelegate.bgCheckTimer) {
         [appDelegate.bgCheckTimer invalidate];
         
         appDelegate.bgCheckTimer = nil;
     }
     
     
-    if (appDelegate.locationTimer)
-    {
+    if (appDelegate.locationTimer) {
         [appDelegate.locationTimer invalidate];
         appDelegate.locationTimer = nil;
+    }
+    
+    if (appDelegate.disAndTimeTimer) {
+        [appDelegate.disAndTimeTimer invalidate];
+        appDelegate.disAndTimeTimer = nil;
     }
 }
 
@@ -382,31 +505,26 @@
     
     [[HttpClient shareClient] view:self.view post:URL_SUP_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        if (_tableView.pullTableIsRefreshing)
-        {
+        if (_tableView.pullTableIsRefreshing) {
             _tableView.pullTableIsRefreshing = NO;
         }
         
         SupDriverUnfinishedResponse *response = [[SupDriverUnfinishedResponse alloc] initWithDictionary:responseObject];
         
-        if (!response.body.count)
-        {
+        if (!response.body.count) {
             self.hasTask = NO;
             [self stopLocationService];
-        }
-        else
-        {
+            
+        } else {
             self.hasTask = YES;
             _hzsInfo = [response getHzs];
             _trackInfo = [response getTask];
             _vehicleInfo = [response getVehicle];
             
-            if (_trackInfo.state.integerValue >= 2)
-            {
+            if (_trackInfo.state.integerValue >= 2) {
                 [self start];
-            }
-            else
-            {
+                
+            } else {
                 [self beStarted];
             }
         }
@@ -428,26 +546,23 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if (!_hasTask)
-    {
+    if (!_hasTask) {
         return 0;
     }
     
     NSString *goods = _trackInfo.goodsName;
     
-    if ([goods isEqualToString:OTHERS])
-    {
+    if ([goods isEqualToString:OTHERS]) {
         _dyIndex = 5;
-    }
-    else if ([goods isEqualToString:WAIJIAJI]
+        
+    } else if ([goods isEqualToString:WAIJIAJI]
              || [goods isEqualToString:KUANGFEN]
-             || [goods isEqualToString:FENMEIHUI])
-    {
+             || [goods isEqualToString:FENMEIHUI]) {
         _dyIndex = 6;
-    }
-    else
-    {
+        
+    } else {
         _dyIndex = 7;
+        
     }
     
     return _dyIndex + 3;
@@ -695,8 +810,7 @@
     }]];
     
     //百度地图
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])
-    {
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]]) {
         [controller addAction:[UIAlertAction actionWithTitle:@"百度地图" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name:%@&mode=driving",
                                     _hzsInfo.lat, _hzsInfo.lng, _hzsInfo.name]
@@ -707,8 +821,7 @@
     }
     
     //高德地图
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]])
-    {
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]]) {
         [controller addAction:[UIAlertAction actionWithTitle:@"高德地图" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             CLLocationCoordinate2D coor;
             
@@ -727,8 +840,7 @@
     }
     
     //腾讯地图
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"qqmap://"]])
-    {
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"qqmap://"]]) {
         [controller addAction:[UIAlertAction actionWithTitle:@"腾讯地图" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             CLLocationCoordinate2D coor;
             

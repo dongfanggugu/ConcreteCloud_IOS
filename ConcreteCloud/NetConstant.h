@@ -289,4 +289,7 @@
 //A单距离和时间预估
 #define URL_A_DIS_TIME @"checkTimeAndDistanceWithHzsOrderProcess"
 
+//B单距离和时间预估
+#define URL_B_DIS_TIME @"checkTimeAndDistanceWithSupplierOrderProcess"
+
 #endif /* NetConstant_h */
