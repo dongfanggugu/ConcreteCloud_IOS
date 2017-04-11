@@ -700,12 +700,10 @@
         ACheckVideoCell *cell = [ACheckVideoCell cellFromNib];
         cell.lbKey.text = @"视频拍摄";
         
-        if (_trackInfo.spotVideo)
-        {
+        if (_trackInfo.spotVideo) {
             cell.url = _trackInfo.spotVideo;
-        }
-        else
-        {
+            
+        } else {
             cell.btnRecord.hidden = NO;
             [cell.btnRecord addTarget:self action:@selector(record) forControlEvents:UIControlEventTouchUpInside];
         }

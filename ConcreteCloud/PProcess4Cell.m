@@ -67,6 +67,20 @@
     _btnConfirm.hidden = YES;
 }
 
+- (void)setCurrentMode
+{
+    _ivProcess.image = [UIImage imageNamed:@"order_track_future"];
+    _lbTitle.textColor = [UIColor grayColor];
+    _btnConfirm.hidden = NO;
+}
+
+- (void)setFutureMode
+{
+    _ivProcess.image = [UIImage imageNamed:@"order_track_future"];
+    _lbTitle.textColor = [UIColor grayColor];
+    _btnConfirm.hidden = YES;
+}
+
 - (void)setSupplierMode
 {
     _btnConfirm.hidden = YES;

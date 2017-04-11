@@ -25,6 +25,10 @@
 
 - (void)setPassMode;
 
+- (void)setCurrentMode;
+
+- (void)setFutureMode;
+
 - (void)setSupplierMode;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnConfirm;

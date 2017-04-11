@@ -45,7 +45,7 @@
     controller.videoKey = _trackInfo.processId;
     controller.delegate = self;
     
-    self.hidesBottomBarWhenPushed = YES;
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -117,13 +117,15 @@
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"name"] = [[Config shareConfig] getName];
-    dic[@"examvideo"] = url;
+    dic[@"examVideo"] = url;
     dic[@"supplierOrderProcessId"] = videoKey;
+    
+    __weak typeof (self) weakSelf = self;
     
     [[HttpClient shareClient] view:self.view post:URL_B_CHECK_VIDEO parameters:dic
                            success:^(NSURLSessionDataTask *task, id responseObject) {
         [HUDClass showHUDWithLabel:@"检验视频上传成功" view:self.view];
-        _checkeVideoCell.url = url;
+        weakSelf.checkeVideoCell.url = url;
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
         
     }];
@@ -141,14 +143,12 @@
     
     NSString *goods = _trackInfo.goodsName;
     
-    if ([goods isEqualToString:OTHERS])
-    {
+    if ([goods isEqualToString:OTHERS]) {
         _dyIndex = 5;
-    }
-    else if ([goods isEqualToString:WAIJIAJI]
+        
+    } else if ([goods isEqualToString:WAIJIAJI]
              || [goods isEqualToString:KUANGFEN]
-             || [goods isEqualToString:FENMEIHUI])
-    {
+             || [goods isEqualToString:FENMEIHUI]) {
         _dyIndex = 6;
     }
     else
@@ -302,8 +302,7 @@
         
         cell.lbKey.text = @"检验视频";
         
-        if (cell.url)
-        {
+        if (_trackInfo.confirmVideo) {
             cell.url = _trackInfo.confirmVideo;
         }
         

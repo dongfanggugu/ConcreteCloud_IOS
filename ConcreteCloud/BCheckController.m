@@ -53,9 +53,14 @@ typedef NS_ENUM(NSInteger, WORK_STATE)
     
     [self initView];
     [self initData];
-    [self getCurWorkState];
-    [self getCheck];
+    [self getCurWorkState];    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
+    [self getCheck];
 }
 
 - (void)onClickNavRight

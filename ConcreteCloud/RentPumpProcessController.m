@@ -523,10 +523,13 @@ TankerOnWayControllerDelegate, TankerArrivedControllerDelegate, AVAudioPlayerDel
         
         if (!array || 0 == array.count)
         {
+            self.vehicleState = VEHICLE_RELAX;
             [self relax];
         }
         else
         {
+            self.vehicleState = VEHICLE_BUSY;
+            
             DTrackInfo *info = array[0];
             
             CGFloat state = info.state.floatValue;

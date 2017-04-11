@@ -66,4 +66,6 @@
 //将mov的视频转成mp4
 - (void)changeMovToMp4:(NSURL *)mediaURL dataBlock:(void (^)(UIImage *movieImage))handler;
 
+- (NSString *)getVideoCachePath;
+
 @end

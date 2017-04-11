@@ -12,6 +12,7 @@
 #import "SupDisVehicleRequest.h"
 #import "SupDisVehicleCell.h"
 #import "VehicleSelController.h"
+#import "SupDispatchDetailController.h"
 
 
 @interface VehicleDispatchController()<UITableViewDelegate, UITableViewDataSource>
@@ -130,6 +131,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [SupDisVehicleCell cellHeight];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SupDispatchDetailController *controller = [[SupDispatchDetailController alloc] init];
+    
+    controller.vehicleInfo = _arrayVehicle[indexPath.row];
+    
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

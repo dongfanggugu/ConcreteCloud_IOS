@@ -12,6 +12,7 @@
 		650BD12E1E9C71A700FEC425 /* AProcess3HistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 650BD12D1E9C71A700FEC425 /* AProcess3HistoryCell.m */; };
 		650BD1361E9CA61400FEC425 /* WCLRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 650BD1321E9CA61400FEC425 /* WCLRecordEncoder.m */; };
 		650BD1371E9CA61400FEC425 /* WCLRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 650BD1351E9CA61400FEC425 /* WCLRecordEngine.m */; };
+		650BD13A1E9CCD8400FEC425 /* SupDispatchDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650BD1391E9CCD8400FEC425 /* SupDispatchDetailController.m */; };
 		651779A31E00DBC200A759AC /* KeyValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 651779A21E00DBC200A759AC /* KeyValueCell.xib */; };
 		651779A61E00DC5E00A759AC /* KeyValueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 651779A51E00DC5E00A759AC /* KeyValueCell.m */; };
 		651779A81E00E49700A759AC /* DatePickerDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 651779A71E00E49700A759AC /* DatePickerDialog.xib */; };
@@ -506,6 +507,8 @@
 		650BD1321E9CA61400FEC425 /* WCLRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEncoder.m; sourceTree = "<group>"; };
 		650BD1341E9CA61400FEC425 /* WCLRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordEngine.h; sourceTree = "<group>"; };
 		650BD1351E9CA61400FEC425 /* WCLRecordEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEngine.m; sourceTree = "<group>"; };
+		650BD1381E9CCD8400FEC425 /* SupDispatchDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupDispatchDetailController.h; sourceTree = "<group>"; };
+		650BD1391E9CCD8400FEC425 /* SupDispatchDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupDispatchDetailController.m; sourceTree = "<group>"; };
 		65156A951DED2350008705C5 /* POrderListRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POrderListRequest.h; sourceTree = "<group>"; };
 		651779A11E00D9A300A759AC /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		651779A21E00DBC200A759AC /* KeyValueCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyValueCell.xib; sourceTree = "<group>"; };
@@ -2531,6 +2534,8 @@
 				65515BAC1E79097200386A0C /* VehicleDispatchController.m */,
 				65515BC11E79226700386A0C /* VehicleSelController.h */,
 				65515BC21E79226F00386A0C /* VehicleSelController.m */,
+				650BD1381E9CCD8400FEC425 /* SupDispatchDetailController.h */,
+				650BD1391E9CCD8400FEC425 /* SupDispatchDetailController.m */,
 			);
 			name = Admin;
 			sourceTree = "<group>";
@@ -2918,6 +2923,7 @@
 				65515BEC1E7A330C00386A0C /* SupStaffDetailController.m in Sources */,
 				65D863BE1E823FD3006E7A1C /* SiteInfoView.m in Sources */,
 				65D863B31E821F35006E7A1C /* HzsSiteListInfo.m in Sources */,
+				650BD13A1E9CCD8400FEC425 /* SupDispatchDetailController.m in Sources */,
 				657FBC841E358CD60029C41C /* PProcessData.m in Sources */,
 				656230F81E66BD8300335819 /* TankerTaskDetailController.m in Sources */,
 				65C310A61DF7DC19005F4BA8 /* SupplierInfo.m in Sources */,

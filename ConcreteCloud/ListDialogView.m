@@ -57,8 +57,6 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.bounces = NO;
-    _tableView.layer.masksToBounds = YES;
-    _tableView.layer.cornerRadius = 5;
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 

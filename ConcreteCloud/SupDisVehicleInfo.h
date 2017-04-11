@@ -35,8 +35,11 @@
 
 @property (copy, nonatomic) NSString *plateNum;
 
+
+//皮重
 @property (assign, nonatomic) CGFloat net;
 
+//净重
 @property (assign, nonatomic) CGFloat number;
 
 @property (copy, nonatomic) NSString *startTime;
@@ -55,6 +58,7 @@
 
 @property (copy, nonatomic) NSString *vehicleWeightTime;
 
+//毛重
 @property (assign, nonatomic) CGFloat weight;
 
 @property (assign, nonatomic) CGFloat loadWeight;

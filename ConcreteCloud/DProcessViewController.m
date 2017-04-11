@@ -203,24 +203,18 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
 
         }
         
-    }
-    else if (1 == indexPath.row)
-    {
+    } else if (1 == indexPath.row) {
         
-        if (Role_Site_Staff == _role)
-        {
+        if (Role_Site_Staff == _role) {
             SProcess2Cell *cell = [SProcess2Cell cellFromNib];
             
-            if (state < 1)
-            {
+            if (state < 1) {
                 [cell setFutureMode];
-            }
-            else if (1 == state)
-            {
+                
+            } else if (1 == state) {
                 [cell setCurrentMode];
-            }
-            else
-            {
+                
+            } else {
                 [cell setPassMode];
             }
             
@@ -245,9 +239,7 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
             
-        }
-        else
-        {
+        } else {
             DProcess2Cell *cell = [DProcess2Cell cellFromNib];
             
             if (state < 1)
@@ -333,19 +325,22 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
             
             return cell;
         }
-    }
-    else if (3 == indexPath.row)
-    {
+    } else if (3 == indexPath.row) {
         PProcess4Cell *cell = [PProcess4Cell cellFromNib];
         
         cell.delegate = self;
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        if (3 == state)
-        {
+        if (3 == state) {
             cell.lbDate.text = _orderInfo.completeTime;
             [cell setPassMode];
+            
+        } else if (state < 1) {
+            [cell setFutureMode];
+            
+        } else {
+            [cell setCurrentMode];
         }
         
         if (Role_Site_Staff == _role)

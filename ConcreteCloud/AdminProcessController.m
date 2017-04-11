@@ -17,6 +17,7 @@
 #import "RentWorkStateResponse.h"
 #import "SPumpListResponse.h"
 #import "RentPumpRelaxController.h"
+#import "VideoRecordController.h"
 
 typedef NS_ENUM(NSInteger, RENT_WORK_STATE)
 {
@@ -32,7 +33,8 @@ typedef NS_ENUM(NSInteger, RENT_VEHICLE_STATE)
 
 
 @interface AdminProcessController()<RentVehicleControllerDelegate, RentTankerRelaxControllerDelegate,
-TankerOnWayControllerDelegate, TankerArrivedControllerDelegate, RentPumpRelaxControllerDelegate>
+TankerOnWayControllerDelegate, TankerArrivedControllerDelegate, RentPumpRelaxControllerDelegate,
+VideoRecordControllerDelegate>
 
 {
     UIButton *_btnState;
@@ -165,6 +167,7 @@ TankerOnWayControllerDelegate, TankerArrivedControllerDelegate, RentPumpRelaxCon
     controller.delegate = self;
     
     _curController = controller;
+    
     [self addChildViewController:controller];
     
     CGRect frame = controller.view.frame;
@@ -193,6 +196,9 @@ TankerOnWayControllerDelegate, TankerArrivedControllerDelegate, RentPumpRelaxCon
     
     TankerArrivedController *controller = [[TankerArrivedController alloc] init];
     controller.trackInfo = trackInfo;
+    controller.delegate = self;
+    
+    _curController = controller;
     
     NSInteger vehicleType = _vehicleInfo.cls.integerValue;
     
@@ -484,6 +490,33 @@ TankerOnWayControllerDelegate, TankerArrivedControllerDelegate, RentPumpRelaxCon
     }
 }
 
+
+- (void)onClickRecord:(DTrackInfo *)trackInfo
+{
+    VideoRecordController *controller = [[VideoRecordController alloc] init];
+    controller.videoKey = trackInfo.trackId;
+    controller.delegate = self;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - VideoRecordControllerDelegate
+
+- (void)onUploadVideo:(NSString *)url videoKey:(NSString *)videoKey
+{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"spotVideo"] = url;
+    dic[@"hzsOrderProcessId"] = videoKey;
+    
+    [[HttpClient shareClient] view:self.view post:URL_A_CHECK_SPOT parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        [HUDClass showHUDWithText:@"现场视频上传成功"];
+        [self getUnfinishedTask];
+    } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+        
+    }];
+}
 
 
 @end

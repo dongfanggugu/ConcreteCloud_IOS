@@ -292,4 +292,7 @@
 //B单距离和时间预估
 #define URL_B_DIS_TIME @"checkTimeAndDistanceWithSupplierOrderProcess"
 
+//供应商删除未启运的运输单
+#define URL_SUP_DELETE_TASK @"deleteSupplierOrderProcess"
+
 #endif /* NetConstant_h */

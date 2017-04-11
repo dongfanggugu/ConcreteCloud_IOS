@@ -142,8 +142,9 @@
 - (void) stopCaptureHandler:(void (^)(UIImage *movieImage))handler {
     @synchronized(self) {
         if (self.isCapturing) {
-            NSString* path = self.recordEncoder.path;
-            NSURL* url = [NSURL fileURLWithPath:path];
+            NSString *path = self.recordEncoder.path;
+            
+            NSURL *url = [NSURL fileURLWithPath:path];
             self.isCapturing = NO;
             dispatch_async(_captureQueue, ^{
                 [self.recordEncoder finishWithCompletionHandler:^{
@@ -156,11 +157,11 @@
                             [self.delegate recordProgress:self.currentRecordTime/self.maxRecordTime];
                         });
                     }
-                    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-                        [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:url];
-                    } completionHandler:^(BOOL success, NSError * _Nullable error) {
-                        NSLog(@"保存成功");
-                    }];
+//                    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+//                        [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:url];
+//                    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+//                        NSLog(@"保存成功");
+//                    }];
                     [self movieToImageHandler:handler];
                 }];
             });
@@ -208,8 +209,8 @@
         if ([_recordSession canAddOutput:self.videoOutput]) {
             [_recordSession addOutput:self.videoOutput];
             //设置视频的分辨率
-            _cx = 720;
-            _cy = 1280;
+            _cx = 480;
+            _cy = 640;
         }
         //添加音频输出
         if ([_recordSession canAddOutput:self.audioOutput]) {

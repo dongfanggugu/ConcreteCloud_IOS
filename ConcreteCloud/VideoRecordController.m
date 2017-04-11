@@ -14,7 +14,7 @@
 #define VIDEO_LENGTH 5
 
 
-@interface VideoRecordController()<AVCaptureFileOutputRecordingDelegate>
+@interface VideoRecordController()<AVCaptureFileOutputRecordingDelegate, WCLRecordEngineDelegate>
 {
     NSInteger _count;
 }
@@ -27,6 +27,8 @@
 @property (strong, nonatomic) UIButton *btnRecord;
 
 @property (strong, nonatomic) NSTimer *timer;
+
+@property (strong, nonatomic) WCLRecordEngine *recordEngine;
 
 
 @end
@@ -73,13 +75,13 @@
     
     _btnRecord.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
     
-    _btnRecord.center = CGPointMake(self.screenWidth / 2, 350);
+    _btnRecord.center = CGPointMake(self.screenWidth / 2, self.screenHeight - 100 + 60);
     
     [self.view addSubview:_btnRecord];
     
     [_btnRecord addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     
-    _processView = [[UIView alloc] initWithFrame:CGRectMake(0, 294, self.screenWidth, 10)];
+    _processView = [[UIView alloc] initWithFrame:CGRectMake(0, self.screenHeight - 100, self.screenWidth, 10)];
     _processView.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
     
     [self.view addSubview:_processView];
@@ -89,18 +91,24 @@
 
 - (void)click:(id)sender
 {
-    if ([self.output isRecording])
-    {
+//    if ([self.output isRecording])
+//    {
+//        return;
+//    }
+    
+    if (self.recordEngine.isCapturing) {
         return;
     }
-    
     
     [sender setTitle:@"停止" forState:UIControlStateNormal];
     
     //开始录制
-    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/myVideo.mp4"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    [self.output startRecordingToOutputFileURL:url recordingDelegate:self];
+    //NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/myVideo.mp4"];
+    //NSURL *url = [NSURL fileURLWithPath:path];
+    //[self.output startRecordingToOutputFileURL:url recordingDelegate:self];
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(itsTime) userInfo:nil repeats:YES];
+    [self.recordEngine startCapture];
 }
 
 
@@ -111,50 +119,30 @@
 
 - (void)initDevice
 {
-    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     
-    AVCaptureDeviceInput *inputVideo = [AVCaptureDeviceInput deviceInputWithDevice:[devices firstObject] error:NULL];
-    
-    
-    AVCaptureDevice *deviceAudio = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-    
-    AVCaptureDeviceInput *inputAudio = [AVCaptureDeviceInput deviceInputWithDevice:deviceAudio error:NULL];
-    
-    AVCaptureMovieFileOutput *output = [[AVCaptureMovieFileOutput alloc] init];
- 
-    self.output = output;
-    
-    
-    
-    AVCaptureSession *session = [[AVCaptureSession alloc] init];
-    
-    if ([session canAddInput:inputVideo]) {
-        [session addInput:inputVideo];
-        
+    if (!_recordEngine) {
+        [self.recordEngine previewLayer].frame = CGRectMake(0, 94, self.screenWidth, self.screenHeight - 94 - 100);
+        [self.view.layer addSublayer:[_recordEngine previewLayer]];
     }
     
-    if ([session canAddInput:inputAudio]) {
-        [session addInput:inputAudio];
-    }
-    
-    if ([session canAddOutput:output]) {
-        [session addOutput:output];
-    }
-    
-    
-    AVCaptureVideoPreviewLayer *preLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
-    
-    preLayer.backgroundColor = [UIColor blueColor].CGColor;
-    
-    preLayer.frame = CGRectMake(0, 94, self.screenWidth, 200);
-    
-    preLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    
-    [self.view.layer addSublayer:preLayer];
-    
-    [session startRunning];
+    [_recordEngine startUp];
 }
 
+
+#pragma mark - set、get方法
+- (WCLRecordEngine *)recordEngine
+{
+    if (_recordEngine == nil) {
+        _recordEngine = [[WCLRecordEngine alloc] init];
+        _recordEngine.delegate = self;
+    }
+    return _recordEngine;
+}
+
+#pragma mark - WCLRecordEngineDelegate
+- (void)recordProgress:(CGFloat)progress
+{
+}
 
 - (void)itsTime
 {
@@ -162,11 +150,28 @@
     
     if (VIDEO_LENGTH * 10 <= _count)
     {
-        [self.output stopRecording];
+        [self.recordEngine stopCaptureHandler:^(UIImage *movieImage) {
+            NSLog(@"录制完成");
+            
+            //NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/myVideo.mp4"];
+            
+            NSString *path = self.recordEngine.videoPath;
+            
+            NSLog(@"path:%@", path);
+            
+            NSData *data = [NSData dataWithContentsOfFile:path];
+            
+            //NSLog(@"data:%@", data);
+            
+            NSString *base64Str = [self Base64StrWithData:data];
+            
+            [self upload:base64Str];
+        }];
+        
         [_btnRecord setTitle:@"录制" forState:UIControlStateNormal];
         
         [_timer invalidate];
-        
+        _timer = nil;
         _processView.frame = CGRectZero;
         _count = 0;
     }

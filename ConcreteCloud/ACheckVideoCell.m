@@ -37,6 +37,9 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     _webView.delegate = self;
     
     _ivFailed.hidden = YES;
@@ -61,6 +64,9 @@
         
         return;
     }
+    
+    _ivFailed.hidden = YES;
+    _webView.hidden = NO;
     _url = url;
 
     _webView.scrollView.bounces = NO;

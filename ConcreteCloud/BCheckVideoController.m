@@ -60,7 +60,8 @@
     request.hzsId = [[Config shareConfig] getBranchId];
     request.type = @"supplier";
     
-    [[HttpClient shareClient] view:self.view post:URL_A_CHECK_VIDEO parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] view:self.view post:URL_A_CHECK_VIDEO parameters:[request parsToDictionary]
+                           success:^(NSURLSessionDataTask *task, id responseObject) {
         VideoListResponse *response = [[VideoListResponse alloc] initWithDictionary:responseObject];
         [_arrayVideo removeAllObjects];
         [_arrayVideo addObjectsFromArray:[response getVideoList]];

@@ -267,7 +267,7 @@
     
     [dialog setData:_arrayDriver];
     
-    [self.view addSubview:dialog];
+    [dialog show];
 }
 
 #pragma mark - ListDialogViewDelegate

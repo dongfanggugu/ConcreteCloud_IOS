@@ -176,9 +176,8 @@
     BCheckDetailController *controller = [[BCheckDetailController alloc] init];
     controller.trackInfo = _arrayCheck[indexPath.row];
     controller.isHistory = YES;
-    self.hidesBottomBarWhenPushed = YES;
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark -- PullTableVeiwDelegate
