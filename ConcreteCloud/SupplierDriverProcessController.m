@@ -726,12 +726,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (_hasTask)
-    {
+    if (_hasTask) {
         return 0;
-    }
-    else
-    {
+        
+    } else {
         return 80;
     }
     

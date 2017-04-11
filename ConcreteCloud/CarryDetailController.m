@@ -46,6 +46,8 @@
     _tableView.bounces = NO;
     
     _tableView.allowsSelection = NO;
+    
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 //获取运输信息

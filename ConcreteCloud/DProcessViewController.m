@@ -23,10 +23,11 @@
 #import "DOrderConfirmRequest.h"
 #import "SProcess1Cell.h"
 #import "SProcess2Cell.h"
+#import "AProcess3HistoryCell.h"
 
 
 @interface DProcessViewController()<UITableViewDelegate, UITableViewDataSource, PullTableViewDelegate,
-DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate>
+DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3HistoryCellDelegate>
 
 @property (weak, nonatomic) IBOutlet PullTableView *tableView;
 
@@ -160,7 +161,7 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate>
     
     if (0 == indexPath.row)
     {
-        if (2 == _type)
+        if (Role_Site_Staff == _role)
         {
             SProcess1Cell *cell = [SProcess1Cell cellFromNib];
             cell.lbDate.text = _orderInfo.createTime;
@@ -206,7 +207,7 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate>
     else if (1 == indexPath.row)
     {
         
-        if (2 == _type)
+        if (Role_Site_Staff == _role)
         {
             SProcess2Cell *cell = [SProcess2Cell cellFromNib];
             
@@ -280,48 +281,58 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate>
             return cell;
 
         }
-    }
-    else if (2 == indexPath.row)
-    {
-        DProcess3Cell *cell = [DProcess3Cell cellFromNib];
+    } else if (2 == indexPath.row) {
         
-        cell.lbDate.text = _orderInfo.reviewTime;
-        
-        _cell = cell;
-        [cell setTotal:100 complete:0 way:0];
-        
-        
-        
-        if (state < 2)
-        {
-            [cell setFutureMode];
-        }
-        else if (2 == state)
-        {
-            [cell setCurrentMode];
-            [cell setTotal:_total complete:_complete way:_way];
+        if (Status_History == _traceStatus) {
+            AProcess3HistoryCell *cell = [AProcess3HistoryCell cellFromNib];
             
-            NSInteger send = [_orderInfo.sendComplete integerValue];
-            [cell setCarryHiden:send];
+            cell.delegate = self;
+            
+            cell.lbDate.text = _orderInfo.reviewTime;
+            
+            return cell;
+            
+        } else {
+            DProcess3Cell *cell = [DProcess3Cell cellFromNib];
+            
+            cell.lbDate.text = _orderInfo.reviewTime;
+            
+            _cell = cell;
+            [cell setTotal:100 complete:0 way:0];
+            
+            
+            
+            if (state < 2)
+            {
+                [cell setFutureMode];
+            }
+            else if (2 == state)
+            {
+                [cell setCurrentMode];
+                [cell setTotal:_total complete:_complete way:_way];
+                
+                NSInteger send = [_orderInfo.sendComplete integerValue];
+                [cell setCarryHiden:send];
+            }
+            else
+            {
+                [cell setPassMode];
+                [cell setTotal:_total complete:_complete way:_way];
+            }
+            
+            if (Role_Site_Staff == _role)
+            {
+                [cell setSiteRole];
+            }
+            
+            cell.delegate = self;
+            
+            [self getTask:cell];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
         }
-        else
-        {
-            [cell setPassMode];
-            [cell setTotal:_total complete:_complete way:_way];
-        }
-        
-        if (2 == _type)
-        {
-            [cell setSiteRole];
-        }
-        
-        cell.delegate = self;
-        
-        [self getTask:cell];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        return cell;
     }
     else if (3 == indexPath.row)
     {
@@ -337,7 +348,7 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate>
             [cell setPassMode];
         }
         
-        if (2 == _type)
+        if (Role_Site_Staff == _role)
         {
             [cell setSiteRole];
         }
@@ -354,7 +365,7 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate>
 {
     if (0 == indexPath.row)
     {
-        if (2 == _type)
+        if (Role_Site_Staff == _role)
         {
             return [SProcess1Cell cellHeight];
         }
@@ -363,26 +374,33 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate>
             return [DProcess1Cell cellHeight];
         }
     }
-    else if (1 == indexPath.row)
-    {
-        if (2 == _type)
-        {
+    else if (1 == indexPath.row) {
+        if (Role_Site_Staff == _role) {
             return [SProcess2Cell cellHeight];
-        }
-        else
-        {
+            
+        } else {
             return [DProcess2Cell cellHeight];
+            
         }
-    }
-    else if (2 == indexPath.row)
-    {
-        if (2 == _type)
-        {
-            return [DProcess3Cell cellHeightSite];
-        }
-        else
-        {
-            return [DProcess3Cell cellHeight];
+    } else if (2 == indexPath.row) {
+        
+        if (Role_Site_Staff == _role) {
+            
+            if (Status_Process == _traceStatus) {
+                return [DProcess3Cell cellHeightSite];
+                
+            } else if (Status_History == _traceStatus) {
+                return [AProcess3HistoryCell cellHeight];
+            }
+            
+        } else {
+            if (Status_Process == _traceStatus) {
+                return [DProcess3Cell cellHeight];
+                
+            } else if (Status_History == _traceStatus) {
+                return [AProcess3HistoryCell cellHeight];
+            }
+            
         }
     }
     else if (3 == indexPath.row)

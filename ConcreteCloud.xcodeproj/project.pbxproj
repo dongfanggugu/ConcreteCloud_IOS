@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2FD1BCE5443515501D9F57C7 /* libPods-ConcreteCloud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC277797E21C5C4BE64493F4 /* libPods-ConcreteCloud.a */; };
+		650BD12B1E9C70CD00FEC425 /* AProcess3HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 650BD12A1E9C70CD00FEC425 /* AProcess3HistoryCell.xib */; };
+		650BD12E1E9C71A700FEC425 /* AProcess3HistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 650BD12D1E9C71A700FEC425 /* AProcess3HistoryCell.m */; };
+		650BD1361E9CA61400FEC425 /* WCLRecordEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 650BD1321E9CA61400FEC425 /* WCLRecordEncoder.m */; };
+		650BD1371E9CA61400FEC425 /* WCLRecordEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 650BD1351E9CA61400FEC425 /* WCLRecordEngine.m */; };
 		651779A31E00DBC200A759AC /* KeyValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 651779A21E00DBC200A759AC /* KeyValueCell.xib */; };
 		651779A61E00DC5E00A759AC /* KeyValueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 651779A51E00DC5E00A759AC /* KeyValueCell.m */; };
 		651779A81E00E49700A759AC /* DatePickerDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 651779A71E00E49700A759AC /* DatePickerDialog.xib */; };
@@ -495,6 +499,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		650BD12A1E9C70CD00FEC425 /* AProcess3HistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AProcess3HistoryCell.xib; sourceTree = "<group>"; };
+		650BD12C1E9C71A700FEC425 /* AProcess3HistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AProcess3HistoryCell.h; sourceTree = "<group>"; };
+		650BD12D1E9C71A700FEC425 /* AProcess3HistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AProcess3HistoryCell.m; sourceTree = "<group>"; };
+		650BD1311E9CA61400FEC425 /* WCLRecordEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordEncoder.h; sourceTree = "<group>"; };
+		650BD1321E9CA61400FEC425 /* WCLRecordEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEncoder.m; sourceTree = "<group>"; };
+		650BD1341E9CA61400FEC425 /* WCLRecordEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLRecordEngine.h; sourceTree = "<group>"; };
+		650BD1351E9CA61400FEC425 /* WCLRecordEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLRecordEngine.m; sourceTree = "<group>"; };
 		65156A951DED2350008705C5 /* POrderListRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POrderListRequest.h; sourceTree = "<group>"; };
 		651779A11E00D9A300A759AC /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		651779A21E00DBC200A759AC /* KeyValueCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyValueCell.xib; sourceTree = "<group>"; };
@@ -1355,6 +1366,33 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		650BD12F1E9CA61400FEC425 /* WCLRecordVideo */ = {
+			isa = PBXGroup;
+			children = (
+				650BD1301E9CA61400FEC425 /* WCLRecordEncoder */,
+				650BD1331E9CA61400FEC425 /* WCLRecordEngine */,
+			);
+			path = WCLRecordVideo;
+			sourceTree = "<group>";
+		};
+		650BD1301E9CA61400FEC425 /* WCLRecordEncoder */ = {
+			isa = PBXGroup;
+			children = (
+				650BD1311E9CA61400FEC425 /* WCLRecordEncoder.h */,
+				650BD1321E9CA61400FEC425 /* WCLRecordEncoder.m */,
+			);
+			path = WCLRecordEncoder;
+			sourceTree = "<group>";
+		};
+		650BD1331E9CA61400FEC425 /* WCLRecordEngine */ = {
+			isa = PBXGroup;
+			children = (
+				650BD1341E9CA61400FEC425 /* WCLRecordEngine.h */,
+				650BD1351E9CA61400FEC425 /* WCLRecordEngine.m */,
+			);
+			path = WCLRecordEngine;
+			sourceTree = "<group>";
+		};
 		6528120B1DF93A06007FC33E /* HZS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1583,6 +1621,7 @@
 			isa = PBXGroup;
 			children = (
 				652FF2F61E8B87F200CF98A4 /* PullTableViewLan.strings */,
+				650BD12F1E9CA61400FEC425 /* WCLRecordVideo */,
 				65D863821E7F670C006E7A1C /* JZLocationConverter */,
 				659F94D11DD561CF008B8F26 /* ConcreteCloud */,
 				659F94D01DD561CF008B8F26 /* Products */,
@@ -1905,6 +1944,7 @@
 				65D863BA1E8226A5006E7A1C /* SiteInfoView.xib */,
 				65489FFA1E84EA3A0071FBCA /* SupplierInfoView.xib */,
 				652FF3091E8CDB0A00CF98A4 /* ACarryCell.xib */,
+				650BD12A1E9C70CD00FEC425 /* AProcess3HistoryCell.xib */,
 			);
 			name = nib;
 			sourceTree = "<group>";
@@ -2407,6 +2447,8 @@
 				6548A0041E84EC940071FBCA /* SupplierAnnotationView.m */,
 				652FF30B1E8CDD4000CF98A4 /* ACarryCell.h */,
 				652FF30C1E8CDD4000CF98A4 /* ACarryCell.m */,
+				650BD12C1E9C71A700FEC425 /* AProcess3HistoryCell.h */,
+				650BD12D1E9C71A700FEC425 /* AProcess3HistoryCell.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -2603,6 +2645,7 @@
 				656230C21E65412400335819 /* Tanker.storyboard in Resources */,
 				65ADC6AF1E4C11910020FF69 /* icon_statistics.png in Resources */,
 				657FBC611E31BAAE0029C41C /* PProcess2Cell.xib in Resources */,
+				650BD12B1E9C70CD00FEC425 /* AProcess3HistoryCell.xib in Resources */,
 				658450BC1E5AD383003CFAA5 /* Site.storyboard in Resources */,
 				656230CC1E6657EB00335819 /* KeyValueBtnCell.xib in Resources */,
 				65ADC6901E4AB87F0020FF69 /* icon_car_type5.png in Resources */,
@@ -2911,6 +2954,7 @@
 				65C310751DF509B5005F4BA8 /* ResponseHead.m in Sources */,
 				658450B31E5AC21F003CFAA5 /* RentVehicleType.m in Sources */,
 				65EEEBBD1E77DF490095432B /* SupOrderTraceController.m in Sources */,
+				650BD12E1E9C71A700FEC425 /* AProcess3HistoryCell.m in Sources */,
 				65B68B961E5BCE6A0092C13A /* HzsInfoView.m in Sources */,
 				65D863851E7F670C006E7A1C /* JZLocationConverter.m in Sources */,
 				6584509C1E5A8C6B003CFAA5 /* GcInfoView.m in Sources */,
@@ -2945,6 +2989,7 @@
 				659F94D71DD561CF008B8F26 /* AppDelegate.m in Sources */,
 				65EEEBB41E77D4FE0095432B /* SupOrderCell1.m in Sources */,
 				65E581051DD59EA5007F53E1 /* Utils.m in Sources */,
+				650BD1371E9CA61400FEC425 /* WCLRecordEngine.m in Sources */,
 				65C310911DF6618F005F4BA8 /* TitleSegmentView.m in Sources */,
 				657FBC7E1E34987D0029C41C /* Response+POrderInfo.m in Sources */,
 				65515BEF1E7A33EF00386A0C /* SupVehicleController.m in Sources */,
@@ -3085,6 +3130,7 @@
 				65698F281E5E840100B21D1B /* SiteStaffController.m in Sources */,
 				65D8639A1E80D1ED006E7A1C /* LocationViewController.m in Sources */,
 				65DF55D41E56918500A29FD7 /* DProcess3Cell.m in Sources */,
+				650BD1361E9CA61400FEC425 /* WCLRecordEncoder.m in Sources */,
 				657FBC781E3492C70029C41C /* POrderDetailRequest.m in Sources */,
 				657FBC641E31D61C0029C41C /* PProcess2Cell.m in Sources */,
 				65ADC6941E4AC2610020FF69 /* VehicleTrailController.m in Sources */,

@@ -27,8 +27,9 @@
 
 @property (weak, nonatomic) id<DProcessViewControllerDelegate> delegate;
 
-//1调度员 2工地下单员
-@property (assign, nonatomic) NSInteger type;
+@property (assign, nonatomic) G_Role role;
+
+@property (assign, nonatomic) G_Order_Trace_Status traceStatus;
 
 @end
 

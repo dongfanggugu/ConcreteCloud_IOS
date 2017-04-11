@@ -21,7 +21,7 @@
 
 @property (strong, nonatomic) NSMutableArray<POrderInfo *> *arrayOrder;
 
-@property NSInteger curSel;
+@property G_Segment curSel;
 
 @property NSInteger curPage;
 
@@ -45,7 +45,7 @@
 {
     [super viewWillAppear:animated];
     
-    if (0 == _curSel)
+    if (Segment_Left == _curSel)
     {
         [self getUnfinishedOrder];
     }
@@ -63,7 +63,7 @@
 
 - (void)initData
 {
-    _curSel = 0;
+    _curSel == Segment_Left;
     _arrayOrder = [[NSMutableArray alloc] init];
 }
 
@@ -190,16 +190,14 @@
 
 - (void)onClickLeftSegment
 {
-    NSLog(@"click left");
-    _curSel = 0;
+    _curSel = Segment_Left;
     [_arrayOrder removeAllObjects];
     [self getUnfinishedOrder];
 }
 
 - (void)onClickRightSegment
 {
-    NSLog(@"click right");
-    _curSel = 1;
+    _curSel = Segment_Right;
     _curPage = 1;
     [_arrayOrder removeAllObjects];
     [self getFinishedOrder];
@@ -210,7 +208,7 @@
 //禁止上拉
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (0 == _curSel)
+    if (Segment_Left == _curSel)
     {
         //内容大于屏幕，并且向上滑动
         if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.size.height
@@ -274,7 +272,7 @@
 - (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
 {
     
-    if (0 == _curSel)
+    if (Segment_Left == _curSel)
     {
         [self performSelector:@selector(getUnfinishedOrder) withObject:nil afterDelay:1.0f];
     }
@@ -290,9 +288,17 @@
 {
     POrderDetailController *controller = [[POrderDetailController alloc] init];
     controller.orderInfo = _arrayOrder[indexPath.row];
-    self.hidesBottomBarWhenPushed = YES;
+    
+    if (Segment_Left == _curSel) {
+        controller.traceStatus = Status_Process;
+        
+    } else {
+        controller.traceStatus = Status_History;
+        
+    }
+    
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

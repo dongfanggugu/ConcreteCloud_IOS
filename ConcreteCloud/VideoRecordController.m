@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "VideoRecordController.h"
+#import "WCLRecordEngine.h"
 #import <AVFoundation/AVFoundation.h>
 
 #define VIDEO_LENGTH 5
@@ -129,6 +130,7 @@
     
     if ([session canAddInput:inputVideo]) {
         [session addInput:inputVideo];
+        
     }
     
     if ([session canAddInput:inputAudio]) {

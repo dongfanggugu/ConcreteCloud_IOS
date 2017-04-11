@@ -36,6 +36,28 @@ typedef NS_ENUM(NSInteger, G_Agent_Type) {
     Agent_Renter
 };
 
+#pragma mark - 订单进度状态
+
+typedef NS_ENUM(NSInteger, G_Order_Trace_Status) {
+    Status_Process,
+    Status_History,
+    Status_Other
+};
+
+#pragma mark - 角色
+
+typedef NS_ENUM(NSInteger, G_Role) {
+    Role_Dispather,
+    Role_Site_Staff
+};
+
+#pragma mark - 标题左右tab
+
+typedef NS_ENUM(NSInteger, G_Segment) {
+    Segment_Left,
+    Segment_Right
+};
+
 #pragma mark - 商品字典表
 //供应商商品
 #define GOODS @"supplierGoods"

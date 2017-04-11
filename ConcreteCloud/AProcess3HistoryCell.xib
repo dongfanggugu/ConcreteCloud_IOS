@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="a_process3_history_cell" id="8k3-kN-Ipz" customClass="AProcess3HistoryCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8k3-kN-Ipz" id="amL-8P-mom">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FUu-nH-KRt">
+                        <rect key="frame" x="16" y="0.0" width="1" height="87.5"/>
+                        <color key="backgroundColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="xpO-Cd-ZuA"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="order_track_pass.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lz9-cQ-TrC">
+                        <rect key="frame" x="7" y="8" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="NGN-Zy-1U5"/>
+                            <constraint firstAttribute="width" constant="20" id="kUM-tx-Wyp"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="运送中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjk-pg-SOe">
+                        <rect key="frame" x="37" y="8" width="100" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="B0s-FM-pTm"/>
+                            <constraint firstAttribute="width" constant="100" id="NQP-Yu-lcr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-11-11 12:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKE-sL-7N0">
+                        <rect key="frame" x="145" y="10" width="222" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="7Qq-A1-L8L"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHO-VZ-hZ0">
+                        <rect key="frame" x="37" y="47.5" width="160" height="24"/>
+                        <color key="backgroundColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="160" id="7Ca-PA-zX7"/>
+                            <constraint firstAttribute="height" constant="24" id="D48-Vt-902"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="点击查看运送详情">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hKE-sL-7N0" firstAttribute="leading" secondItem="gjk-pg-SOe" secondAttribute="trailing" constant="8" id="7KH-8p-fQ7"/>
+                    <constraint firstItem="hKE-sL-7N0" firstAttribute="centerY" secondItem="gjk-pg-SOe" secondAttribute="centerY" id="Cen-JS-ZnA"/>
+                    <constraint firstItem="Lz9-cQ-TrC" firstAttribute="centerX" secondItem="FUu-nH-KRt" secondAttribute="centerX" id="E1E-Ae-VGr"/>
+                    <constraint firstItem="SHO-VZ-hZ0" firstAttribute="leading" secondItem="gjk-pg-SOe" secondAttribute="leading" id="En5-fh-J0A"/>
+                    <constraint firstItem="FUu-nH-KRt" firstAttribute="leading" secondItem="amL-8P-mom" secondAttribute="leading" constant="16" id="PbZ-zd-7zd"/>
+                    <constraint firstItem="Lz9-cQ-TrC" firstAttribute="top" secondItem="amL-8P-mom" secondAttribute="top" constant="8" id="RSQ-fC-Wwz"/>
+                    <constraint firstItem="FUu-nH-KRt" firstAttribute="top" secondItem="amL-8P-mom" secondAttribute="top" id="fLW-L1-kXx"/>
+                    <constraint firstItem="gjk-pg-SOe" firstAttribute="centerY" secondItem="Lz9-cQ-TrC" secondAttribute="centerY" id="fhB-cI-pRr"/>
+                    <constraint firstAttribute="bottom" secondItem="FUu-nH-KRt" secondAttribute="bottom" id="iPR-7u-04B"/>
+                    <constraint firstAttribute="trailing" secondItem="hKE-sL-7N0" secondAttribute="trailing" constant="8" id="iTd-tr-c03"/>
+                    <constraint firstAttribute="bottom" secondItem="SHO-VZ-hZ0" secondAttribute="bottom" constant="16" id="sSd-DP-EY4"/>
+                    <constraint firstItem="gjk-pg-SOe" firstAttribute="leading" secondItem="Lz9-cQ-TrC" secondAttribute="trailing" constant="10" id="tar-Ek-lgJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btnDetail" destination="SHO-VZ-hZ0" id="i99-CK-4qd"/>
+                <outlet property="lbDate" destination="hKE-sL-7N0" id="A33-32-Yh4"/>
+            </connections>
+            <point key="canvasLocation" x="-92.5" y="-6"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="order_track_pass.png" width="28" height="28"/>
+    </resources>
+</document>

@@ -297,7 +297,7 @@
 {
     DOrderDetailController *controller = [[DOrderDetailController alloc] init];
     controller.orderInfo = _arrayOrder[indexPath.row];
-    controller.type = 2;
+    controller.role = Role_Site_Staff;
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
     self.hidesBottomBarWhenPushed = NO;

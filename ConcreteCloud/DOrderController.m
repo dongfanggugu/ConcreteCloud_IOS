@@ -23,7 +23,7 @@
 
 @property (strong, nonatomic) NSMutableArray<DOrderInfo *> *arrayOrder;
 
-@property (assign, nonatomic) NSInteger curSel;
+@property (assign, nonatomic) G_Segment curSel;
 
 @property (assign, nonatomic) NSInteger curPage;
 
@@ -52,7 +52,7 @@
     
     self.tabBarController.tabBar.hidden = NO;
     
-    if (0 == _curSel)
+    if (Segment_Left == _curSel)
     {
         [self getUnfinishedOrder];
     }
@@ -69,7 +69,7 @@
 }
 - (void)initData
 {
-    _curSel = 0;
+    _curSel = Segment_Left;
     _arrayOrder = [[NSMutableArray alloc] init];
 }
 
@@ -191,14 +191,14 @@
 
 - (void)onClickLeftSegment
 {
-    _curSel = 0;
+    _curSel = Segment_Left;
     [_arrayOrder removeAllObjects];
     [self getUnfinishedOrder];
 }
 
 - (void)onClickRightSegment
 {
-    _curSel = 1;
+    _curSel = Segment_Right;
     _curPage = 1;
     [_arrayOrder removeAllObjects];
     [self getFinishedOrder];
@@ -209,7 +209,7 @@
 //禁止上拉
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (0 == _curSel)
+    if (Segment_Left == _curSel)
     {
         //内容大于屏幕，并且向上滑动
         if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.size.height
@@ -283,7 +283,7 @@
 - (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
 {
     
-    if (0 == _curSel)
+    if (Segment_Left == _curSel)
     {
         [self performSelector:@selector(getUnfinishedOrder) withObject:nil afterDelay:1.0f];
     }
@@ -299,6 +299,15 @@
 {
     DOrderDetailController *controller = [[DOrderDetailController alloc] init];
     controller.orderInfo = _arrayOrder[indexPath.row];
+    
+    if (Segment_Left == _curSel) {
+        controller.traceStatus = Status_Process;
+        
+    } else {
+        controller.traceStatus = Status_History;
+    }
+    
+    
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }

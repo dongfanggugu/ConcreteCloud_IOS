@@ -303,7 +303,7 @@
     {
         DOrderDetailController *controller = [[DOrderDetailController alloc] init];
         controller.orderInfo = _arrayOrder[indexPath.row];
-        controller.type = 1;
+        controller.role = Role_Dispather;
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
     }

@@ -21,9 +21,11 @@
 #import "PProcessListRequest.h"
 #import "PProcessList.h"
 #import "Response+PProcessList.h"
+#import "AProcess3HistoryCell.h"
 
 
-@interface ProcessViewController()<UITableViewDelegate, UITableViewDataSource, PullTableViewDelegate,PProcess3CellDelegate, PProcess4CellDelegate>
+@interface ProcessViewController()<UITableViewDelegate, UITableViewDataSource, PullTableViewDelegate,
+PProcess3CellDelegate, PProcess4CellDelegate, AProcess3HistoryCellDelegate>
 
 @property (weak, nonatomic) IBOutlet PullTableView *tableView;
 
@@ -45,7 +47,6 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"load");
     [self initData];
     [self initView];
 }
@@ -89,7 +90,8 @@
     request.orderId = _orderInfo.orderId;
     
     __weak typeof (self) weakSelf = self;
-    [[HttpClient shareClient] view:self.view post:URL_P_DETAIL parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] view:self.view post:URL_P_DETAIL parameters:[request parsToDictionary]
+                           success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if (weakSelf.tableView.pullTableIsRefreshing)
         {
@@ -216,42 +218,57 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (2 == indexPath.row)
-    {
-        PProcess3Cell *cell = [PProcess3Cell cellFromNib];
         
-        cell.goodsName = _orderInfo.goodsName;
+    } else if (2 == indexPath.row) {
         
-        _cell = cell;
-        
-        [cell setTotal:100 complete:0 way:0];
-        
-        
-        if (state < 2)
-        {
-            [cell setFutureMode];
+        if (Status_History == _traceStatus) {
+            
+            AProcess3HistoryCell *cell = [AProcess3HistoryCell cellFromNib];
+            
+            cell.lbDate.text = _orderInfo.confirmTime;
+            
+            cell.delegate = self;
+            
+            return cell;
+            
+        } else {
+            PProcess3Cell *cell = [PProcess3Cell cellFromNib];
+            
+            cell.goodsName = _orderInfo.goodsName;
+            
+            _cell = cell;
+            
+            [cell setTotal:100 complete:0 way:0];
+            
+            
+            if (state < 2)
+            {
+                [cell setFutureMode];
+            }
+            else if (2 == state)
+            {
+                [cell setCurrentMode];
+                CGFloat total = [_orderInfo.number floatValue];
+                [cell setTotal:total complete:_complete way:_way];
+            }
+            else
+            {
+                [cell setPassMode];
+                CGFloat total = [_orderInfo.number floatValue];
+                [cell setTotal:total complete:_complete way:_way];
+            }
+            
+            cell.delegate = self;
+            
+            cell.lbDate.text = _orderInfo.confirmTime;
+            
+            [self getTask:cell];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+
         }
-        else if (2 == state)
-        {
-            [cell setCurrentMode];
-            CGFloat total = [_orderInfo.number floatValue];
-            [cell setTotal:total complete:_complete way:_way];
-        }
-        else
-        {
-            [cell setPassMode];
-            CGFloat total = [_orderInfo.number floatValue];
-            [cell setTotal:total complete:_complete way:_way];
-        }
-        
-        cell.delegate = self;
-        
-        [self getTask:cell];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        return cell;
     }
     else if (3 == indexPath.row)
     {
@@ -277,20 +294,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         return [PSubmitCell cellHight];
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         return [PProcess2Cell cellHeight];
-    }
-    else if (2 == indexPath.row)
-    {
-        return [PProcess3Cell cellHeight];
-    }
-    else if (3 == indexPath.row)
-    {
+        
+    } else if (2 == indexPath.row) {
+        
+        if (Status_History == _traceStatus) {
+            return [AProcess3HistoryCell cellHeight];
+            
+        } else {
+            return [PProcess3Cell cellHeight];
+        }
+        
+    } else if (3 == indexPath.row) {
         return [PProcess4Cell cellHeight];
     }
     
@@ -314,11 +333,19 @@
 //禁止上拉
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.size.height)
-    {
+    if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.size.height
+        && scrollView.contentSize.height >= scrollView.bounds.size.height) {
         CGPoint offset = scrollView.contentOffset;
-        CGPoint newOffset = CGPointMake(offset.x, scrollView.contentSize.height - scrollView.bounds.size.height);
-        scrollView.contentOffset = newOffset;
+        offset.y = scrollView.contentSize.height - scrollView.bounds.size.height;
+        
+        scrollView.contentOffset = offset;
+        
+    } else if (scrollView.contentOffset.y >= 0
+             && scrollView.contentSize.height <= scrollView.bounds.size.height) {  //内容小于屏幕，并且向上滑动
+        CGPoint offset = scrollView.contentOffset;
+        offset.x = 0;
+        offset.y = 0;
+        scrollView.contentOffset = offset;
     }
 }
 
@@ -327,20 +354,20 @@
 
 - (void)onClickMap
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickMap)])
-    {
+    if (!_taskCount) {
+        [HUDClass showHUDWithText:@"当前没有运输中车辆"];
+        return;
+    }
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickMap)]) {
         [_delegate onClickMap];
     }
 }
 
 - (void)onClickDetail
 {
-    if (!_taskCount)
-    {
-        [HUDClass showHUDWithText:@"当前没有运输中车辆"];
-    }
-    if (_delegate && [_delegate respondsToSelector:@selector(onClickDetail)])
-    {
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(onClickDetail)]) {
         [_delegate onClickDetail];
     }
 }

@@ -36,7 +36,9 @@
 {
     DProcessViewController *controller = [[DProcessViewController alloc] init];
     controller.orderInfo = _orderInfo;
-    controller.type = _type;
+    controller.role = _role;
+    controller.traceStatus = _traceStatus;
+    
     [self addChildViewController:controller];
     CGRect frame = controller.view.frame;
     frame.origin.x = 0;
@@ -50,7 +52,7 @@
     [self.view addSubview:controller.view];
     _curController = controller;
     
-    if (2 == _type)
+    if (Role_Site_Staff == _role)
     {
         SDetailController *controller2 = [[SDetailController alloc] init];
         controller2.orderInfo = _orderInfo;
