@@ -285,6 +285,9 @@
 		658450BF1E5AD54C003CFAA5 /* SMainpageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658450BE1E5AD54C003CFAA5 /* SMainpageController.m */; };
 		658450C11E5BC07E003CFAA5 /* SOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658450C01E5BC07E003CFAA5 /* SOrderItemCell.xib */; };
 		658450C41E5BC200003CFAA5 /* SOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 658450C31E5BC200003CFAA5 /* SOrderItemCell.m */; };
+		658FE5EA1E9DB8A0002CA85F /* AddressShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5E91E9DB8A0002CA85F /* AddressShowController.m */; };
+		658FE5ED1E9DBFFD002CA85F /* AddressModifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5EC1E9DBFFD002CA85F /* AddressModifyController.m */; };
+		658FE5F01E9DC7D3002CA85F /* AddressLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5EF1E9DC7D3002CA85F /* AddressLocationController.m */; };
 		659F94D41DD561CF008B8F26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F94D31DD561CF008B8F26 /* main.m */; };
 		659F94D71DD561CF008B8F26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F94D61DD561CF008B8F26 /* AppDelegate.m */; };
 		659F94DA1DD561CF008B8F26 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F94D91DD561CF008B8F26 /* ViewController.m */; };
@@ -977,6 +980,12 @@
 		658450C01E5BC07E003CFAA5 /* SOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SOrderItemCell.xib; sourceTree = "<group>"; };
 		658450C21E5BC1F1003CFAA5 /* SOrderItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOrderItemCell.h; sourceTree = "<group>"; };
 		658450C31E5BC200003CFAA5 /* SOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOrderItemCell.m; sourceTree = "<group>"; };
+		658FE5E81E9DB8A0002CA85F /* AddressShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressShowController.h; sourceTree = "<group>"; };
+		658FE5E91E9DB8A0002CA85F /* AddressShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressShowController.m; sourceTree = "<group>"; };
+		658FE5EB1E9DBFFD002CA85F /* AddressModifyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModifyController.h; sourceTree = "<group>"; };
+		658FE5EC1E9DBFFD002CA85F /* AddressModifyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModifyController.m; sourceTree = "<group>"; };
+		658FE5EE1E9DC7D3002CA85F /* AddressLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressLocationController.h; sourceTree = "<group>"; };
+		658FE5EF1E9DC7D3002CA85F /* AddressLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressLocationController.m; sourceTree = "<group>"; };
 		659F94CF1DD561CF008B8F26 /* ConcreteCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConcreteCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		659F94D31DD561CF008B8F26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		659F94D51DD561CF008B8F26 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1747,6 +1756,12 @@
 				65D8638F1E80B6B9006E7A1C /* RegisterController.m */,
 				65D863A81E810D8C006E7A1C /* HelpController.h */,
 				65D863A91E810D94006E7A1C /* HelpController.m */,
+				658FE5E81E9DB8A0002CA85F /* AddressShowController.h */,
+				658FE5E91E9DB8A0002CA85F /* AddressShowController.m */,
+				658FE5EB1E9DBFFD002CA85F /* AddressModifyController.h */,
+				658FE5EC1E9DBFFD002CA85F /* AddressModifyController.m */,
+				658FE5EE1E9DC7D3002CA85F /* AddressLocationController.h */,
+				658FE5EF1E9DC7D3002CA85F /* AddressLocationController.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -3066,6 +3081,7 @@
 				652811F01DF8F104007FC33E /* PStatisticsInfo.m in Sources */,
 				655DDB3F1E55E5CD00848D7C /* DProcessViewController.m in Sources */,
 				65DC020B1DE3EC6F005F86A4 /* PurchaseMainController.m in Sources */,
+				658FE5EA1E9DB8A0002CA85F /* AddressShowController.m in Sources */,
 				656230B31E65183700335819 /* UpWorkRequest.m in Sources */,
 				65C310891DF55038005F4BA8 /* MessageListRequest.m in Sources */,
 				651779AB1E00E61F00A759AC /* DatePickerDialog.m in Sources */,
@@ -3123,6 +3139,7 @@
 				65EEEB991E77986A0095432B /* SupDriverHistoryController.m in Sources */,
 				65D8636A1E7A6901006E7A1C /* StatisticsSelView.m in Sources */,
 				65515BA21E77E41D00386A0C /* SupOrderDealCell.m in Sources */,
+				658FE5F01E9DC7D3002CA85F /* AddressLocationController.m in Sources */,
 				65EEEB3D1E7275670095432B /* RentVehicleInfoController.m in Sources */,
 				656230C51E65421A00335819 /* TaskProcessController.m in Sources */,
 				65515BC01E791F2900386A0C /* SupVehicleSelCell.m in Sources */,
@@ -3136,6 +3153,7 @@
 				65698F281E5E840100B21D1B /* SiteStaffController.m in Sources */,
 				65D8639A1E80D1ED006E7A1C /* LocationViewController.m in Sources */,
 				65DF55D41E56918500A29FD7 /* DProcess3Cell.m in Sources */,
+				658FE5ED1E9DBFFD002CA85F /* AddressModifyController.m in Sources */,
 				650BD1361E9CA61400FEC425 /* WCLRecordEncoder.m in Sources */,
 				657FBC781E3492C70029C41C /* POrderDetailRequest.m in Sources */,
 				657FBC641E31D61C0029C41C /* PProcess2Cell.m in Sources */,

@@ -10,6 +10,7 @@
 #import "HzsPersonController.h"
 #import "PersonHeaderView.h"
 #import "AppDelegate.h"
+#import "AddressShowController.h"
 
 #pragma mark - HzsPersonCell
 
@@ -37,6 +38,8 @@
 
 @property (assign, nonatomic) G_Agent_Type agentType;
 
+@property (weak, nonatomic) UILabel *lbAddress;
+
 @end
 
 @implementation HzsPersonController
@@ -49,7 +52,14 @@
     [self initView];
 }
 
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (_lbAddress) {
+        _lbAddress.text = [[Config shareConfig] getBranchAddress];
+    }
+}
 - (void)initData
 {
     _agentType = [[[Config shareConfig] getType] integerValue];
@@ -84,13 +94,11 @@
 {
     HzsPersonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hzs_person_cell"];
     
-    if (nil == cell)
-    {
+    if (nil == cell) {
         cell = [[HzsPersonCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"hzs_person_cell"];
     }
     
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         
         if (Agent_Hzs ==  _agentType) {
             cell.lbKey.text = @"搅拌站";
@@ -107,20 +115,21 @@
         
         cell.lbValue.text = [[Config shareConfig] getBranchName];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         cell.lbKey.text = @"地址";
         cell.lbValue.text = [[Config shareConfig] getBranchAddress];
+        
+        _lbAddress = cell.lbValue;
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    else if (2 == indexPath.row)
-    {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+    } else if (2 == indexPath.row) {
         cell.lbKey.text = @"设置";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    else if (3 == indexPath.row)
-    {
+        
+    } else if (3 == indexPath.row) {
         cell.lbKey.text = @"退出";
     }
     
@@ -145,10 +154,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
  
-    if (1 == indexPath.row)
-    {
+    if (1 == indexPath.row) {
         CGFloat width = self.view.frame.size.width;
-        CGSize size = CGSizeMake(width - 8 - 80 - 8 - 8, CGFLOAT_MAX);
+        CGSize size = CGSizeMake(width - 8 - 80 - 8 - 8 - 80, CGFLOAT_MAX);
         
         NSString *content = [[Config shareConfig] getBranchAddress];
         
@@ -169,21 +177,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (2 == indexPath.row)
-    {
+    
+    if (1 == indexPath.row) {
+        
+        UIViewController *controller = [[AddressShowController alloc] init];
+       // controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+    
+    } else if (2 == indexPath.row) {
         UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"hzs_settings_controller"];
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-    }
-    else if (3 == indexPath.row)
-    {
+        
+    } else if (3 == indexPath.row) {
         [[HttpClient shareClient] view:self.view post:URL_LOGOUT parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [self backToLogin];
         } failure:^(NSURLSessionDataTask *task, NSError *errr) {
             [self backToLogin];
         }];
-        
-        
     }
 }
 
@@ -194,15 +205,13 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    if (appDelegate.bgCheckTimer)
-    {
+    if (appDelegate.bgCheckTimer) {
         [appDelegate.bgCheckTimer invalidate];
         
         appDelegate.bgCheckTimer = nil;
     }
     
-    if (appDelegate.locationTimer)
-    {
+    if (appDelegate.locationTimer) {
         [appDelegate.locationTimer invalidate];
         appDelegate.locationTimer = nil;
     }

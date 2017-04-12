@@ -295,4 +295,7 @@
 //供应商删除未启运的运输单
 #define URL_SUP_DELETE_TASK @"deleteSupplierOrderProcess"
 
+//修改供应商地址
+#define URL_SUP_ADDRESS_MODIFY @"editSupplierAddress"
+
 #endif /* NetConstant_h */
