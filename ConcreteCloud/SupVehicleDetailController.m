@@ -23,9 +23,43 @@
 {
     [super viewDidLoad];
     [self setNaviTitle:@"车辆信息"];
+    [self initNavRightWithImage:[UIImage imageNamed:@"icon_delete"]];
     [self initView];
 }
 
+- (void)onClickNavRight
+{
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定删除车辆?"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    [controller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self deleteVehicle];
+    }]];
+    
+    [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:controller animated:YES completion:nil];
+    
+}
+
+- (void)deleteVehicle
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    
+    param[@"id"] = _vehicleInfo.vehicleId;
+    
+    [[HttpClient shareClient] view:self.view post:URL_SUP_DEL_VEHICLE parameters:param
+                           success:^(NSURLSessionDataTask *task, id responseObject) {
+                               [HUDClass showHUDWithText:@"车辆删除成功!"];
+                               [self.navigationController popViewControllerAnimated:YES];
+                               
+                           } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                               
+                           }];
+}
 
 - (void)initView
 {

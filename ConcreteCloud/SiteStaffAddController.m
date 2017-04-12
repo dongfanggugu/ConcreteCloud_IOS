@@ -14,11 +14,13 @@
 #import "SiteStaffAddRequest.h"
 
 @interface SiteStaffAddController()<UITableViewDelegate, UITableViewDataSource>
-{
-    
-}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (weak, nonatomic) KeyEditCell *cellName;
+
+@property (weak, nonatomic) KeyEditCell *cellAge;
+
 
 @end
 
@@ -119,6 +121,8 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.bounces = NO;
+    
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 #pragma mark - UITableViewDataSource
@@ -135,19 +139,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row)
-    {
-        KeyEditCell *cell = [KeyEditCell viewFromNib];
-        cell.lbKey.text = @"姓名";
-        cell.tfValue.placeholder = @"姓名";
+    if (0 == indexPath.row) {
         
-        cell.tfValue.keyboardType = UIKeyboardTypeDefault;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        return cell;
-    }
-    else if (1 == indexPath.row)
-    {
+        if (_cellName) {
+            return _cellName;
+            
+        } else {
+            KeyEditCell *cell = [KeyEditCell viewFromNib];
+            cell.lbKey.text = @"姓名";
+            cell.tfValue.placeholder = @"姓名";
+            
+            _cellName = cell;
+            
+            cell.tfValue.keyboardType = UIKeyboardTypeDefault;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+        }
+    } else if (1 == indexPath.row) {
         SelectableData *data1 = [[SelectableData alloc] initWithKey:@"" content:@"女"];
         SelectableData *data2 = [[SelectableData alloc] initWithKey:@"" content:@"男"];
         NSMutableArray<id<ListDialogDataDelegate>> *array = [NSMutableArray array];
@@ -163,17 +172,24 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (2 == indexPath.row)
-    {
-        KeyEditCell *cell = [KeyEditCell viewFromNib];
-        cell.lbKey.text = @"年龄";
-        cell.tfValue.placeholder = @"年龄";
-        cell.tfValue.keyboardType = UIKeyboardTypeNumberPad;
         
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    } else if (2 == indexPath.row) {
+        if (_cellAge) {
+            return _cellAge;
+            
+        } else {
+            KeyEditCell *cell = [KeyEditCell viewFromNib];
+            cell.lbKey.text = @"年龄";
+            cell.tfValue.placeholder = @"年龄";
+            _cellAge = cell;
+            
+            cell.tfValue.keyboardType = UIKeyboardTypeNumberPad;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
         
-         return cell;
+        }
     }
     else if (3 == indexPath.row)
     {

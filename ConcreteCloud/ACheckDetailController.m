@@ -28,8 +28,7 @@
     [super viewDidLoad];
     [self setNaviTitle:@"任务详情"];
     
-    if (HZS == _checkType)
-    {
+    if (HZS == _checkType && [[Config shareConfig] getOperable]) {
         [self initNavRightWithText:@"出站视频"];
     }
     [self initView];

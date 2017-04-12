@@ -23,9 +23,43 @@
 {
     [super viewDidLoad];
     [self setNaviTitle:@"司机信息"];
+    [self initNavRightWithImage:[UIImage imageNamed:@"icon_delete"]];
     [self initView];
 }
 
+- (void)onClickNavRight
+{
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定删除司机?"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    [controller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self deleteStaff];
+    }]];
+    
+    [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:controller animated:YES completion:nil];
+    
+}
+
+- (void)deleteStaff
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    
+    param[@"id"] = _staffInfo.staffId;
+    
+    [[HttpClient shareClient] view:self.view post:URL_RENTER_DEL_STAFF parameters:param
+                           success:^(NSURLSessionDataTask *task, id responseObject) {
+                               [HUDClass showHUDWithText:@"司机删除成功!"];
+                               [self.navigationController popViewControllerAnimated:YES];
+                               
+                           } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                               
+                           }];
+}
 
 - (void)initView
 {

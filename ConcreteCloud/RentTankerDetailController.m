@@ -63,14 +63,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         KeyValueCell *cell = [KeyValueCell viewFromNib];
         cell.lbKey.text = @"启运时间";
         cell.lbValue.text = _trackInfo.startTime;
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
+        
     } else if (1 == indexPath.row) {
         KeyValueCell *cell = [KeyValueCell viewFromNib];
         cell.lbKey.text = @"到达工地时间";
@@ -179,11 +179,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (9 == indexPath.row)
+    if (11 == indexPath.row)
     {
         return [ACheckVideoCell cellHeight];
     }
-    else if (6 == indexPath.row)
+    else if (8 == indexPath.row)
     {
         return [KeyValueCell cellHeightWithContent:_trackInfo.hzs_Order.siteAddress];
     }

@@ -159,27 +159,21 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
 {
     NSInteger state = [_orderInfo.state integerValue];
     
-    if (0 == indexPath.row)
-    {
-        if (Role_Site_Staff == _role)
-        {
+    if (0 == indexPath.row) {
+        if (Role_Site_Staff == _role) {
             SProcess1Cell *cell = [SProcess1Cell cellFromNib];
             cell.lbDate.text = _orderInfo.createTime;
             
-            if (0 == state)
-            {
+            if (0 == state) {
                 [cell setCurrentMode];
-            }
-            else
-            {
+            } else {
                 [cell setPassMode];
             }
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
-        }
-        else
-        {
+            
+        } else {
             DProcess1Cell *cell = [DProcess1Cell cellFromNib];
             cell.delegate = self;
             
@@ -189,13 +183,15 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
             cell.lbLinkMan.text = _orderInfo.orderUserName;
             cell.lbTel.text = _orderInfo.orderUserTel;
             
-            if (0 == state)
-            {
+            if (0 == state) {
                 [cell setCurrentMode];
-            }
-            else
-            {
+            } else {
                 [cell setPassMode];
+            }
+            
+            if (![[Config shareConfig] getOperable]) {
+                cell.btnOK.hidden = YES;
+                cell.btnCancel.hidden = YES;
             }
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -317,6 +313,10 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
                 [cell setSiteRole];
             }
             
+            if (![[Config shareConfig] getOperable]) {
+                [cell setOtherRole];
+            }
+            
             cell.delegate = self;
             
             [self getTask:cell];
@@ -343,9 +343,13 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
             [cell setCurrentMode];
         }
         
-        if (Role_Site_Staff == _role)
-        {
+        
+        if (Role_Site_Staff == _role) {
             [cell setSiteRole];
+        }
+        
+        if (![[Config shareConfig] getOperable]) {
+            [cell setFutureMode];
         }
         
         return cell;

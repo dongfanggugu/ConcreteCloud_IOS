@@ -60,42 +60,34 @@
 {
     MoreCell *cell = [tableView dequeueReusableCellWithIdentifier:[MoreCell identifier]];
     
-    if (!cell)
-    {
+    if (!cell) {
         cell = [MoreCell cellFromNib];
     }
     
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         cell.lbContent.text = @"租赁";
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         cell.lbContent.text = @"工地";
-    }
-    else if (2 == indexPath.row)
-    {
+        
+    } else if (2 == indexPath.row) {
         cell.lbContent.text = @"混凝土检验视频";
-    }
-    else if (3 == indexPath.row)
-    {
+        
+    } else if (3 == indexPath.row) {
         cell.lbContent.text = @"原材料检验视频";
-    }
-    else if (4 == indexPath.row)
-    {
+        
+    } else if (4 == indexPath.row) {
         cell.lbContent.text = @"罐车粘附重量统计";
-    }
-    else if (5 == indexPath.row)
-    {
+        
+    } else if (5 == indexPath.row) {
         cell.lbContent.text = @"检验视频未拍摄通知";
-    }
-    else if (6 == indexPath.row)
-    {
+        
+    } else if (6 == indexPath.row) {
         cell.lbContent.text = @"消息";
-    }
-    else if (7 == indexPath.row)
-    {
+        
+    } else if (7 == indexPath.row) {
         cell.lbContent.text = @"我的";
+        
     }
     
     return cell;
@@ -109,8 +101,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Dispatcher" bundle:nil];
         UIViewController *rent = [board instantiateViewControllerWithIdentifier:@"rent_controller"];
         
@@ -118,61 +109,45 @@
         [self.navigationController pushViewController:rent animated:YES];
         self.hidesBottomBarWhenPushed = NO;
         
-    }
-    else if (1 == indexPath.row)
-    {
+    } else if (1 == indexPath.row) {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Dispatcher" bundle:nil];
-        UIViewController *rent = [board instantiateViewControllerWithIdentifier:@"project_controller"];
+        UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"project_controller"];
         
-        self.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:rent animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }
-    else if (2 == indexPath.row)
-    {
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    } else if (2 == indexPath.row) {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"AChecker" bundle:nil];
         UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"acheck_video_controller"];
         
         self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
         self.hidesBottomBarWhenPushed = NO;
-    }
-    else if (3 == indexPath.row)
-    {
+        
+    } else if (3 == indexPath.row) {
         UIViewController *video = [[BCheckVideoController alloc] init];
         self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:video animated:YES];
         self.hidesBottomBarWhenPushed = NO;
-    }
-    else if (4 == indexPath.row)
-    {
-        VideoRecordController *controller = [[VideoRecordController alloc] init];
         
-        self.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
+    } else if (4 == indexPath.row) {
+
         
-    }
-    else if (5 == indexPath.row)
-    {
+    } else if (5 == indexPath.row) {
         
-    }
-    else if (6 == indexPath.row)
-    {
+    } else if (6 == indexPath.row) {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Common" bundle:nil];
         UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"hzs_message_controller"];
         self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
         self.hidesBottomBarWhenPushed = NO;
-    }
-    else if (7 == indexPath.row)
-    {
+        
+    } else if (7 == indexPath.row) {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Common" bundle:nil];
         UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"hzs_person"];
         
-        self.hidesBottomBarWhenPushed = YES;
+        controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
     }
 }
 

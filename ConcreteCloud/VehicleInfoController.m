@@ -93,7 +93,7 @@
     
     [[HttpClient shareClient] view:self.view post:URL_RENT_DEL parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        [HUDClass showHUDWithLabel:@"车辆删除成功" view:self.view];
+        [HUDClass showHUDWithText:@"车辆删除成功"];
         
         [self performSelector:@selector(back) withObject:nil afterDelay:1.0f];
         

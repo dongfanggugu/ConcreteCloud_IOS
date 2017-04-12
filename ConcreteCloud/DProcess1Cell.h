@@ -29,7 +29,6 @@
 
 - (void)setPassMode;
 
-
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbProject;
@@ -41,6 +40,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbLinkMan;
 
 @property (weak, nonatomic) IBOutlet UILabel *lbTel;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnOK;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnCancel;
 
 @property (weak, nonatomic) id<DProcess1CellDelegate> delegate;
 

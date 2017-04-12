@@ -179,6 +179,7 @@
                                
                                [self registerJpush];
      
+                               [[Config shareConfig] setOperable:YES];
      
                                if ([roleId isEqualToString:HZS_PURCHASER])
                                {
@@ -248,13 +249,15 @@
                                    SupplierDriverMainController *controller = [[SupplierDriverMainController alloc] init];
                                    [self.view.window setRootViewController:controller];
                                }
-                               else if ([roleId isEqualToString:SUP_ADMIN])
+                               else if ([roleId isEqualToString:SUP_ADMIN]
+                                        || [roleId isEqualToString:SUP_CLERK])
                                {
                                    SupAdminMainController *controller = [[SupAdminMainController alloc] init];
                                    [self.view.window setRootViewController:controller];
                                }
                                else if ([roleId isEqualToString:HZS_OTHERS])
                                {
+                                   [[Config shareConfig] setOperable:NO];
                                    OthersMainController *controller = [[OthersMainController alloc] init];
                                    [self.view.window setRootViewController:controller];
                                }
@@ -311,11 +314,6 @@
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [delegate.window setRootViewController:controller];
     [[Config shareConfig] setToken:@""];
-}
-
-- (void)dealloc
-{
-    NSLog(@"Login dealloc");
 }
 
 @end

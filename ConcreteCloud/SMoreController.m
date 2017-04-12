@@ -160,9 +160,8 @@ typedef NS_ENUM(NSInteger, SITE_ROLE)
     {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"site_staff_controller"];
-        self.hidesBottomBarWhenPushed = YES;
+        controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
     }
     else if ([content isEqualToString:@"泵车轨迹"])
     {

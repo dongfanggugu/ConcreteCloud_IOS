@@ -31,11 +31,12 @@
 {
     [super viewDidLoad];
     [self setNaviTitle:@"任务信息"];
-    
-    if (!_isHistory)
-    {
+        
+    if (!_isHistory && [[Config shareConfig] getOperable]) {
         [self initNavRightWithText:@"进站视频"];
     }
+    
+    
     [self initView];
 }
 

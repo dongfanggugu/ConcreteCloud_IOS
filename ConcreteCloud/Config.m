@@ -180,14 +180,14 @@
 }
 
 //设置和获取操作权限
-- (void)setOperable:(NSInteger)operable
+- (void)setOperable:(BOOL)operable
 {
-    [self setValue:[NSNumber numberWithInteger:operable] key:@"operable"];
+    [self setValue:[NSNumber numberWithBool:operable] key:@"operable"];
 }
 
-- (NSInteger)getOperable
+- (BOOL)getOperable
 {
-    return [[self getValueWithKey:@"operable"] integerValue];
+    return [[self getValueWithKey:@"operable"] boolValue];
 }
 
 //设置和获取上一次使用的车辆

@@ -298,4 +298,31 @@
 //修改供应商地址
 #define URL_SUP_ADDRESS_MODIFY @"editSupplierAddress"
 
+//供应商添加人员
+#define URL_SUP_ADD_STAFF @"AddSupplierPersonnel"
+
+//租赁添加司机
+#define URL_RENTER_ADD_DRIVER @"addLeaseDriver"
+
+//供应商添加车辆
+#define URL_SUP_ADD_VEHICLE @"AddsuppVehicle"
+
+//供应商删除车辆
+#define URL_SUP_DEL_VEHICLE @"DelsuppVehicleById"
+
+//供应商删除人员
+#define URL_SUP_DEL_STAFF @"delSupplierPersonnel"
+
+//工地删除人员
+#define URL_SITE_DEL_STAFF @"deleteUserBySite"
+
+//租赁删除司机
+#define URL_RENTER_DEL_STAFF @"deleteLeaseUser"
+
+//租赁获取正在执行的泵车
+#define URL_RENTER_GET_PUMP @"getVehicleListByNotCompletePumpTruck"
+
+//根据车辆id获取运输单
+#define URL_A_TASK_BY_VEHICLE_ID @"getNotCompleteHzsOrderProcessByVehicleId"
+
 #endif /* NetConstant_h */

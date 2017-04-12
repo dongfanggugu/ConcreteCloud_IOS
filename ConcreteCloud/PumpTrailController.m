@@ -99,6 +99,8 @@
     ann.coordinate = coor;
     ann.title = @"pump";
     
+    _mapView.centerCoordinate = coor;
+    
     [_mapView addAnnotation:ann];
 }
 
@@ -133,16 +135,13 @@
     BMKAnnotationView *annView = [[BMKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"ann"];
     annView.canShowCallout = NO;
     
-    if ([title isEqualToString:@"site"])
-    {
+    if ([title isEqualToString:@"site"]) {
         annView.image = [UIImage imageNamed:@"icon_build_site"];
-    }
-    else if ([title isEqualToString:@"hzs"])
-    {
+        
+    } else if ([title isEqualToString:@"hzs"]) {
         annView.image = [UIImage imageNamed:@"icon_mix_point"];
-    }
-    else
-    {
+        
+    } else {
         annView.image = [self getPumpImage:_trackInfo.vehicleType];
     }
     
@@ -152,7 +151,7 @@
 - (void)mapView:(BMKMapView *)mapView onClickedMapBlank:(CLLocationCoordinate2D)coordinate
 {
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"Dispatcher" bundle:nil];
-    DVehicleTrailController *controller = [board instantiateViewControllerWithIdentifier:@"Dvehicle_trail_controller"];
+    DVehicleTrailController *controller = [board instantiateViewControllerWithIdentifier:@"d_vehicle_trail_controller"];
     controller.cls = _trackInfo.cls;
     controller.pumpType = _trackInfo.vehicleType;
     

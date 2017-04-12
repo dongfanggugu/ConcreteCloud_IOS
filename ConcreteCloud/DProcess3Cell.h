@@ -37,8 +37,11 @@
 
 - (void)setCurrentMode;
 
-//工地角色显示模式，需要在设置过去，现在，未来模式之后调用才会生效
+//工地角色显示模式,需要在设置过去，现在，未来模式之后调用才会生效
 - (void)setSiteRole;
+
+//最高权限角色显示模式,需要在设置过去，现在，未来模式之后调用才会生效
+- (void)setOtherRole;
 
 - (void)setTotal:(CGFloat)total complete:(CGFloat)complete way:(CGFloat)way;
 

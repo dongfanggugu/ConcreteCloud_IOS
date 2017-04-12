@@ -1,26 +1,22 @@
 //
-//  DispatchMoreController.m
+//  RenterAdminMoreController.m
 //  ConcreteCloud
 //
-//  Created by 长浩 张 on 2017/3/17.
+//  Created by 长浩 张 on 2017/4/12.
 //  Copyright © 2017年 北京创鑫汇智科技发展有限公司. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "DispatchMoreController.h"
+#import "RenterAdminMoreController.h"
 #import "MoreCell.h"
-#import "SupStaffController.h"
-#import "SupVehicleController.h"
-#import "ChatController.h"
+#import "RenterPumpListController.h"
 
-@interface DispatchMoreController() <UITableViewDelegate, UITableViewDataSource>
+@interface RenterAdminMoreController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
 
 @end
 
-
-@implementation DispatchMoreController
+@implementation RenterAdminMoreController
 
 - (void)viewDidLoad
 {
@@ -59,18 +55,16 @@
 {
     MoreCell *cell = [tableView dequeueReusableCellWithIdentifier:[MoreCell identifier]];
     
-    if (!cell)
-    {
+    if (!cell) {
         cell = [MoreCell cellFromNib];
     }
     
-    if (0 == indexPath.row)
-    {
-        cell.lbContent.text = @"呼机";
-    }
-    else if (1 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
+        cell.lbContent.text = @"泵车轨迹";
+        
+    } else if (1 == indexPath.row) {
         cell.lbContent.text = @"我的";
+        
     }
     
     return cell;
@@ -84,26 +78,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
+        RenterPumpListController *controller = [[RenterPumpListController alloc] init];
         
-        UIStoryboard *comBoard = [UIStoryboard storyboardWithName:@"Common" bundle:nil];
-        
-        ChatController *controller = [comBoard instantiateViewControllerWithIdentifier:@"chat_controller"];
-        controller.noTabBar = YES;
-        
-        self.hidesBottomBarWhenPushed = YES;
+        controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Common" bundle:nil];
         UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"hzs_person"];
         
-        self.hidesBottomBarWhenPushed = YES;
+        controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
     }
 }
 

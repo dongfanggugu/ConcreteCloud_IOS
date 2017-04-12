@@ -11,6 +11,7 @@
 #import "StaffListRequest.h"
 #import "StaffListResponse.h"
 #import "RentDriverCell.h"
+#import "RenterDriverAddController.h"
 #import "RentDriverInfoController.h"
 
 @interface RentDriverController()<UITableViewDelegate, UITableViewDataSource>
@@ -37,6 +38,15 @@
     [super viewWillAppear:animated];
     [self getStaff];
 }
+
+- (void)onClickNavRight
+{
+    RenterDriverAddController *controller = [[RenterDriverAddController alloc] init];
+    controller.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 
 - (void)initData
 {

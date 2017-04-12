@@ -276,10 +276,21 @@ PProcess3CellDelegate, PProcess4CellDelegate, AProcess3HistoryCellDelegate>
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        if (3 == state)
-        {
+        if (3 == state) {
             cell.lbDate.text = _orderInfo.completeTime;
             [cell setPassMode];
+            
+        } else if (0 == state) {
+            [cell setFutureMode];
+        
+        } else {
+            [cell setCurrentMode];
+        }
+        
+        
+        //没有操作权限        
+        if (![[Config shareConfig] getOperable]) {
+            [cell setFutureMode];
         }
         
         cell.delegate = self;

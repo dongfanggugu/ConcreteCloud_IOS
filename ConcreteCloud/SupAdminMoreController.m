@@ -87,31 +87,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         
         SupStaffController *controller = [[SupStaffController alloc] init];
         
-        self.hidesBottomBarWhenPushed = YES;
+        controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         SupVehicleController *controller = [[SupVehicleController alloc] init];
 
-        self.hidesBottomBarWhenPushed = YES;
+        controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }
-    else
-    {
+        
+    } else {
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Common" bundle:nil];
         UIViewController *controller = [board instantiateViewControllerWithIdentifier:@"hzs_person"];
         
-        self.hidesBottomBarWhenPushed = YES;
+        controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
     }
 }
 

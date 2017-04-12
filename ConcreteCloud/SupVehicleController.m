@@ -12,6 +12,7 @@
 #import "RentVehicleListResponse.h"
 #import "HzsTankerInfoCell.h"
 #import "SupVehicleDetailController.h"
+#import "SupVehicleAddController.h"
 
 
 @interface SupVehicleController()<UITableViewDelegate, UITableViewDataSource>
@@ -28,6 +29,7 @@
 {
     [super viewDidLoad];
     [self setNaviTitle:@"车辆管理"];
+    [self initNavRightWithImage:[UIImage imageNamed:@"icon_add"]];
     [self initData];
     [self initView];
 }
@@ -36,6 +38,14 @@
 {
     [super viewWillAppear:animated];
     [self getVehicles];
+}
+
+- (void)onClickNavRight
+{
+    SupVehicleAddController *controller = [[SupVehicleAddController alloc] init];
+    controller.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)initData

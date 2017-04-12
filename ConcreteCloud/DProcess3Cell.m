@@ -137,6 +137,12 @@
     _btnDetail.hidden = YES;
 }
 
+- (void)setOtherRole
+{
+    _btnCarry.hidden = NO;
+    _btnDetail.hidden = YES;
+}
+
 - (void)setCurrentMode
 {
     _ivProcess.image = [UIImage imageNamed:@"order_track_current"];

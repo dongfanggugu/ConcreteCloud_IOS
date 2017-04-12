@@ -288,6 +288,12 @@
 		658FE5EA1E9DB8A0002CA85F /* AddressShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5E91E9DB8A0002CA85F /* AddressShowController.m */; };
 		658FE5ED1E9DBFFD002CA85F /* AddressModifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5EC1E9DBFFD002CA85F /* AddressModifyController.m */; };
 		658FE5F01E9DC7D3002CA85F /* AddressLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5EF1E9DC7D3002CA85F /* AddressLocationController.m */; };
+		658FE5F31E9DFB4D002CA85F /* SupStaffAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5F21E9DFB4D002CA85F /* SupStaffAddController.m */; };
+		658FE5F61E9E0378002CA85F /* RenterDriverAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5F51E9E0378002CA85F /* RenterDriverAddController.m */; };
+		658FE5F91E9E0987002CA85F /* SupVehicleAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5F81E9E0987002CA85F /* SupVehicleAddController.m */; };
+		658FE5FC1E9E11F6002CA85F /* SiteStaffDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5FB1E9E11F6002CA85F /* SiteStaffDetailController.m */; };
+		658FE5FF1E9E170D002CA85F /* RenterAdminMoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5FE1E9E170D002CA85F /* RenterAdminMoreController.m */; };
+		658FE6021E9E1A15002CA85F /* RenterPumpListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE6011E9E1A15002CA85F /* RenterPumpListController.m */; };
 		659F94D41DD561CF008B8F26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F94D31DD561CF008B8F26 /* main.m */; };
 		659F94D71DD561CF008B8F26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F94D61DD561CF008B8F26 /* AppDelegate.m */; };
 		659F94DA1DD561CF008B8F26 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F94D91DD561CF008B8F26 /* ViewController.m */; };
@@ -986,6 +992,18 @@
 		658FE5EC1E9DBFFD002CA85F /* AddressModifyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModifyController.m; sourceTree = "<group>"; };
 		658FE5EE1E9DC7D3002CA85F /* AddressLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressLocationController.h; sourceTree = "<group>"; };
 		658FE5EF1E9DC7D3002CA85F /* AddressLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressLocationController.m; sourceTree = "<group>"; };
+		658FE5F11E9DFB4D002CA85F /* SupStaffAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupStaffAddController.h; sourceTree = "<group>"; };
+		658FE5F21E9DFB4D002CA85F /* SupStaffAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupStaffAddController.m; sourceTree = "<group>"; };
+		658FE5F41E9E0378002CA85F /* RenterDriverAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenterDriverAddController.h; sourceTree = "<group>"; };
+		658FE5F51E9E0378002CA85F /* RenterDriverAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenterDriverAddController.m; sourceTree = "<group>"; };
+		658FE5F71E9E0987002CA85F /* SupVehicleAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupVehicleAddController.h; sourceTree = "<group>"; };
+		658FE5F81E9E0987002CA85F /* SupVehicleAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupVehicleAddController.m; sourceTree = "<group>"; };
+		658FE5FA1E9E11F6002CA85F /* SiteStaffDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteStaffDetailController.h; sourceTree = "<group>"; };
+		658FE5FB1E9E11F6002CA85F /* SiteStaffDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteStaffDetailController.m; sourceTree = "<group>"; };
+		658FE5FD1E9E170D002CA85F /* RenterAdminMoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenterAdminMoreController.h; sourceTree = "<group>"; };
+		658FE5FE1E9E170D002CA85F /* RenterAdminMoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenterAdminMoreController.m; sourceTree = "<group>"; };
+		658FE6001E9E1A15002CA85F /* RenterPumpListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenterPumpListController.h; sourceTree = "<group>"; };
+		658FE6011E9E1A15002CA85F /* RenterPumpListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenterPumpListController.m; sourceTree = "<group>"; };
 		659F94CF1DD561CF008B8F26 /* ConcreteCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConcreteCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		659F94D31DD561CF008B8F26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		659F94D51DD561CF008B8F26 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1625,6 +1643,8 @@
 				65698F4A1E5FC1AD00B21D1B /* PumpTrailController.m */,
 				65489FF71E84C2D30071FBCA /* SiteAOrderOverViewController.h */,
 				65489FF81E84C2DC0071FBCA /* SiteAOrderOverViewController.m */,
+				658FE5FA1E9E11F6002CA85F /* SiteStaffDetailController.h */,
+				658FE5FB1E9E11F6002CA85F /* SiteStaffDetailController.m */,
 			);
 			name = Site;
 			sourceTree = "<group>";
@@ -2490,6 +2510,12 @@
 				65EEEB731E7693C70095432B /* RentDriverInfoController.m */,
 				652FF3061E8CAD3100CF98A4 /* RenterTaskListController.h */,
 				652FF3071E8CAD3100CF98A4 /* RenterTaskListController.m */,
+				658FE5F41E9E0378002CA85F /* RenterDriverAddController.h */,
+				658FE5F51E9E0378002CA85F /* RenterDriverAddController.m */,
+				658FE5FD1E9E170D002CA85F /* RenterAdminMoreController.h */,
+				658FE5FE1E9E170D002CA85F /* RenterAdminMoreController.m */,
+				658FE6001E9E1A15002CA85F /* RenterPumpListController.h */,
+				658FE6011E9E1A15002CA85F /* RenterPumpListController.m */,
 			);
 			name = Admin;
 			sourceTree = "<group>";
@@ -2551,6 +2577,10 @@
 				65515BC21E79226F00386A0C /* VehicleSelController.m */,
 				650BD1381E9CCD8400FEC425 /* SupDispatchDetailController.h */,
 				650BD1391E9CCD8400FEC425 /* SupDispatchDetailController.m */,
+				658FE5F11E9DFB4D002CA85F /* SupStaffAddController.h */,
+				658FE5F21E9DFB4D002CA85F /* SupStaffAddController.m */,
+				658FE5F71E9E0987002CA85F /* SupVehicleAddController.h */,
+				658FE5F81E9E0987002CA85F /* SupVehicleAddController.m */,
 			);
 			name = Admin;
 			sourceTree = "<group>";
@@ -2935,6 +2965,7 @@
 				65C310791DF50C14005F4BA8 /* ResponseDictionary.m in Sources */,
 				65D863951E80CA3A006E7A1C /* KeyEditBtnCell.m in Sources */,
 				65C0D9C61E54022800A49F73 /* ProjectView.m in Sources */,
+				658FE5F61E9E0378002CA85F /* RenterDriverAddController.m in Sources */,
 				65515BEC1E7A330C00386A0C /* SupStaffDetailController.m in Sources */,
 				65D863BE1E823FD3006E7A1C /* SiteInfoView.m in Sources */,
 				65D863B31E821F35006E7A1C /* HzsSiteListInfo.m in Sources */,
@@ -2963,6 +2994,7 @@
 				65489FF91E84C2DC0071FBCA /* SiteAOrderOverViewController.m in Sources */,
 				65698F761E63BEFB00B21D1B /* ACheckVideoCell.m in Sources */,
 				65ADC6881E4AA3380020FF69 /* VehicleMapAnnotation.m in Sources */,
+				658FE5F31E9DFB4D002CA85F /* SupStaffAddController.m in Sources */,
 				656230CF1E6658F000335819 /* KeyValueBtnCell.m in Sources */,
 				65EEEB631E7667720095432B /* RentVehicleDelRequest.m in Sources */,
 				6548A00A1E84EF010071FBCA /* BOrderOverViewController.m in Sources */,
@@ -3004,6 +3036,7 @@
 				6584508B1E5A7F4C003CFAA5 /* RentVehicleInfo.m in Sources */,
 				655DDB2E1E55D4F000848D7C /* AuthorizeRequest.m in Sources */,
 				657EA1641E557B82000AC433 /* ProjectController.m in Sources */,
+				658FE5FC1E9E11F6002CA85F /* SiteStaffDetailController.m in Sources */,
 				65698F481E5FB8A300B21D1B /* SPumpListResponse.m in Sources */,
 				652812221DFF7CA3007FC33E /* DicInfo.m in Sources */,
 				65ADC6A41E4AEC940020FF69 /* Response+VehicleTrail.m in Sources */,
@@ -3012,6 +3045,7 @@
 				65E581051DD59EA5007F53E1 /* Utils.m in Sources */,
 				650BD1371E9CA61400FEC425 /* WCLRecordEngine.m in Sources */,
 				65C310911DF6618F005F4BA8 /* TitleSegmentView.m in Sources */,
+				658FE5F91E9E0987002CA85F /* SupVehicleAddController.m in Sources */,
 				657FBC7E1E34987D0029C41C /* Response+POrderInfo.m in Sources */,
 				65515BEF1E7A33EF00386A0C /* SupVehicleController.m in Sources */,
 				65515BA71E77E85B00386A0C /* SupOrderDisCell.m in Sources */,
@@ -3058,6 +3092,7 @@
 				65338A521E6FFC940026B63E /* RentTankerMainController.m in Sources */,
 				65EA42BB1DE53ABA00BC48BB /* POrderItemView.m in Sources */,
 				65515BF61E7A3AF000386A0C /* OthersMainController.m in Sources */,
+				658FE5FF1E9E170D002CA85F /* RenterAdminMoreController.m in Sources */,
 				65EEEB431E727E130095432B /* RentPumpProcessController.m in Sources */,
 				657EA1451E553228000AC433 /* MyMsgInfo.m in Sources */,
 				652811ED1DF8E6E0007FC33E /* PStatisticsRequest.m in Sources */,
@@ -3074,6 +3109,7 @@
 				657EA1511E55477A000AC433 /* DMainpageController.m in Sources */,
 				65EEEBBA1E77DE200095432B /* SupOrderProcessController.m in Sources */,
 				651779B01E00F18D00A759AC /* KeyEditCell.m in Sources */,
+				658FE6021E9E1A15002CA85F /* RenterPumpListController.m in Sources */,
 				659F94D41DD561CF008B8F26 /* main.m in Sources */,
 				658450911E5A82FC003CFAA5 /* RentVehicleListResponse.m in Sources */,
 				652811F31DF8F236007FC33E /* PStatisticsResponse.m in Sources */,

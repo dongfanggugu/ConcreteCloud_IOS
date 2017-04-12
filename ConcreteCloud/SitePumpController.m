@@ -13,7 +13,7 @@
 #import "PumpInfoCell.h"
 #import "PumpTrailController.h"
 
-@interface SitePumpController()<UITableViewDelegate, UITableViewDataSource>
+@interface SitePumpController() <UITableViewDelegate, UITableViewDataSource>
 {
     NSMutableArray<DTrackInfo *> *_arrayPump;
 }

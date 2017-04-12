@@ -78,9 +78,9 @@
 - (CGFloat)getLat;
 
 //设置和获取操作权限
-- (void)setOperable:(NSInteger)operable;
+- (void)setOperable:(BOOL)operable;
 
-- (NSInteger)getOperable;
+- (BOOL)getOperable;
 
 //设置和获取上一次使用的罐车车辆
 - (void)setLastVehicle:(NSString *)info;

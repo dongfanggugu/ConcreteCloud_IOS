@@ -11,10 +11,6 @@
 
 @interface DProcess1Cell()
 
-@property (weak, nonatomic) IBOutlet UIButton *btnOK;
-
-@property (weak, nonatomic) IBOutlet UIButton *btnCancel;
-
 @property (weak, nonatomic) IBOutlet UIImageView *ivProcess;
 
 

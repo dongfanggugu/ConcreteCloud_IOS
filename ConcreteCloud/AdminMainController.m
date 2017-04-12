@@ -15,6 +15,7 @@
 #import "VehicleController.h"
 #import "RentDriverController.h"
 #import "RenterTaskListController.h"
+#import "RenterAdminMoreController.h"
 
 @interface AdminMainController()
 
@@ -40,10 +41,8 @@
     UIViewController *process = [[AdminProcessController alloc] init];
     
     UIViewController *taskList = [[RenterTaskListController alloc] init];
-    
-    UIStoryboard *board = [UIStoryboard storyboardWithName:@"Purchaser" bundle:nil];
-    
-    UIViewController *more = [board instantiateViewControllerWithIdentifier:@"p_more"];
+        
+    UIViewController *more = [[RenterAdminMoreController alloc] init];
     
     
     

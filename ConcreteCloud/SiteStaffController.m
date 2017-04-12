@@ -10,6 +10,7 @@
 #import "SiteStaffController.h"
 #import "StaffListRequest.h"
 #import "StaffListResponse.h"
+#import "SiteStaffDetailController.h"
 
 #pragma mark - SiteStaffCell
 
@@ -62,6 +63,7 @@
 - (void)onClickNavRight
 {
     UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"site_staff_add_controller"];
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -119,10 +121,21 @@
     cell.lbRole.text = info.roleNames;
     cell.lbTel.text = info.tel;
     
+    cell.selectionStyle = UITableViewCellAccessoryNone;
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SiteStaffDetailController *controller = [[SiteStaffDetailController alloc] init];
+    controller.staffInfo = _arrayStaff[indexPath.row];
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 @end
 

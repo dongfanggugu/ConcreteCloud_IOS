@@ -32,14 +32,15 @@
     [super viewDidLoad];
     [self setNaviTitle:@"工程详情"];
     
-    if (_isAuthed)
-    {
-        [self initNavRightWithText:@"解除授权"];
+    if ([[Config shareConfig] getOperable]) {
+        if (_isAuthed) {
+            [self initNavRightWithText:@"解除授权"];
+            
+        } else {
+            [self initNavRightWithText:@"授权"];
+        }
     }
-    else
-    {
-        [self initNavRightWithText:@"授权"];
-    }
+    
     [self initView];
 }
 

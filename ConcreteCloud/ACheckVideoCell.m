@@ -47,13 +47,13 @@
     _btnRecord.layer.masksToBounds = YES;
     _btnRecord.layer.cornerRadius = 5;
     _btnRecord.hidden = YES;
+    
 }
 
 + (CGFloat)cellHeight
 {
     return 150;
 }
-
 
 - (void)setUrl:(NSString *)url
 {
@@ -72,6 +72,8 @@
     _webView.scrollView.bounces = NO;
     NSURL *path = [NSURL URLWithString:_url];
     NSURLRequest *request = [NSURLRequest requestWithURL:path];
+    
+    _webView.allowsInlineMediaPlayback = YES;
     
     [_webView loadRequest:request];
     

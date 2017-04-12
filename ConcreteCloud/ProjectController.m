@@ -226,18 +226,15 @@
     
     controller.projectInfo = _arrayProject[indexPath.row];
     
-    if (0 == _curSel)
-    {
+    if (0 == _curSel) {
         controller.isAuthed = YES;
-    }
-    else
-    {
+        
+    } else {
         controller.isAuthed = NO;
     }
     
-    self.hidesBottomBarWhenPushed = YES;
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

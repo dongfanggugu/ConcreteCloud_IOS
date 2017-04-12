@@ -70,7 +70,7 @@
     [[tabBar.items objectAtIndex:1] setTitle:@"混凝土订单"];
     
     [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_other_order"]];
-    [[tabBar.items objectAtIndex:2] setTitle:@"其他订单"];
+    [[tabBar.items objectAtIndex:2] setTitle:@"检验"];
     
     [[tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"icon_statistics"]];
     [[tabBar.items objectAtIndex:3] setTitle:@"统计"];

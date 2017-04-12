@@ -190,6 +190,9 @@ typedef NS_ENUM(NSInteger, G_Segment) {
 //供应商管理员
 #define SUP_ADMIN @"802264ad-ac81-4e16-b7fe-77150c69ccd2"
 
+//供应商接单员
+#define SUP_CLERK @"eaa5ee2d-c993-4f3b-8489-4049068a0c4b"
+
 
 #pragma mark - 注册协议
 

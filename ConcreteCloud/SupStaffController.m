@@ -12,6 +12,7 @@
 #import "SupDriverRequest.h"
 #import "StaffListResponse.h"
 #import "SupStaffDetailController.h"
+#import "SupStaffAddController.h"
 
 @interface SupStaffController()<UITableViewDelegate, UITableViewDataSource>
 
@@ -27,6 +28,7 @@
 {
     [super viewDidLoad];
     [self setNaviTitle:@"人员"];
+    [self initNavRightWithImage:[UIImage imageNamed:@"icon_add"]];
     [self initData];
     [self initView];
 }
@@ -37,6 +39,13 @@
     [self getStaffs];
 }
 
+- (void)onClickNavRight
+{
+    SupStaffAddController *controller = [[SupStaffAddController alloc] init];
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 - (void)initData
 {
     _arrayStaff = [NSMutableArray array];
@@ -45,7 +54,7 @@
 
 - (void)initView
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 94, self.screenWidth, self.screenHeight - 64)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 94, self.screenWidth, self.screenHeight - 94)];
     
     _tableView.delegate = self;
     

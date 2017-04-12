@@ -1,23 +1,21 @@
 //
-//  SupStaffDetailController.m
+//  SiteStaffDetailController.m
 //  ConcreteCloud
 //
-//  Created by 长浩 张 on 2017/3/16.
+//  Created by 长浩 张 on 2017/4/12.
 //  Copyright © 2017年 北京创鑫汇智科技发展有限公司. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "SupStaffDetailController.h"
+#import "SiteStaffDetailController.h"
 #import "KeyValueCell.h"
 
-@interface SupStaffDetailController() <UITableViewDelegate, UITableViewDataSource>
+@interface SiteStaffDetailController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
 
 @end
 
-@implementation SupStaffDetailController
-
+@implementation SiteStaffDetailController
 
 - (void)viewDidLoad
 {
@@ -53,7 +51,7 @@
     
     param[@"supplierId"] = [[Config shareConfig] getBranchId];
     
-    [[HttpClient shareClient] view:self.view post:URL_SUP_DEL_STAFF parameters:param
+    [[HttpClient shareClient] view:self.view post:URL_SITE_DEL_STAFF parameters:param
                            success:^(NSURLSessionDataTask *task, id responseObject) {
                                [HUDClass showHUDWithText:@"车辆删除成功!"];
                                [self.navigationController popViewControllerAnimated:YES];
@@ -89,7 +87,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 8;
 }
 
 
@@ -97,35 +95,45 @@
 {
     KeyValueCell *cell = [KeyValueCell viewFromNib];
     
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         cell.lbKey.text = @"姓名";
         cell.lbValue.text = _staffInfo.name;
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         cell.lbKey.text = @"性别";
         cell.lbValue.text = _staffInfo.sex.integerValue == 0 ? @"男" : @"女";
-    }
-    else if (2 == indexPath.row)
-    {
+        
+    } else if (2 == indexPath.row) {
+        cell.lbKey.text = @"年龄";
+        cell.lbValue.text = [NSString stringWithFormat:@"%ld", _staffInfo.age];
+        
+    } else if (3 == indexPath.row) {
+        cell.lbKey.text = @"职务";
+        cell.lbValue.text = _staffInfo.duty;
+        
+    } else if (4 == indexPath.row) {
         cell.lbKey.text = @"电话";
         cell.lbValue.text = _staffInfo.tel;
-    }
-    else if (3 == indexPath.row)
-    {
+        
+    } else if (5 == indexPath.row) {
         cell.lbKey.text = @"角色";
         cell.lbValue.text = _staffInfo.roleNames;
+        
+    } else if (6 == indexPath.row) {
+        cell.lbKey.text = @"职工编写";
+        cell.lbValue.text = _staffInfo.code;
+        
+    } else if (7 == indexPath.row) {
+        cell.lbKey.text = @"是否可下单";
+        cell.lbValue.text = [_staffInfo.isOrder integerValue] == 1 ? @"是" : @"否";
+        
     }
-    else if (4 == indexPath.row)
-    {
-        cell.lbKey.text = @"职位信息";
-        cell.lbValue.text = _staffInfo.duty;
-    }
+    
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
+
 
 @end

@@ -207,24 +207,22 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (0 == _curSel)
-    {
-        ACheckDetailController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"acheck_detail_controller"];
+    if (0 == _curSel) {
+        
+        UIStoryboard *board = [UIStoryboard storyboardWithName:@"AChecker" bundle:nil];
+        ACheckDetailController *controller = [board instantiateViewControllerWithIdentifier:@"acheck_detail_controller"];
         controller.trackInfo = _arrayACheck[indexPath.row];
         controller.checkType = HZS;
         
-        self.hidesBottomBarWhenPushed = YES;
+        controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }
-    else
-    {
+        
+    } else {
         BCheckDetailController *controller = [[BCheckDetailController alloc] init];
         controller.trackInfo = _arrayBCheck[indexPath.row];
         
-        self.hidesBottomBarWhenPushed = YES;
+        controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
     }
     
     
