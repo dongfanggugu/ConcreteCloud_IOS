@@ -131,7 +131,7 @@
     DatePickerDialog *dialog = [DatePickerDialog viewFromNib];
     dialog.delegate = self;
     
-    [self.view addSubview:dialog];
+    [dialog show];
 }
 
 - (void)onClickNavRight

@@ -153,7 +153,7 @@
                                ListDialogView *dialog = [ListDialogView viewFromNib];
                                dialog.delegate = self;
                                [dialog setData:array];
-                               [self.view addSubview:dialog];
+                               [dialog show];
                                
                            } failure:^(NSURLSessionDataTask *task, NSError *errr) {
                                
@@ -183,7 +183,7 @@
                                ListDialogView *dialog = [ListDialogView viewFromNib];
                                dialog.delegate = self;
                                [dialog setData:array];
-                               [self.view addSubview:dialog];
+                               [dialog show];
                                
                            } failure:^(NSURLSessionDataTask *task, NSError *errr) {
                                

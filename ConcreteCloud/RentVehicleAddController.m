@@ -222,7 +222,7 @@ typedef NS_ENUM(NSInteger, Vehicle)
     
     [dialog setDateMode];
     dialog.delegate = self;
-    [self.view addSubview:dialog];
+    [dialog show];
 }
 
 #pragma mark - Network Request

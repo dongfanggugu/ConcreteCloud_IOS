@@ -270,7 +270,7 @@
     listDialog.tag = 1001;
     
     listDialog.delegate = self;
-    [self.view addSubview:listDialog];
+    [listDialog show];
 }
 
 - (void)showPartListDialogView
@@ -302,7 +302,7 @@
     
     listDialog.delegate = self;
     
-    [self.view addSubview:listDialog];
+    [listDialog show];
 }
 
 #pragma mark -- ListDialogViewDelegate

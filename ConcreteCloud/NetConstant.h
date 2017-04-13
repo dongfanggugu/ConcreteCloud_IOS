@@ -325,4 +325,7 @@
 //根据车辆id获取运输单
 #define URL_A_TASK_BY_VEHICLE_ID @"getNotCompleteHzsOrderProcessByVehicleId"
 
+//检测版本
+#define URL_VERSION_CHECK @"checkVersion"
+
 #endif /* NetConstant_h */

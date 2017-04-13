@@ -49,14 +49,14 @@
     _mapManager = [[BMKMapManager alloc] init];
     BOOL ret = [_mapManager start:BM_KEY generalDelegate:nil];
 
-    if (ret)
-    {
+    if (ret) {
         NSLog(@"BMMap manager start successfully");
-    }
-    else
-    {
+        
+    } else {
         NSLog(@"BMMap manager start failed");
     }
+    
+    [self checkUpdate];
     
     NSString *token = [[Config shareConfig] getToken];
     
@@ -138,7 +138,8 @@
             SupplierDriverMainController *controller = [[SupplierDriverMainController alloc] init];
             [_window setRootViewController:controller];
         }
-        else if ([roleId isEqualToString:SUP_ADMIN])
+        else if ([roleId isEqualToString:SUP_ADMIN]
+                 || [roleId isEqualToString:SUP_CLERK])
         {
             SupAdminMainController *controller = [[SupAdminMainController alloc] init];
             [_window setRootViewController:controller];
@@ -255,11 +256,43 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 }
 
 
-//- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
-//{
-//    NSString *str = url.resourceSpecifier;
-//    NSLog(@"url:%@", str);
-//    return YES;
-//}
+/**
+ *  检测是否需要升级
+ */
+- (void)checkUpdate
+{
+    [[HttpClient shareClient] post:URL_VERSION_CHECK parameters:nil
+                           success:^(NSURLSessionDataTask *task, id responseObject) {
+                               NSInteger remoteVersion = [[responseObject[@"body"] objectForKey:@"appVersion"] integerValue];
+                               
+                               NSLog(@"remote version:%ld", remoteVersion);
+                               
+                               NSInteger localVersion = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] integerValue];
+                               
+                               if(remoteVersion > localVersion) {
+                                   [self performSelectorOnMainThread:@selector(showUpdate) withObject:nil waitUntilDone:NO];
+                               }
+                               
+                           } failure:^(NSURLSessionDataTask *task, NSError *errr, Fail_Type failType) {
+                               
+                           }];
+
+}
+
+- (void)showUpdate
+{
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:@"有新的版本更新"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    [controller addAction:[UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://fir.im/ConcreteCloud"]];
+    }]];
+    
+    [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self.window.rootViewController presentViewController:controller animated:YES completion:nil];
+}
 
 @end

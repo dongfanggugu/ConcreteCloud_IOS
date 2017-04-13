@@ -58,8 +58,7 @@ static dispatch_once_t onceToken;
     [head setObject:[[Config shareConfig] getToken] forKey:@"accessToken"];
     [head setObject:[[Config shareConfig] getUserId] forKey:@"userId"];
     
-    if (parameters)
-    {
+    if (parameters) {
         [param setObject:parameters forKey:@"body"];
     }
     
@@ -136,18 +135,17 @@ static dispatch_once_t onceToken;
     
     [param setObject:head forKey:@"head"];
     
-    //NSLog(@"zhenhao-----request:%@", param);
+    NSLog(@"zhenhao-----request:%@", param);
     
     
-    [self POST:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {        
+    [self POST:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        if ([[[responseObject objectForKey:@"head"] objectForKey:@"rspCode"] isEqualToString:@"0"])
-        {
+         NSLog(@"zhenhao-----response:%@", responseObject);
+        
+        if ([[[responseObject objectForKey:@"head"] objectForKey:@"rspCode"] isEqualToString:@"0"]) {
             success(task, responseObject);
             
-        }
-        else
-        {
+        } else {
             failure(task, responseObject, System_Error);
         }
         

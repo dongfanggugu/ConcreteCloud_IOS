@@ -173,7 +173,7 @@
     
     [dialog setDateMode];
     dialog.delegate = self;
-    [self.view addSubview:dialog];
+    [dialog show];
 }
 
 - (void)onSelFrom:(UITextField *)tfFrom
@@ -184,7 +184,7 @@
     
     [dialog setDateMode];
     dialog.delegate = self;
-    [self.view addSubview:dialog];
+    [dialog show];
 }
 
 #pragma mark - DatePickerDelegate

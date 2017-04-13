@@ -116,27 +116,24 @@
 //起运流程：1.检测订单信息选择是否完整 2.启动定位 3.定位完成后从服务器获取距离限制 4.检测启运距离限制 5.启运
 - (void)clickStart
 {
-    if ([_lbHzs.text isEqualToString:HZS_INIT])
-    {
-        [HUDClass showHUDWithLabel:@"请先选择搅拌站" view:self.view];
+    if ([_lbHzs.text isEqualToString:HZS_INIT]) {
+        [HUDClass showHUDWithText:@"请先选择搅拌站"];
         return;
     }
     
-    if ([_lbSite.text isEqualToString:SITE_INIT])
-    {
-        [HUDClass showHUDWithLabel:@"请先选择工程" view:self.view];
+    if ([_lbSite.text isEqualToString:SITE_INIT]) {
+        [HUDClass showHUDWithText:@"请先选择工程"];
         return;
     }
     
-    if ([_lbPart.text isEqualToString:PART_INIT])
-    {
-        [HUDClass showHUDWithLabel:@"请先选择浇筑部位" view:self.view];
+    if ([_lbPart.text isEqualToString:PART_INIT]) {
+        [HUDClass showHUDWithText:@"请先选择浇筑部位"];
         return;
     }
     
     if (0 == _lbLoad.text.length || 0 == _lbLoad.text.floatValue)
     {
-        [HUDClass showHUDWithLabel:@"请正确填写运载量" view:self.view];
+        [HUDClass showHUDWithText:@"请正确填写运载量"];
         return;
     }
     
@@ -157,9 +154,8 @@
     
     NSDictionary *userInfo = notify.userInfo;
     
-    if (!userInfo)
-    {
-        [HUDClass showHUDWithLabel:@"定位失败,请检测您的网络和设置是否开启定位" view:self.view];
+    if (!userInfo) {
+        [HUDClass showHUDWithText:@"定位失败,请检测您的网络和设置是否开启定位"];
         return;
     }
     
@@ -171,19 +167,16 @@
     
     DOrderInfo *orderInfo = nil;;
     
-    for (DOrderInfo *info in _arrayOrder)
-    {
+    for (DOrderInfo *info in _arrayOrder) {
         if ([site isEqualToString:info.siteName]
-            && [part isEqualToString:info.castingPart])
-        {
+            && [part isEqualToString:info.castingPart]) {
             orderInfo = info;
             break;
         }
     }
     
-    if (!orderInfo)
-    {
-        [HUDClass showHUDWithLabel:@"无法获取混凝土订单,请再次确认工程和浇筑部位选择是否正确" view:self.view];
+    if (!orderInfo) {
+        [HUDClass showHUDWithText:@"无法获取混凝土订单,请再次确认工程和浇筑部位选择是否正确"];
         return;
     }
     
@@ -201,7 +194,7 @@
     
     if (dis > limit)
     {
-        [HUDClass showHUDWithLabel:@"您距离搅拌站距离过远，请靠近搅拌站后再次启运" view:self.view];
+        [HUDClass showHUDWithText:@"您距离搅拌站距离过远，请靠近搅拌站后再次启运"];
         return;
     }
     
@@ -359,7 +352,7 @@
     
     if (0 == _hzsId.length)
     {
-        [HUDClass showHUDWithLabel:@"请先选择搅拌站" view:self.view];
+        [HUDClass showHUDWithText:@"请先选择搅拌站"];
         return;
     }
     DOrderRequest *request = [[DOrderRequest alloc] init];
@@ -394,7 +387,7 @@
     listDialog.tag = 1003;
     
     listDialog.delegate = self;
-    [self.view addSubview:listDialog];
+    [listDialog show];
 }
 
 
@@ -406,15 +399,13 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
-    for (DOrderInfo *info in _arrayOrder)
-    {
+    for (DOrderInfo *info in _arrayOrder) {
         [dic setObject:info.siteName forKey:info.siteName];
     }
     
     NSArray *arr = [dic allValues];
     
-    for (NSString *str in arr)
-    {
+    for (NSString *str in arr) {
         
         TaluoduDivInfo *data = [[TaluoduDivInfo alloc] initWithKey:str content:str];
         [array addObject:data];
@@ -426,7 +417,7 @@
     listDialog.tag = 1001;
     
     listDialog.delegate = self;
-    [self.view addSubview:listDialog];
+    [listDialog show];
 }
 
 - (void)showPartListDialogView
@@ -435,9 +426,8 @@
     
     NSString *site = cell.lbValue.text;
     
-    if ([site isEqualToString:SITE_INIT])
-    {
-        [HUDClass showHUDWithLabel:@"请先选择工程" view:self.view];
+    if ([site isEqualToString:SITE_INIT]) {
+        [HUDClass showHUDWithText:@"请先选择工程"];
         return;
     }
     
@@ -458,7 +448,7 @@
     
     listDialog.delegate = self;
     
-    [self.view addSubview:listDialog];
+    [listDialog show];
 }
 
 #pragma mark -- ListDialogViewDelegate

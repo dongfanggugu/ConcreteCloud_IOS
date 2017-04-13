@@ -143,7 +143,7 @@
     ListDialogView *dialog = [ListDialogView viewFromNib];
     dialog.delegate = self;
     [dialog setData:array];
-    [self.view addSubview:dialog];
+    [dialog show];
 }
 
 #pragma mark - ListDialogViewDelegate
