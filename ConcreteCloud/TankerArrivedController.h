@@ -11,6 +11,7 @@
 
 #import "DTrackInfo.h"
 #import "RentVehicleInfo.h"
+#import "BaseViewController.h"
 
 typedef NS_ENUM(NSInteger, Arrived_Type)
 {
@@ -28,7 +29,7 @@ typedef NS_ENUM(NSInteger, Arrived_Type)
 
 @end
 
-@interface TankerArrivedController : UIViewController
+@interface TankerArrivedController : BaseViewController
 
 @property (strong, nonatomic) DTrackInfo *trackInfo;
 

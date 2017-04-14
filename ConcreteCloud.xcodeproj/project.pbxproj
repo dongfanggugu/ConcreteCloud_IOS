@@ -506,6 +506,24 @@
 		65EEEBBA1E77DE200095432B /* SupOrderProcessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EEEBB91E77DE200095432B /* SupOrderProcessController.m */; };
 		65EEEBBD1E77DF490095432B /* SupOrderTraceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EEEBBC1E77DF490095432B /* SupOrderTraceController.m */; };
 		65EEEBBF1E77E0CF0095432B /* SupOrderReceiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EEEBBE1E77E0CF0095432B /* SupOrderReceiveCell.xib */; };
+		65FE07FC1E9F1E23002C9397 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE07FB1E9F1E23002C9397 /* WebViewController.m */; };
+		65FE07FE1E9F5105002C9397 /* icon_project.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE07FD1E9F5105002C9397 /* icon_project.png */; };
+		65FE08001E9F511D002C9397 /* icon_order.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE07FF1E9F511D002C9397 /* icon_order.png */; };
+		65FE08021E9F513C002C9397 /* icon_renter.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08011E9F513C002C9397 /* icon_renter.png */; };
+		65FE08041E9F51A1002C9397 /* icon_hzs.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08031E9F51A1002C9397 /* icon_hzs.png */; };
+		65FE08061E9F5221002C9397 /* icon_task.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08051E9F5221002C9397 /* icon_task.png */; };
+		65FE08081E9F5248002C9397 /* icon_history.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08071E9F5248002C9397 /* icon_history.png */; };
+		65FE080A1E9F52C0002C9397 /* icon_process.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08091E9F52C0002C9397 /* icon_process.png */; };
+		65FE080C1E9F52F9002C9397 /* icon_person_center.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE080B1E9F52F9002C9397 /* icon_person_center.png */; };
+		65FE080E1E9F5399002C9397 /* icon_driver.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE080D1E9F5399002C9397 /* icon_driver.png */; };
+		65FE08101E9F5507002C9397 /* icon_wechat.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE080F1E9F5507002C9397 /* icon_wechat.png */; };
+		65FE08121E9F5586002C9397 /* icon_in_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08111E9F5586002C9397 /* icon_in_check.png */; };
+		65FE08141E9F5597002C9397 /* icon_video.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08131E9F5597002C9397 /* icon_video.png */; };
+		65FE08161E9F561C002C9397 /* icon_out_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08151E9F561C002C9397 /* icon_out_check.png */; };
+		65FE08181E9F5657002C9397 /* icon_site_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08171E9F5657002C9397 /* icon_site_check.png */; };
+		65FE081A1E9F5699002C9397 /* icon_concrete_order.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08191E9F5699002C9397 /* icon_concrete_order.png */; };
+		65FE081C1E9F5713002C9397 /* icon_purchase_order.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE081B1E9F5713002C9397 /* icon_purchase_order.png */; };
+		65FE089B1EA09F17002C9397 /* BackgroundRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE089A1EA09F17002C9397 /* BackgroundRunner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1367,6 +1385,26 @@
 		65EEEBBB1E77DF400095432B /* SupOrderTraceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SupOrderTraceController.h; sourceTree = "<group>"; };
 		65EEEBBC1E77DF490095432B /* SupOrderTraceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupOrderTraceController.m; sourceTree = "<group>"; };
 		65EEEBBE1E77E0CF0095432B /* SupOrderReceiveCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupOrderReceiveCell.xib; sourceTree = "<group>"; };
+		65FE07FA1E9F1E23002C9397 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		65FE07FB1E9F1E23002C9397 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		65FE07FD1E9F5105002C9397 /* icon_project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_project.png; sourceTree = "<group>"; };
+		65FE07FF1E9F511D002C9397 /* icon_order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_order.png; sourceTree = "<group>"; };
+		65FE08011E9F513C002C9397 /* icon_renter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_renter.png; sourceTree = "<group>"; };
+		65FE08031E9F51A1002C9397 /* icon_hzs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_hzs.png; sourceTree = "<group>"; };
+		65FE08051E9F5221002C9397 /* icon_task.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_task.png; sourceTree = "<group>"; };
+		65FE08071E9F5248002C9397 /* icon_history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_history.png; sourceTree = "<group>"; };
+		65FE08091E9F52C0002C9397 /* icon_process.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_process.png; sourceTree = "<group>"; };
+		65FE080B1E9F52F9002C9397 /* icon_person_center.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_person_center.png; sourceTree = "<group>"; };
+		65FE080D1E9F5399002C9397 /* icon_driver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_driver.png; sourceTree = "<group>"; };
+		65FE080F1E9F5507002C9397 /* icon_wechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_wechat.png; sourceTree = "<group>"; };
+		65FE08111E9F5586002C9397 /* icon_in_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_in_check.png; sourceTree = "<group>"; };
+		65FE08131E9F5597002C9397 /* icon_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_video.png; sourceTree = "<group>"; };
+		65FE08151E9F561C002C9397 /* icon_out_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_out_check.png; sourceTree = "<group>"; };
+		65FE08171E9F5657002C9397 /* icon_site_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_site_check.png; sourceTree = "<group>"; };
+		65FE08191E9F5699002C9397 /* icon_concrete_order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_concrete_order.png; sourceTree = "<group>"; };
+		65FE081B1E9F5713002C9397 /* icon_purchase_order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_purchase_order.png; sourceTree = "<group>"; };
+		65FE08991EA09F17002C9397 /* BackgroundRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundRunner.h; sourceTree = "<group>"; };
+		65FE089A1EA09F17002C9397 /* BackgroundRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundRunner.m; sourceTree = "<group>"; };
 		76A1010F43B24895396CD804 /* Pods-ConcreteCloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteCloud.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConcreteCloud/Pods-ConcreteCloud.debug.xcconfig"; sourceTree = "<group>"; };
 		AC277797E21C5C4BE64493F4 /* libPods-ConcreteCloud.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ConcreteCloud.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9AB57BD53EC0483DC93E62 /* Pods-ConcreteCloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteCloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConcreteCloud/Pods-ConcreteCloud.release.xcconfig"; sourceTree = "<group>"; };
@@ -1708,18 +1746,30 @@
 			children = (
 				65E581281DD96292007F53E1 /* 3x */,
 				65D863781E7BCCC6006E7A1C /* chat_keyboard_normal.png */,
+				65FE08011E9F513C002C9397 /* icon_renter.png */,
+				65FE07FF1E9F511D002C9397 /* icon_order.png */,
 				65D863791E7BCCC6006E7A1C /* chat_voice_normal.png */,
+				65FE07FD1E9F5105002C9397 /* icon_project.png */,
 				65E3693B1E6E57B700E4CF04 /* date.png */,
+				65FE080B1E9F52F9002C9397 /* icon_person_center.png */,
+				65FE08131E9F5597002C9397 /* icon_video.png */,
 				652812101DFA40B1007FC33E /* icon_add.png */,
 				65ADC67D1E49A9790020FF69 /* icon_build_site.png */,
 				65698F551E60042A00B21D1B /* icon_busy.png */,
+				65FE08191E9F5699002C9397 /* icon_concrete_order.png */,
+				65FE08171E9F5657002C9397 /* icon_site_check.png */,
+				65FE08151E9F561C002C9397 /* icon_out_check.png */,
 				65ADC68C1E4AB87F0020FF69 /* icon_car_type4.png */,
 				65ADC68D1E4AB87F0020FF69 /* icon_car_type5.png */,
+				65FE08111E9F5586002C9397 /* icon_in_check.png */,
 				65ADC68E1E4AB87F0020FF69 /* icon_car_type6.png */,
 				65E3693D1E6E588800E4CF04 /* icon_date.png */,
+				65FE08091E9F52C0002C9397 /* icon_process.png */,
 				652FF2FA1E8B907100CF98A4 /* ReceiverTextNodeBkg.png */,
 				652FF3041E8B909A00CF98A4 /* SenderVoiceNodePlaying.png */,
 				652FF2FC1E8B907F00CF98A4 /* ReceiverVoiceNodeDownloading.png */,
+				65FE08071E9F5248002C9397 /* icon_history.png */,
+				65FE08051E9F5221002C9397 /* icon_task.png */,
 				65EEEB5F1E7664010095432B /* icon_delete.png */,
 				652FF2FE1E8B908900CF98A4 /* ReceiverVoiceNodePlaying.png */,
 				652FF3001E8B908F00CF98A4 /* SenderAppNodeBkg_HL.png */,
@@ -1737,18 +1787,22 @@
 				65EA42A81DE5287500BC48BB /* icon_more_normal.png */,
 				65EBFF4D1E9632C100602BA4 /* icon_car_gray.png */,
 				65EBFF4E1E9632C100602BA4 /* icon_car_gray5.png */,
+				65FE08031E9F51A1002C9397 /* icon_hzs.png */,
 				65EBFF4F1E9632C100602BA4 /* icon_car_gray6.png */,
 				652FF3111E8CED7E00CF98A4 /* icon_tanker_gray.png */,
 				65EA42AD1DE52F8D00BC48BB /* icon_msg.png */,
+				65FE080D1E9F5399002C9397 /* icon_driver.png */,
 				65ADC6AA1E4C114E0020FF69 /* icon_my_order.png */,
 				65ADC6AC1E4C11650020FF69 /* icon_other_order.png */,
 				652811FC1DF93574007FC33E /* icon_person.png */,
 				658450AF1E5AB353003CFAA5 /* icon_pump.png */,
 				658450AD1E5AB344003CFAA5 /* icon_pump2.png */,
 				658450AB1E5AB340003CFAA5 /* icon_pump3.png */,
+				65FE080F1E9F5507002C9397 /* icon_wechat.png */,
 				65698F571E60043600B21D1B /* icon_relax.png */,
 				65ADC6AE1E4C11910020FF69 /* icon_statistics.png */,
 				6548A0061E84EE270071FBCA /* icon_supplier.png */,
+				65FE081B1E9F5713002C9397 /* icon_purchase_order.png */,
 				658450A91E5AB260003CFAA5 /* icon_tanker_trace.png */,
 				652812181DFA48A9007FC33E /* icon_up.png */,
 				65D863761E7BBA2D006E7A1C /* icon_video_sel.png */,
@@ -1782,6 +1836,8 @@
 				658FE5EC1E9DBFFD002CA85F /* AddressModifyController.m */,
 				658FE5EE1E9DC7D3002CA85F /* AddressLocationController.h */,
 				658FE5EF1E9DC7D3002CA85F /* AddressLocationController.m */,
+				65FE07FA1E9F1E23002C9397 /* WebViewController.h */,
+				65FE07FB1E9F1E23002C9397 /* WebViewController.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1994,6 +2050,8 @@
 				65E581231DD95DC2007F53E1 /* NSArray+Log.h */,
 				65E581241DD95DC2007F53E1 /* NSArray+Log.m */,
 				65E581101DD93EA7007F53E1 /* Obj2Dic.h */,
+				65FE08991EA09F17002C9397 /* BackgroundRunner.h */,
+				65FE089A1EA09F17002C9397 /* BackgroundRunner.m */,
 				65E581111DD93EB2007F53E1 /* Obj2Dic.m */,
 				65E581001DD5937C007F53E1 /* HUDClass.h */,
 				65E581011DD5938A007F53E1 /* HUDClass.m */,
@@ -2685,9 +2743,12 @@
 				657FBC721E31F9350029C41C /* PDetailController.xib in Resources */,
 				658450971E5A89B8003CFAA5 /* CZBInfoView.xib in Resources */,
 				658450821E5A7167003CFAA5 /* icon_lease.png in Resources */,
+				65FE080A1E9F52C0002C9397 /* icon_process.png in Resources */,
+				65FE081C1E9F5713002C9397 /* icon_purchase_order.png in Resources */,
 				65698F651E60150000B21D1B /* ASiteCheckInfoCell.xib in Resources */,
 				652FF2FD1E8B907F00CF98A4 /* ReceiverVoiceNodeDownloading.png in Resources */,
 				656230D71E66647000335819 /* HzsTankerInfoCell.xib in Resources */,
+				65FE08081E9F5248002C9397 /* icon_history.png in Resources */,
 				65E3693C1E6E57B700E4CF04 /* date.png in Resources */,
 				656230E91E66AB4E00335819 /* TankerArrivedController.xib in Resources */,
 				65ADC67C1E49A76D0020FF69 /* icon_supplier@3x.png in Resources */,
@@ -2701,26 +2762,32 @@
 				65ADC6901E4AB87F0020FF69 /* icon_car_type5.png in Resources */,
 				657FBC661E31DC4D0029C41C /* PProcess3Cell.xib in Resources */,
 				651779A81E00E49700A759AC /* DatePickerDialog.xib in Resources */,
+				65FE08001E9F511D002C9397 /* icon_order.png in Resources */,
 				658450B01E5AB353003CFAA5 /* icon_pump.png in Resources */,
+				65FE08181E9F5657002C9397 /* icon_site_check.png in Resources */,
 				65DF55CC1E568B7E00A29FD7 /* DProcess2Cell.xib in Resources */,
 				652811FB1DF931F5007FC33E /* PersonHeaderView.xib in Resources */,
 				65D863BB1E8226A5006E7A1C /* SiteInfoView.xib in Resources */,
 				65489FFB1E84EA3A0071FBCA /* SupplierInfoView.xib in Resources */,
 				65698F581E60043600B21D1B /* icon_relax.png in Resources */,
+				65FE08141E9F5597002C9397 /* icon_video.png in Resources */,
 				65698F0B1E5D126E00B21D1B /* SProcess2Cell.xib in Resources */,
 				652812171DFA48A2007FC33E /* icon_down.png in Resources */,
 				65ADC6641E4956970020FF69 /* TrackInfoCell.xib in Resources */,
 				65ADC6911E4AB87F0020FF69 /* icon_car_type6.png in Resources */,
 				65C0D9C11E54014500A49F73 /* Dispatcher.storyboard in Resources */,
+				65FE081A1E9F5699002C9397 /* icon_concrete_order.png in Resources */,
 				652812151DFA47C1007FC33E /* SelectableCell.xib in Resources */,
 				652812191DFA48A9007FC33E /* icon_up.png in Resources */,
 				658450AA1E5AB260003CFAA5 /* icon_tanker_trace.png in Resources */,
+				65FE08061E9F5221002C9397 /* icon_task.png in Resources */,
 				65515BE31E7A24EE00386A0C /* MoreCell.xib in Resources */,
 				65E369321E6E452200E4CF04 /* TaskStatisticsHeadView.xib in Resources */,
 				65698F5A1E6008C000B21D1B /* ACheckInfoCell.xib in Resources */,
 				65EA42AE1DE52F8D00BC48BB /* icon_msg.png in Resources */,
 				655DDB371E55E42700848D7C /* DDetailController.xib in Resources */,
 				658450801E5A706B003CFAA5 /* RenterView.xib in Resources */,
+				65FE08101E9F5507002C9397 /* icon_wechat.png in Resources */,
 				652FF30A1E8CDB0A00CF98A4 /* ACarryCell.xib in Resources */,
 				65D8637B1E7BCCC6006E7A1C /* chat_voice_normal.png in Resources */,
 				65D8637A1E7BCCC6006E7A1C /* chat_keyboard_normal.png in Resources */,
@@ -2746,6 +2813,7 @@
 				65ADC6A91E4C11170020FF69 /* mainpage.png in Resources */,
 				65698EEF1E5BE46800B21D1B /* icon_mix_hopper.png in Resources */,
 				65ADC68F1E4AB87F0020FF69 /* icon_car_type4.png in Resources */,
+				65FE08021E9F513C002C9397 /* icon_renter.png in Resources */,
 				657FBC571E31A8910029C41C /* order_track_current.png in Resources */,
 				65515BA41E77E77700386A0C /* SupOrderDisCell.xib in Resources */,
 				65ADC6AB1E4C114E0020FF69 /* icon_my_order.png in Resources */,
@@ -2788,6 +2856,7 @@
 				65DC02041DE3D0B9005F86A4 /* icon_mainpage@3x.png in Resources */,
 				65E3693E1E6E588800E4CF04 /* icon_date.png in Resources */,
 				65DF55C71E5678E900A29FD7 /* DProcess1Cell.xib in Resources */,
+				65FE08161E9F561C002C9397 /* icon_out_check.png in Resources */,
 				65C0D9C31E5401EF00A49F73 /* ProjectView.xib in Resources */,
 				65D8638D1E7FD31A006E7A1C /* icon_logo.png in Resources */,
 				658450991E5A89E6003CFAA5 /* GCInfoView.xib in Resources */,
@@ -2799,11 +2868,15 @@
 				65698F061E5C2CEC00B21D1B /* SProcess1Cell.xib in Resources */,
 				652FF2FB1E8B907100CF98A4 /* ReceiverTextNodeBkg.png in Resources */,
 				657FBC4D1E319FDF0029C41C /* ProcessView.xib in Resources */,
+				65FE080C1E9F52F9002C9397 /* icon_person_center.png in Resources */,
 				658450C11E5BC07E003CFAA5 /* SOrderItemCell.xib in Resources */,
 				65698F3C1E5EC50200B21D1B /* PumpInfoCell.xib in Resources */,
+				65FE08041E9F51A1002C9397 /* icon_hzs.png in Resources */,
 				659F94DD1DD561CF008B8F26 /* Main.storyboard in Resources */,
 				65E5812A1DD962A2007F53E1 /* icon_opening@3x.png in Resources */,
+				65FE07FE1E9F5105002C9397 /* icon_project.png in Resources */,
 				657FBC521E31A6B20029C41C /* PSubmitCell.xib in Resources */,
+				65FE08121E9F5586002C9397 /* icon_in_check.png in Resources */,
 				65E5812C1DD989D9007F53E1 /* icon_user@3x.png in Resources */,
 				65698F781E63CCFA00B21D1B /* video_failed.png in Resources */,
 				65DF55D11E5690ED00A29FD7 /* DProcess3Cell.xib in Resources */,
@@ -2811,6 +2884,7 @@
 				652FF3121E8CED7E00CF98A4 /* icon_tanker_gray.png in Resources */,
 				658450AE1E5AB344003CFAA5 /* icon_pump2.png in Resources */,
 				65B95EBD1E56C66E003B48B0 /* DOrderDetailCell1.xib in Resources */,
+				65FE080E1E9F5399002C9397 /* icon_driver.png in Resources */,
 				655DDB3C1E55E58800848D7C /* DProcessView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2985,6 +3059,7 @@
 				658450BF1E5AD54C003CFAA5 /* SMainpageController.m in Sources */,
 				651779BB1E02655600A759AC /* HzsMessageController.m in Sources */,
 				659F94DA1DD561CF008B8F26 /* ViewController.m in Sources */,
+				65FE07FC1E9F1E23002C9397 /* WebViewController.m in Sources */,
 				655DDB341E55E29F00848D7C /* DOrderDetailController.m in Sources */,
 				65DC020E1DE3EDBE005F86A4 /* BaseNavigationController.m in Sources */,
 				656230EF1E66AFE100335819 /* TaskFinishRequest.m in Sources */,
@@ -3084,6 +3159,7 @@
 				658450A21E5A92BD003CFAA5 /* CZBInfoView.m in Sources */,
 				65ADC6621E4953CD0020FF69 /* POrderTrackController.m in Sources */,
 				652FF3101E8CE11200CF98A4 /* ACarryDetailController.m in Sources */,
+				65FE089B1EA09F17002C9397 /* BackgroundRunner.m in Sources */,
 				65ADC68B1E4AA9240020FF69 /* VehicleAnnotationView.m in Sources */,
 				658450A81E5A9483003CFAA5 /* RentVehicleAnnotationView.m in Sources */,
 				65EEEB561E762F600095432B /* VehicleController.m in Sources */,
@@ -3360,6 +3436,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/EGOTableViewPullRefresh/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/ConcreteCloud/lame",
+					"$(PROJECT_DIR)/EaseMobSDK/EaseMobSDK/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cxhz.ConcreteCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3382,6 +3459,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/EGOTableViewPullRefresh/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/ConcreteCloud/lame",
+					"$(PROJECT_DIR)/EaseMobSDK/EaseMobSDK/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cxhz.ConcreteCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -10,6 +10,7 @@
 #import "DispatcherMainController.h"
 #import "BaseNavigationController.h"
 #import "DispatchMoreController.h"
+#import "DOrderController.h"
 
 @implementation DispatcherMainController
 
@@ -23,9 +24,14 @@
 - (void)initItem
 {
     UIStoryboard *board = [UIStoryboard storyboardWithName:@"Dispatcher" bundle:nil];
+    
     UIViewController *mainpage = [board instantiateViewControllerWithIdentifier:@"d_main_page_controller"];
+    
     UIViewController *project = [board instantiateViewControllerWithIdentifier:@"project_controller"];
-    UIViewController *order = [board instantiateViewControllerWithIdentifier:@"d_order_controller"];
+    
+    DOrderController *order = [board instantiateViewControllerWithIdentifier:@"d_order_controller"];
+    order.role = Role_Dispather;
+    
     UIViewController *rent = [board instantiateViewControllerWithIdentifier:@"rent_controller"];
     
     UIViewController *more = [[DispatchMoreController alloc] init];
@@ -53,13 +59,13 @@
     [[tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"mainpage"]];
     [[tabBar.items objectAtIndex:0] setTitle:@"首页"];
     
-    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_my_order"]];
+    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_project"]];
     [[tabBar.items objectAtIndex:1] setTitle:@"工程"];
     
-    [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_other_order"]];
+    [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_order"]];
     [[tabBar.items objectAtIndex:2] setTitle:@"订单"];
     
-    [[tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"icon_statistics"]];
+    [[tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"icon_renter"]];
     [[tabBar.items objectAtIndex:3] setTitle:@"租赁"];
     
     [[tabBar.items objectAtIndex:4] setImage:[UIImage imageNamed:@"icon_more_normal"]];

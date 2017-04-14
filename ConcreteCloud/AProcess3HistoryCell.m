@@ -10,8 +10,6 @@
 
 @interface AProcess3HistoryCell ()
 
-@property (weak, nonatomic) IBOutlet UIButton *btnDetail;
-
 @end
 
 @implementation AProcess3HistoryCell

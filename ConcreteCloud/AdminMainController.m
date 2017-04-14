@@ -65,19 +65,19 @@
 - (void)initTabBar
 {
     UITabBar *tabBar = self.tabBar;
-    [[tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"mainpage"]];
+    [[tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"icon_renter"]];
     [[tabBar.items objectAtIndex:0] setTitle:@"车辆"];
     
-    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_my_order"]];
+    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_driver"]];
     [[tabBar.items objectAtIndex:1] setTitle:@"司机"];
     
-    [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_other_order"]];
+    [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_process"]];
     [[tabBar.items objectAtIndex:2] setTitle:@"执行中"];
     
-    [[tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"icon_statistics"]];
+    [[tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"icon_task"]];
     [[tabBar.items objectAtIndex:3] setTitle:@"运输单"];
     
-    [[tabBar.items objectAtIndex:4] setImage:[UIImage imageNamed:@"icon_statistics"]];
+    [[tabBar.items objectAtIndex:4] setImage:[UIImage imageNamed:@"icon_more_normal"]];
     [[tabBar.items objectAtIndex:4] setTitle:@"更多"];
     
     self.selectedIndex = 2;

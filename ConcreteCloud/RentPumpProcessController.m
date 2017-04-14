@@ -340,21 +340,23 @@ TankerOnWayControllerDelegate, TankerArrivedControllerDelegate, AVAudioPlayerDel
 {
     _workState = state;
     
-    if (RELAX == _workState)
-    {
+    if (RELAX == _workState) {
         [_btnState setImage:[UIImage imageNamed:@"icon_relax"] forState:UIControlStateNormal];
         _lbState.text = @"下班";
         
         _btnVehicleState.hidden = YES;
         _lbVehicleState.hidden = YES;
-    }
-    else
-    {
+        
+        [[Config shareConfig] setOperable:NO];
+        
+    } else {
         [_btnState setImage:[UIImage imageNamed:@"icon_busy"] forState:UIControlStateNormal];
         _lbState.text = @"上班";
         
         _btnVehicleState.hidden = NO;
         _lbVehicleState.hidden = NO;
+        
+        self.vehicleState = VEHICLE_RELAX;
     }
 }
 
@@ -362,18 +364,19 @@ TankerOnWayControllerDelegate, TankerArrivedControllerDelegate, AVAudioPlayerDel
 {
     _vehicleState = vehicleState;
     
-    if (VEHICLE_RELAX == _vehicleState)
-    {
+    if (VEHICLE_RELAX == _vehicleState) {
         [_btnVehicleState setImage:[UIImage imageNamed:@"icon_relax"] forState:UIControlStateNormal];
         _lbVehicleState.text = @"闲";
         
+        [[Config shareConfig] setOperable:NO];
+        
         [self startLocationService];
-    }
-    else
-    {
+        
+    } else {
         [_btnVehicleState setImage:[UIImage imageNamed:@"icon_busy"] forState:UIControlStateNormal];
         _lbVehicleState.text = @"忙";
         
+        [[Config shareConfig] setOperable:YES];
         [self stopLocationService];
     }
 }
@@ -381,12 +384,10 @@ TankerOnWayControllerDelegate, TankerArrivedControllerDelegate, AVAudioPlayerDel
 
 - (void)changeVehicleState
 {
-    if (VEHICLE_RELAX == self.vehicleState)
-    {
+    if (VEHICLE_RELAX == self.vehicleState) {
         self.vehicleState = VEHICLE_BUSY;
-    }
-    else
-    {
+        
+    } else {
         self.vehicleState = VEHICLE_RELAX;
     }
 }

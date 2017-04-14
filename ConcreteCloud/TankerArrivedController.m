@@ -190,8 +190,7 @@
         NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"temp" ofType:@"mp3"];
         NSURL *audioUrl = [NSURL fileURLWithPath:audioPath];
         
-        if(!_avAudioPlayer)
-        {
+        if(!_avAudioPlayer) {
             _avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioUrl error:nil];
             _avAudioPlayer.delegate = self;
             _avAudioPlayer.volume = 0.0f;
@@ -242,10 +241,13 @@
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    _disAndTimeLocation = [[CustomLocation alloc] init];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"dis", @"key", nil];
+    _disAndTimeLocation = [[CustomLocation alloc] initLocationWith:dic];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDisAndTimeLocationComplete:)
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCustomLocationComplete:)
                                                  name:Custom_Location_Complete object:nil];
+    
+    [_disAndTimeLocation startLocationService];
     
     __weak typeof (self) weakSelf = self;
     
@@ -269,7 +271,7 @@
         NSLog(@"位置定位失败");
         return;
     } else {
-        NSLog(@"位置定位完成")
+        NSLog(@"位置定位完成");
     }
     
     BMKUserLocation *userLocation = userInfo[User_Location];
@@ -300,6 +302,7 @@
     
     NSDictionary *userInfo = notify.userInfo;
     
+    
     if (!userInfo) {
         
         [HUDClass showHUDWithText:@"定位失败,请检查网络和定位设置再试!"];
@@ -308,24 +311,31 @@
     
     BMKUserLocation *userLocation = userInfo[User_Location];
     
-    [self getDisLimit:userLocation.location.coordinate];
+    NSDictionary *customInfo = userInfo[User_Custom];
+
+    if (!customInfo) {
+        [self getDisLimit:userLocation.location.coordinate];
+        
+    } else {
+        [self routePlan:userLocation.location.coordinate.latitude lng:userLocation.location.coordinate.longitude];
+    }
 }
 
-- (void)onDisAndTimeLocationComplete:(NSNotification *)notify
-{
-    NSDictionary *userInfo = notify.userInfo;
-    
-    if (!userInfo) {
-        NSLog(@"时间距离定位失败");
-        return;
-    } else {
-        NSLog(@"时间距离定位成功");
-    }
-    
-    BMKUserLocation *userLocation = userInfo[User_Location];
-    
-    [self routePlan:userLocation.location.coordinate.latitude lng:userLocation.location.coordinate.longitude];
-}
+//- (void)uploaddisAndTime:(NSNotification *)notify
+//{
+//    NSDictionary *userInfo = notify.userInfo;
+//    
+//    if (!userInfo) {
+//        NSLog(@"时间距离定位失败");
+//        return;
+//    } else {
+//        NSLog(@"时间距离定位成功");
+//    }
+//    
+//    BMKUserLocation *userLocation = userInfo[User_Location];
+//    
+//    
+//}
 
 - (void)dealloc
 {
@@ -362,8 +372,7 @@
     
     CGFloat state = _trackInfo.state.floatValue;
     
-    if (state != -1 && _arrayType == ARRIVED_TANKER)
-    {
+    if (state != -1 && _arrayType == ARRIVED_TANKER) {
         _btnBack = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
         
         _btnBack.layer.masksToBounds = YES;
@@ -374,7 +383,7 @@
         _btnBack.titleLabel.font = [UIFont systemFontOfSize:13];
         [_btnBack addTarget:self action:@selector(clickBack) forControlEvents:UIControlEventTouchUpInside];
         
-        _btnBack.center = CGPointMake(self.view.frame.size.width / 2, 80);
+        _btnBack.center = CGPointMake(self.screenWidth / 2, 80);
         [footView addSubview:_btnBack];
     }
     

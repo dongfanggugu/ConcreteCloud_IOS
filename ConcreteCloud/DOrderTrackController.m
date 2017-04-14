@@ -60,6 +60,8 @@
     _tableView.dataSource = self;
     _tableView.bounces = NO;
     
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     _mapView.delegate = self;
     _mapView.zoomLevel = 15;
     
@@ -71,8 +73,7 @@
     
     [_mapView removeAnnotations:_mapView.annotations];
     
-    if (_curAnnotationView)
-    {
+    if (_curAnnotationView) {
         [_curAnnotationView hideInfoWindow];
         _curAnnotationView = nil;
     }
@@ -307,7 +308,7 @@
     
     cell.lbPlate.text = info.plateNum;
     cell.lbDriver.text = info.driverName;
-    //cell.lbDistance.text = [NSString stringWithFormat:@"%.1lf公里", info.distance.floatValue];
+    cell.lbDistance.text = [NSString stringWithFormat:@"%.1lf公里", info.distance];
     
     return cell;
 }

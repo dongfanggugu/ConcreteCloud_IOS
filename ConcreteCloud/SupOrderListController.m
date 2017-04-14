@@ -21,7 +21,7 @@
 
 @property (strong, nonatomic) NSMutableArray<POrderInfo *> *arrayOrder;
 
-@property NSInteger curSel;
+@property G_Segment curSel;
 
 @property NSInteger curPage;
 
@@ -47,12 +47,10 @@
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = NO;
     
-    if (0 == _curSel)
-    {
+    if (Segment_Left == _curSel) {
         [self getUnfinishedOrder];
-    }
-    else
-    {
+        
+    } else {
         [self getFinishedOrder];
     }
 }
@@ -66,7 +64,7 @@
 
 - (void)initData
 {
-    _curSel = 0;
+    _curSel = Segment_Left;
     _arrayOrder = [[NSMutableArray alloc] init];
 }
 
@@ -80,6 +78,8 @@
     _tableView.pullDelegate = self;
     _tableView.dataSource = self;
     
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     [self.view addSubview:_tableView];
 }
 
@@ -91,7 +91,7 @@
     request.supplierId = [[Config shareConfig] getBranchId];
     request.type = [[Config shareConfig] getType];
     request.page = -1;
-    request.rows = 2;
+    request.rows = 10;
     request.ing = @"1";
     
     __weak typeof(self) weakSelf = self;
@@ -121,7 +121,7 @@
     request.supplierId = [[Config shareConfig] getBranchId];
     request.type = [[Config shareConfig] getType];
     request.page = _curSel;
-    request.rows = 2;
+    request.rows = 10;
     request.ing = @"2";
     
     __weak typeof(self) weakSelf = self;
@@ -129,8 +129,7 @@
     [[HttpClient shareClient] view:self.view post:URL_P_ORDER parameters:[request parsToDictionary]
                            success:^(NSURLSessionDataTask *task, id responseObject) {
                                
-                               if (weakSelf.tableView.pullTableIsRefreshing)
-                               {
+                               if (weakSelf.tableView.pullTableIsRefreshing) {
                                    weakSelf.tableView.pullTableIsRefreshing = NO;
                                }
                                POrderListResponse *response = [[POrderListResponse alloc] initWithDictionary:responseObject];
@@ -175,16 +174,14 @@
 
 - (void)onClickLeftSegment
 {
-    NSLog(@"click left");
-    _curSel = 0;
+    _curSel = Segment_Left;
     [_arrayOrder removeAllObjects];
     [self getUnfinishedOrder];
 }
 
 - (void)onClickRightSegment
 {
-    NSLog(@"click right");
-    _curSel = 1;
+    _curSel = Segment_Right;
     _curPage = 1;
     [_arrayOrder removeAllObjects];
     [self getFinishedOrder];
@@ -195,7 +192,7 @@
 //禁止上拉
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (0 == _curSel)
+    if (Segment_Left == _curSel)
     {
         //内容大于屏幕，并且向上滑动
         if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.size.height
@@ -236,8 +233,7 @@
 {
     POrderItemView2 *cell = [tableView dequeueReusableCellWithIdentifier:[POrderItemView2 getIdentifier]];
     
-    if (nil == cell)
-    {
+    if (nil == cell) {
         cell = [POrderItemView2 viewFromNib];
     }
     
@@ -254,14 +250,12 @@
     if ([goods isEqualToString:SHUINI]
         || [goods isEqualToString:SHAZI]
         || [goods isEqualToString:SHIZI]
-        || [goods isEqualToString:WAIJIAJI])
-    {
+        || [goods isEqualToString:WAIJIAJI]) {
         NSString *variety = info.variety;
         
         cell.lbGoods.text = [NSString stringWithFormat:@"商品:%@ 品种:%@ 数量:%@吨", goods, variety, amount];
-    }
-    else
-    {
+        
+    } else {
         cell.lbGoods.text = [NSString stringWithFormat:@"商品:%@ 数量:%@吨", goods, amount];
     }    
     
@@ -273,12 +267,13 @@
 - (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
 {
     _curPage++;
+    
     [self performSelector:@selector(getMoreFinishedOrder) withObject:nil afterDelay:1.0f];
 }
 
 - (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
 {
-    if (0 == _curSel)
+    if (Segment_Left == _curSel)
     {
         [self performSelector:@selector(getUnfinishedOrder) withObject:nil afterDelay:1.0f];
     }
@@ -294,9 +289,15 @@
 {
     SupOrderProcessController *controller = [[SupOrderProcessController alloc] init];
     controller.orderInfo = _arrayOrder[indexPath.row];
-    self.hidesBottomBarWhenPushed = YES;
+    
+    if (Segment_Left == _curSel) {
+        controller.traceStatus = Status_Process;
+    } else {
+        controller.traceStatus = Status_History;
+    }
+    
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

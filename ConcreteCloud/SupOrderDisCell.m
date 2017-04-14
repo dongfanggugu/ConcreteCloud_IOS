@@ -15,8 +15,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 
-@property (weak, nonatomic) IBOutlet UIButton *btnDis;
-
 @end
 
 @implementation SupOrderDisCell

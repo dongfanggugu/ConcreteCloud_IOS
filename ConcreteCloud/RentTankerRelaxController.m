@@ -108,7 +108,7 @@
     
     _tableView.tableFooterView = footView;
     
-    btn.center = CGPointMake(self.view.frame.size.width / 2, 40);
+    btn.center = CGPointMake(self.screenWidth / 2, 40);
     [footView addSubview:btn];
 }
 
@@ -116,6 +116,11 @@
 //起运流程：1.检测订单信息选择是否完整 2.启动定位 3.定位完成后从服务器获取距离限制 4.检测启运距离限制 5.启运
 - (void)clickStart
 {
+    if (![[Config shareConfig] getOperable]) {
+        [HUDClass showHUDWithText:@"您还未上班或者车没有置忙,无法启运"];
+        return;
+    }
+    
     if ([_lbHzs.text isEqualToString:HZS_INIT]) {
         [HUDClass showHUDWithText:@"请先选择搅拌站"];
         return;
@@ -131,8 +136,7 @@
         return;
     }
     
-    if (0 == _lbLoad.text.length || 0 == _lbLoad.text.floatValue)
-    {
+    if (0 == _lbLoad.text.length || 0 == _lbLoad.text.floatValue) {
         [HUDClass showHUDWithText:@"请正确填写运载量"];
         return;
     }
@@ -229,17 +233,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         KeyValueCell *cell = [KeyValueCell viewFromNib];
         cell.lbKey.text = @"搅拌站";
         cell.lbValue.text = HZS_INIT;
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         KeyValueCell *cell = [KeyValueCell viewFromNib];
         cell.lbKey.text = @"工程";
         cell.lbValue.text = SITE_INIT;
@@ -248,9 +250,8 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (2 == indexPath.row)
-    {
+        
+    } else if (2 == indexPath.row) {
         KeyValueCell *cell = [KeyValueCell viewFromNib];
         cell.lbKey.text = @"浇筑部位";
         cell.lbValue.text = PART_INIT;
@@ -259,24 +260,21 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (3 == indexPath.row)
-    {
+        
+    } else if (3 == indexPath.row) {
         KeyValueCell *cell = [KeyValueCell viewFromNib];
         cell.lbKey.text = @"强度等级";
         cell.lbValue.text = @"";
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (4 == indexPath.row)
-    {
+        
+    } else if (4 == indexPath.row) {
         KeyValueBtnCell *cell = [KeyValueBtnCell cellFromNib];
         cell.lbKey.text = @"运载量";
         cell.lbValue.text = [[Config shareConfig] getLastVehicleLoad];
         
-        if (_vehicleInfo)
-        {
+        if (_vehicleInfo) {
             cell.lbValue.text = [NSString stringWithFormat:@"%.1lf", _vehicleInfo.weight];
         }
         
@@ -285,13 +283,16 @@
         __weak typeof (self) weakSelf = self;
         
         [cell addOnClickListener:^{
+            
+            if (![[Config shareConfig] getOperable]) {
+                [HUDClass showHUDWithText:@"您还未上班或者车没有置忙,无法修改运载量"];
+                return;
+            }
+            
             DialogEditView *view = [DialogEditView viewFromNib];
             view.delegate = weakSelf;
             
-            CGRect frame = CGRectMake(0, -94, weakSelf.screenWidth, weakSelf.screenWidth);
-            view.frame = frame;
-            
-            [weakSelf.view addSubview:view];
+            [view show];
         }];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -323,16 +324,29 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(0 == indexPath.row)
-    {
+    if(0 == indexPath.row) {
+        
+        if (![[Config shareConfig] getOperable]) {
+            [HUDClass showHUDWithText:@"您还未上班或者车没有置忙,无法操作"];
+            return;
+        }
+        
         [self getHzs];
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
+        
+        if (![[Config shareConfig] getOperable]) {
+            [HUDClass showHUDWithText:@"您还未上班或者车没有置忙,无法操作"];
+            return;
+        }
         [self getOrders];
-    }
-    else if (2 == indexPath.row)
-    {
+        
+    } else if (2 == indexPath.row) {
+        if (![[Config shareConfig] getOperable]) {
+            [HUDClass showHUDWithText:@"您还未上班或者车没有置忙,无法操作"];
+            return;
+        }
+        
         [self showPartListDialogView];
     }
 }
@@ -350,11 +364,11 @@
 - (void)getOrders
 {
     
-    if (0 == _hzsId.length)
-    {
+    if (0 == _hzsId.length) {
         [HUDClass showHUDWithText:@"请先选择搅拌站"];
         return;
     }
+    
     DOrderRequest *request = [[DOrderRequest alloc] init];
     request.hzsId = _hzsId;
     

@@ -157,9 +157,10 @@
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    if (delegate.bgCheckTimer) {
+    if (delegate.bgCheckTimer && delegate.bgCheckTimer.isValid) {
         return;
     }
+    
     
     delegate.bgCheckTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self
                                                            selector:@selector(timerAdvanced:) userInfo:nil repeats:YES];
@@ -223,13 +224,18 @@
     
     _customLocation = [[CustomLocation alloc] init];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCustomLocationComplete:)
+                                                 name:Custom_Location_Complete object:nil];
+    
+    [_customLocation startLocationService];
+    
     
     
     __weak typeof (self) weakSelf = self;
     
     if (!appDelegate.disAndTimeTimer)
     {
-        appDelegate.disAndTimeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 * 60 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        appDelegate.disAndTimeTimer = [NSTimer scheduledTimerWithTimeInterval:3 * 60 repeats:YES block:^(NSTimer * _Nonnull timer) {
             
             [[NSNotificationCenter defaultCenter] addObserver:weakSelf selector:@selector(onCustomLocationComplete:)
                                                          name:Custom_Location_Complete object:nil];
@@ -277,7 +283,7 @@
     NSString *date = [Utils formatDate:[NSDate date]];
     
     dic[@"createTime"] = date;
-    dic[@"orderProcessId"] = _vehicleInfo.vehicleId;
+    dic[@"orderProcessId"] = _trackInfo.processId;
     dic[@"plateNum"] = _vehicleInfo.plateNum;
     dic[@"lat"] = [NSNumber numberWithFloat:userLocation.location.coordinate.latitude];
     dic[@"lng"] = [NSNumber numberWithFloat:userLocation.location.coordinate.longitude];
@@ -782,7 +788,7 @@
     }
     else if (scrollView.contentOffset.y >= 0
              && scrollView.contentSize.height <= scrollView.bounds.size.height) //内容小于屏幕，并且向上滑动
-    {
+{
         CGPoint offset = scrollView.contentOffset;
         offset.x = 0;
         offset.y = 0;

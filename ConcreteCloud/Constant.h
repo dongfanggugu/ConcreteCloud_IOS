@@ -47,8 +47,17 @@ typedef NS_ENUM(NSInteger, G_Order_Trace_Status) {
 #pragma mark - 角色
 
 typedef NS_ENUM(NSInteger, G_Role) {
+    
+    //hzs
     Role_Dispather,
+    Role_Purchaser,
+    Role_A_Checker,
+    Role_B_Checker,
+    Role_Hzs_Other,
+    
+    //site
     Role_Site_Staff
+    
 };
 
 #pragma mark - 标题左右tab

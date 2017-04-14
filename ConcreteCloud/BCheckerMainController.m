@@ -60,16 +60,16 @@
 - (void)initTabBar
 {
     UITabBar *tabBar = self.tabBar;
-    [[tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"mainpage"]];
+    [[tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"icon_in_check"]];
     [[tabBar.items objectAtIndex:0] setTitle:@"检验任务"];
     
-    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_my_order"]];
+    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_history"]];
     [[tabBar.items objectAtIndex:1] setTitle:@"历史"];
     
-    [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_other_order"]];
+    [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_video"]];
     [[tabBar.items objectAtIndex:2] setTitle:@"检验视频"];
     
-    [[tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"icon_statistics"]];
+    [[tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"icon_person_center"]];
     [[tabBar.items objectAtIndex:3] setTitle:@"我的"];
     
 }

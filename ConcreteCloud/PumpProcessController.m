@@ -181,15 +181,17 @@ typedef NS_ENUM(NSInteger, WORK_STATE)
 {
     _workState = state;
     
-    if (RELAX == _workState)
-    {
+    if (RELAX == _workState) {
         [_btnState setImage:[UIImage imageNamed:@"icon_relax"] forState:UIControlStateNormal];
         _lbState.text = @"下班";
-    }
-    else
-    {
+        
+        [[Config shareConfig] setOperable:NO];
+        
+    } else {
         [_btnState setImage:[UIImage imageNamed:@"icon_busy"] forState:UIControlStateNormal];
         _lbState.text = @"上班";
+        
+        [[Config shareConfig] setOperable:YES];
     }
 }
 

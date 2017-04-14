@@ -63,8 +63,9 @@
     
     [self.view addSubview:_tableView];
     
-    if (!_isHistory)
-    {
+    NSString *role = [[Config shareConfig] getRole];
+    
+    if (!_isHistory && [role isEqualToString:HZS_B_CHECKER]) {
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 80)];
         
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];

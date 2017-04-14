@@ -11,15 +11,15 @@
 
 #import "TitleViewController.h"
 
-typedef NS_ENUM(NSInteger, DOrderEnterType) {
-    DispaterProcess,
-    Dispaterhistory,
-    Purchaser
-};
+//typedef NS_ENUM(NSInteger, DOrderEnterType) {
+//    DispaterProcess,
+//    Dispaterhistory,
+//    Purchaser
+//};
 
 @interface DOrderController: TitleViewController
 
-@property (assign, nonatomic) DOrderEnterType enterType;
+@property (assign, nonatomic) G_Role role;
 
 
 @end

@@ -38,7 +38,7 @@
     [super viewDidLoad];
     [self setSegmentTitleLeft:@"进行中" right:@"历史订单"];
     
-    if (_enterType != Purchaser) {
+    if (Role_Dispather == _role) {
         [self initNaviLeftWithText:@"订单概览"];
     }
     [self initView];
@@ -307,6 +307,7 @@
         controller.traceStatus = Status_History;
     }
     
+    controller.role = _role;
     
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];

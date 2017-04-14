@@ -64,7 +64,7 @@ static dispatch_once_t onceToken;
     
     [param setObject:head forKey:@"head"];
     
-    //NSLog(@"zhenhao-----request:%@", param);
+    NSLog(@"zhenhao-----request:%@", param);
         
     MBProgressHUD *hud = [HUDClass showLoadingHUD:view];
     

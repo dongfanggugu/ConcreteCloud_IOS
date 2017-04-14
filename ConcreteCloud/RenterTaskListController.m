@@ -15,8 +15,7 @@
 #import "RentTaskCell.h"
 #import "RentTankerDetailController.h"
 
-@interface RenterTaskListController ()<UITableViewDelegate, UITableViewDataSource, PullTableViewDelegate>
-{
+@interface RenterTaskListController ()<UITableViewDelegate, UITableViewDataSource, PullTableViewDelegate> {
     PullTableView *_tableView;
     
     NSMutableArray<DTrackInfo *> *_arrayCheck;

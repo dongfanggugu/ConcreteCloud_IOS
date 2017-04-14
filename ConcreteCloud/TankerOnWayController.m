@@ -168,7 +168,7 @@
     
     _tableView.tableFooterView = footView;
     
-    btn.center = CGPointMake(self.view.frame.size.width / 2, 40);
+    btn.center = CGPointMake(self.screenWidth / 2, 40);
     [footView addSubview:btn];
     
     //导航功能
@@ -240,7 +240,7 @@
     
     if (!appDelegate.locationTimer) {
         appDelegate.locationTimer = [NSTimer scheduledTimerWithTimeInterval:30 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            
+            [[Location sharedLocation] startLocationService];
         }];
         
     }
@@ -255,6 +255,11 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     _customLocation = [[CustomLocation alloc] init];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCustomLocationComplete:)
+                                                 name:Custom_Location_Complete object:nil];
+    [_customLocation startLocationService];
     
     
     
@@ -450,8 +455,7 @@
             appDelegate.disAndTimeTimer = nil;
         }
         
-        if (_delegate && [_delegate respondsToSelector:@selector(onClickArrived:)])
-        {
+        if (_delegate && [_delegate respondsToSelector:@selector(onClickArrived:)]) {
             [_delegate onClickArrived:_trackInfo];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {

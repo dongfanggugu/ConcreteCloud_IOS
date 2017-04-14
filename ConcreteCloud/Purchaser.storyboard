@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -91,45 +91,29 @@
                                 <rect key="frame" x="0.0" y="94" width="375" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dye-2E-iQI">
-                                        <rect key="frame" x="17" y="8" width="70" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="dOR-hu-QXP"/>
-                                            <constraint firstAttribute="height" constant="25" id="sqZ-bR-Gzf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <rect key="frame" x="8" y="8" width="81.5" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="全部">
                                             <color key="titleColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObR-rf-1ad">
-                                        <rect key="frame" x="107" y="8" width="70" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="5Hg-dV-NE0"/>
-                                            <constraint firstAttribute="height" constant="25" id="Emg-rN-XZJ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <rect key="frame" x="97.5" y="8" width="81.5" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="昨日统计">
                                             <color key="titleColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSX-Fn-8O0">
-                                        <rect key="frame" x="198" y="8" width="70" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="4T4-pf-aT1"/>
-                                            <constraint firstAttribute="height" constant="25" id="6tA-9w-Ucy"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <rect key="frame" x="196" y="8" width="81.5" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="单月统计">
                                             <color key="titleColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7j-Bk-ZsK">
-                                        <rect key="frame" x="288" y="8" width="70" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="6mH-NF-1aO"/>
-                                            <constraint firstAttribute="width" constant="70" id="C4E-H0-koh"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <rect key="frame" x="285.5" y="8" width="81.5" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="全年统计">
                                             <color key="titleColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -141,8 +125,9 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原材料订单统计" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRa-sV-Yg5">
-                                        <rect key="frame" x="17" y="48" width="200" height="16"/>
+                                        <rect key="frame" x="16" y="48" width="200" height="16"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="Ozx-X7-Haq"/>
                                             <constraint firstAttribute="width" constant="200" id="fMh-Lx-VWS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -155,21 +140,24 @@
                                     <constraint firstAttribute="height" constant="70" id="0Dn-oU-n5w"/>
                                     <constraint firstItem="VWg-Fi-kiS" firstAttribute="top" secondItem="vGi-Ii-6Ni" secondAttribute="top" id="24f-ia-BZy"/>
                                     <constraint firstAttribute="bottom" secondItem="IRa-sV-Yg5" secondAttribute="bottom" constant="6" id="2c2-Ob-Bf2"/>
+                                    <constraint firstAttribute="trailing" secondItem="k7j-Bk-ZsK" secondAttribute="trailing" constant="8" id="3sk-2Q-jMl"/>
+                                    <constraint firstItem="xSX-Fn-8O0" firstAttribute="width" secondItem="Dye-2E-iQI" secondAttribute="width" id="53b-zW-RN0"/>
                                     <constraint firstItem="VWg-Fi-kiS" firstAttribute="centerX" secondItem="vGi-Ii-6Ni" secondAttribute="centerX" id="5BM-lG-QIX"/>
-                                    <constraint firstItem="k7j-Bk-ZsK" firstAttribute="centerY" secondItem="Dye-2E-iQI" secondAttribute="centerY" id="5DR-rR-Hne"/>
-                                    <constraint firstItem="ObR-rf-1ad" firstAttribute="height" secondItem="Dye-2E-iQI" secondAttribute="height" id="BMV-Ca-NeN"/>
-                                    <constraint firstItem="xSX-Fn-8O0" firstAttribute="leading" secondItem="VWg-Fi-kiS" secondAttribute="trailing" constant="10" id="J6K-qm-OWj"/>
+                                    <constraint firstItem="IRa-sV-Yg5" firstAttribute="leading" secondItem="vGi-Ii-6Ni" secondAttribute="leading" constant="16" id="6Bs-bN-MSO"/>
+                                    <constraint firstItem="xSX-Fn-8O0" firstAttribute="top" secondItem="vGi-Ii-6Ni" secondAttribute="top" constant="8" id="8m2-hn-zVz"/>
+                                    <constraint firstItem="xSX-Fn-8O0" firstAttribute="centerY" secondItem="Dye-2E-iQI" secondAttribute="centerY" id="8yE-0f-b84"/>
+                                    <constraint firstItem="ObR-rf-1ad" firstAttribute="leading" secondItem="Dye-2E-iQI" secondAttribute="trailing" constant="8" id="GJ4-Ns-0f1"/>
+                                    <constraint firstItem="ObR-rf-1ad" firstAttribute="centerY" secondItem="Dye-2E-iQI" secondAttribute="centerY" id="GpR-5D-SM1"/>
+                                    <constraint firstItem="xSX-Fn-8O0" firstAttribute="leading" secondItem="VWg-Fi-kiS" secondAttribute="trailing" constant="8" id="ORQ-0F-LC6"/>
                                     <constraint firstAttribute="bottom" secondItem="VWg-Fi-kiS" secondAttribute="bottom" id="Sie-XP-72s"/>
-                                    <constraint firstItem="ObR-rf-1ad" firstAttribute="leading" secondItem="Dye-2E-iQI" secondAttribute="trailing" constant="20" id="XY0-zf-hNd"/>
-                                    <constraint firstItem="k7j-Bk-ZsK" firstAttribute="leading" secondItem="xSX-Fn-8O0" secondAttribute="trailing" constant="20" id="YtM-vh-7pn"/>
-                                    <constraint firstItem="Dye-2E-iQI" firstAttribute="top" secondItem="vGi-Ii-6Ni" secondAttribute="top" constant="8" id="dHr-q2-jJY"/>
-                                    <constraint firstItem="ObR-rf-1ad" firstAttribute="centerY" secondItem="Dye-2E-iQI" secondAttribute="centerY" id="dV4-qq-Qnz"/>
-                                    <constraint firstItem="VWg-Fi-kiS" firstAttribute="leading" secondItem="ObR-rf-1ad" secondAttribute="trailing" constant="10" id="eMm-oP-K5H"/>
-                                    <constraint firstItem="xSX-Fn-8O0" firstAttribute="centerY" secondItem="Dye-2E-iQI" secondAttribute="centerY" id="lO2-4g-w5S"/>
-                                    <constraint firstItem="xSX-Fn-8O0" firstAttribute="height" secondItem="Dye-2E-iQI" secondAttribute="height" id="myu-gF-TQ6"/>
-                                    <constraint firstItem="ObR-rf-1ad" firstAttribute="width" secondItem="Dye-2E-iQI" secondAttribute="width" id="r3i-om-e7v"/>
-                                    <constraint firstItem="IRa-sV-Yg5" firstAttribute="leading" secondItem="Dye-2E-iQI" secondAttribute="leading" id="s9C-zb-a49"/>
-                                    <constraint firstItem="xSX-Fn-8O0" firstAttribute="width" secondItem="Dye-2E-iQI" secondAttribute="width" id="xzC-l3-tDy"/>
+                                    <constraint firstItem="k7j-Bk-ZsK" firstAttribute="leading" secondItem="xSX-Fn-8O0" secondAttribute="trailing" constant="8" id="b8e-De-Xgn"/>
+                                    <constraint firstItem="k7j-Bk-ZsK" firstAttribute="centerY" secondItem="Dye-2E-iQI" secondAttribute="centerY" id="bPK-O7-1V1"/>
+                                    <constraint firstItem="Dye-2E-iQI" firstAttribute="leading" secondItem="vGi-Ii-6Ni" secondAttribute="leading" constant="8" id="c8m-dT-gh2"/>
+                                    <constraint firstItem="ObR-rf-1ad" firstAttribute="width" secondItem="Dye-2E-iQI" secondAttribute="width" id="dYc-xS-A6I"/>
+                                    <constraint firstItem="xSX-Fn-8O0" firstAttribute="height" secondItem="Dye-2E-iQI" secondAttribute="height" id="njv-rb-VNM"/>
+                                    <constraint firstItem="k7j-Bk-ZsK" firstAttribute="width" secondItem="Dye-2E-iQI" secondAttribute="width" id="u1q-4x-G8n"/>
+                                    <constraint firstItem="ObR-rf-1ad" firstAttribute="height" secondItem="Dye-2E-iQI" secondAttribute="height" id="v8h-92-27n"/>
+                                    <constraint firstItem="k7j-Bk-ZsK" firstAttribute="height" secondItem="Dye-2E-iQI" secondAttribute="height" id="xTU-Ih-gdA"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Dte-4f-E8e">
@@ -260,7 +248,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MTL-SB-z5Y" id="8H9-sJ-M0b">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="混凝土订单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6Z-QX-Qfw">

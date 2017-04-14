@@ -41,6 +41,8 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     _webView.delegate = self;
+    _webView.scrollView.bounces = NO;
+    
     
     _ivFailed.hidden = YES;
     
@@ -57,8 +59,7 @@
 
 - (void)setUrl:(NSString *)url
 {
-    if(0 == url.length)
-    {
+    if(0 == url.length) {
         _ivFailed.hidden = NO;
         _webView.hidden = YES;
         
@@ -69,40 +70,35 @@
     _webView.hidden = NO;
     _url = url;
 
-    _webView.scrollView.bounces = NO;
-    NSURL *path = [NSURL URLWithString:_url];
-    NSURLRequest *request = [NSURLRequest requestWithURL:path];
+
     
-    _webView.allowsInlineMediaPlayback = YES;
+    NSString *htmlHead = @"<html> \
+    <video controls='controls' autoplay='autoplay' width=80 height=100> \
+    <source src='";
     
-    [_webView loadRequest:request];
+    NSString *htmlTail = @"' type='video/mp4' /> \
+    </video> \
+    </html>";
+   
+    
+    NSString *htmlString = [NSString stringWithFormat:@"%@%@%@", htmlHead, _url, htmlTail];
+    
+    
+    
+  //  _webView.scrollView.scrollEnabled = NO;
+    
+ //   _webView.scalesPageToFit = YES;
+    
+
+    [_webView loadHTMLString:htmlString baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    
+//    NSURL *path = [NSURL URLWithString:_url];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:path];
+//    
+//    
+//    [_webView loadRequest:request];
     
 }
-
-//- (void)loadPreview:(UIImage *)image
-//{
-//    _ivPreview.image = image;
-//}
-//
-//- (void)getVideoPreViewImage
-//{
-//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    
-//    dispatch_async(queue, ^{
-//        NSURL *url = [NSURL URLWithString:_url];
-//        AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:url options:nil];
-//        AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-//        
-//        gen.appliesPreferredTrackTransform = YES;
-//        CMTime time = CMTimeMakeWithSeconds(0.0, 600);
-//        NSError *error = nil;
-//        CMTime actualTime;
-//        CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
-//        UIImage *img = [[UIImage alloc] initWithCGImage:image];
-//        [self performSelectorOnMainThread:@selector(loadPreview:) withObject:img waitUntilDone:NO];
-//    });
-//    
-//}
 
 #pragma mark - UIWebViewDelegate
 

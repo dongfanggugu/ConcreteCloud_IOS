@@ -41,17 +41,34 @@
 
 - (void)setUrlStr:(NSString *)urlStr
 {
-    if (0 == urlStr.length)
-    {
+    if (0 == urlStr.length) {
         return;
     }
     
     _urlStr = urlStr;
     
     _webView.scrollView.bounces = NO;
-    NSURL *path = [NSURL URLWithString:_urlStr];
-    NSURLRequest *request = [NSURLRequest requestWithURL:path];
     
-    [_webView loadRequest:request];
+    
+    NSString *htmlHead = @"<html> \
+    <video controls='controls' autoplay='autoplay' width='55' height='75'> \
+    <source src='";
+    
+    NSString *htmlTail = @"' type='video/mp4' /> \
+    </video> \
+    </html>";
+    
+    NSString *htmlString = [NSString stringWithFormat:@"%@%@%@", htmlHead, _urlStr, htmlTail];
+    
+    //_webView.scrollView.scrollEnabled = NO;
+    
+   // _webView.scalesPageToFit = YES;
+    
+    [_webView loadHTMLString:htmlString baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];
+    
+//    NSURL *path = [NSURL URLWithString:_urlStr];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:path];
+//    
+//    [_webView loadRequest:request];
 }
 @end

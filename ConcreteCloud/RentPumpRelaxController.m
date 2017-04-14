@@ -97,20 +97,22 @@ ListDialogViewDelegate>
 
 - (void)clickStart
 {
-    if ([_lbHzs.text isEqualToString:HZS_INIT])
-    {
+    if (![[Config shareConfig] getOperable]) {
+        [HUDClass showHUDWithText:@"您还未上班或者车没有置忙,无法启运"];
+        return;
+    }
+    
+    if ([_lbHzs.text isEqualToString:HZS_INIT]) {
         [HUDClass showHUDWithLabel:@"请先选择搅拌站" view:self.view];
         return;
     }
     
-    if ([_lbSite.text isEqualToString:SITE_INIT])
-    {
+    if ([_lbSite.text isEqualToString:SITE_INIT]) {
         [HUDClass showHUDWithLabel:@"请先选择工程" view:self.view];
         return;
     }
     
-    if ([_lbPart.text isEqualToString:PART_INIT])
-    {
+    if ([_lbPart.text isEqualToString:PART_INIT]) {
         [HUDClass showHUDWithLabel:@"请先选择浇筑部位" view:self.view];
         return;
     }
@@ -120,18 +122,15 @@ ListDialogViewDelegate>
     NSString *part = _lbPart.text;
     
     NSString *orderId = @"";
-    for (DOrderInfo *info in _arrayOrder)
-    {
+    for (DOrderInfo *info in _arrayOrder) {
         if ([site isEqualToString:info.siteName]
-            && [part isEqualToString:info.castingPart])
-        {
+            && [part isEqualToString:info.castingPart]) {
             orderId = info.orderId;
             break;
         }
     }
     
-    if (0 == orderId.length)
-    {
+    if (0 == orderId.length) {
         [HUDClass showHUDWithLabel:@"无法获取混凝土订单,请再次确认工程和浇筑部位选择是否正确" view:self.view];
         return;
     }
@@ -144,8 +143,7 @@ ListDialogViewDelegate>
     [[HttpClient shareClient] view:self.view post:URL_ADD_TASK parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
         HzsAddTaskResponse *response = [[HzsAddTaskResponse alloc] initWithDictionary:responseObject];
         
-        if (_delegate && [_delegate respondsToSelector:@selector(onClickStartUp:)])
-        {
+        if (_delegate && [_delegate respondsToSelector:@selector(onClickStartUp:)]) {
             [_delegate onClickStartUp:[response getHzsTask]];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
@@ -215,16 +213,29 @@ ListDialogViewDelegate>
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(0 == indexPath.row)
-    {
+    if(0 == indexPath.row) {
+        if (![[Config shareConfig] getOperable]) {
+            [HUDClass showHUDWithText:@"您还未上班或者车没有置忙,无法操作"];
+            return;
+        }
+        
         [self getHzs];
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
+        
+        if (![[Config shareConfig] getOperable]) {
+            [HUDClass showHUDWithText:@"您还未上班或者车没有置忙,无法操作"];
+            return;
+        }
+        
         [self getOrders];
-    }
-    else if (2 == indexPath.row)
-    {
+        
+    } else if (2 == indexPath.row) {
+        if (![[Config shareConfig] getOperable]) {
+            [HUDClass showHUDWithText:@"您还未上班或者车没有置忙,无法操作"];
+            return;
+        }
+        
         [self showPartListDialogView];
     }
 }

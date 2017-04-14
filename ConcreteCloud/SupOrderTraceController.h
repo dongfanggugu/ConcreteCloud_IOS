@@ -28,6 +28,8 @@
 
 @property (weak, nonatomic) id<SupOrderTraceControllerDelegate> delegate;
 
+@property (assign, nonatomic) G_Order_Trace_Status traceStatus;
+
 @end
 
 #endif /* SupOrderTraceController_h */

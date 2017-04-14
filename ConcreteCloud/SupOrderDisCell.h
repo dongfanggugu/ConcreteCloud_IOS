@@ -31,8 +31,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbDate;
 
-
 @property (weak, nonatomic) id<SupOrderDisCellDelegate> delegate;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnDis;
 
 @end
 

@@ -33,9 +33,9 @@
 
 @property (copy, nonatomic) NSString *startTime;
 
-@property (strong, nonatomic) NSNumber *arrvieTime;
+@property (strong, nonatomic) NSNumber *arriveTime;
 
-@property (strong, nonatomic) NSNumber *distance;
+@property (assign, nonatomic) CGFloat distance;
 
 @property (assign, nonatomic) CGFloat loadWeight;
 

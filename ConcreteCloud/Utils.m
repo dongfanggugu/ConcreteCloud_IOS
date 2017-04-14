@@ -106,14 +106,19 @@
 }
 
 
-+
-(NSString *)formatDate:(NSDate *)date
++ (NSString *)formatDate:(NSDate *)date
 {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSString *dateStr = [format stringFromDate:date];
     
     return dateStr;
+}
+
++ (NSString *)getCurrentTime
+{
+    NSDate *date = [[NSDate alloc] init];
+    return [self formatDate:date];
 }
 
 @end

@@ -164,8 +164,7 @@
         }
     }
     
-    if (0 == orderId.length)
-    {
+    if (0 == orderId.length) {
         [HUDClass showHUDWithLabel:@"无法获取混凝土订单,请再次确认工程和浇筑部位选择是否正确" view:self.view];
         return;
     }
@@ -177,8 +176,7 @@
     
     NSInteger dis = (NSInteger)[Location distancePoint:coorHzs with:coor];
     
-    if (dis > limit)
-    {
+    if (dis > limit) {
         [HUDClass showHUDWithLabel:@"您距离搅拌站距离过远，请靠近搅拌站后再次启运" view:self.view];
         return;
     }
@@ -204,14 +202,13 @@
 
 - (void)onLocationComplete:(NSNotification *)notify
 {
-     [[NSNotificationCenter defaultCenter] removeObserver:self name:Location_Complete object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:Location_Complete object:nil];
     
     [HUDClass hideLoadingHUD:_locationHUD];
     
     NSDictionary *userInfo = notify.userInfo;
     
-    if (!userInfo)
-    {
+    if (!userInfo){
         [HUDClass showHUDWithLabel:@"定位失败,请检测您的网络和设置是否开启定位" view:self.view];
         return;
     }
@@ -237,17 +234,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         KeyValueCell *cell = [KeyValueCell viewFromNib];
         cell.lbKey.text = @"搅拌站";
         cell.lbValue.text = [[Config shareConfig] getBranchName];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         KeyValueCell *cell = [KeyValueCell viewFromNib];
         cell.lbKey.text = @"工程";
         cell.lbValue.text = SITE_INIT;
@@ -256,9 +251,8 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (2 == indexPath.row)
-    {
+        
+    } else if (2 == indexPath.row) {
         KeyValueCell *cell = [KeyValueCell viewFromNib];
         cell.lbKey.text = @"浇筑部位";
         cell.lbValue.text = PART_INIT;
@@ -267,18 +261,16 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (3 == indexPath.row)
-    {
+        
+    } else if (3 == indexPath.row) {
         KeyValueCell *cell = [KeyValueCell viewFromNib];
         cell.lbKey.text = @"强度等级";
         cell.lbValue.text = @"";
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (4 == indexPath.row)
-    {
+        
+    } else if (4 == indexPath.row) {
         KeyValueBtnCell *cell = [KeyValueBtnCell cellFromNib];
         cell.lbKey.text = @"车辆";
         cell.lbValue.text = [[Config shareConfig] getLastVehicle];
@@ -288,8 +280,12 @@
         __weak typeof (self) weakSelf = self;
         [cell addOnClickListener:^{
             
-            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(onClickVehicleModify:weight:type:)])
-            {
+            if (![[Config shareConfig] getOperable]) {
+                [HUDClass showHUDWithText:@"您还未上班,无法修改车辆"];
+                return;
+            }
+            
+            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(onClickVehicleModify:weight:type:)]) {
                 [weakSelf.delegate onClickVehicleModify:weakSelf.lbVehicle weight:weakSelf.lbLoad type:TANKER];
             }
             
@@ -297,9 +293,8 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (5 == indexPath.row)
-    {
+        
+    } else if (5 == indexPath.row) {
         KeyValueBtnCell *cell = [KeyValueBtnCell cellFromNib];
         cell.lbKey.text = @"运载量";
         
@@ -318,13 +313,16 @@
         _lbLoad = cell.lbValue;
         
         [cell addOnClickListener:^{
+            
+            if (![[Config shareConfig] getOperable]) {
+                [HUDClass showHUDWithText:@"您还未上班,无法修改运载量"];
+                return;
+            }
+            
             DialogEditView *view = [DialogEditView viewFromNib];
             view.delegate = self;
             
-            CGRect frame = CGRectMake(0, -94, self.view.frame.size.width, self.view.frame.size.height + 94 + 49);
-            view.frame = frame;
-            
-            [self.view addSubview:view];
+            [view show];
         }];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -472,12 +470,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (1 == indexPath.row)
-    {
+    if (1 == indexPath.row) {
+        
+        if (![[Config shareConfig] getOperable]) {
+            [HUDClass showHUDWithText:@"您还未上班,无法操作"];
+            return;
+        }
+        
         [self getOrders];
-    }
-    else if (2 == indexPath.row)
-    {
+    } else if (2 == indexPath.row) {
+        
+        if (![[Config shareConfig] getOperable]) {
+            [HUDClass showHUDWithText:@"您还未上班,无法操作"];
+            return;
+        }
+        
         [self showPartListDialogView];
     }
 }

@@ -159,20 +159,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (6 == indexPath.row)
-    {
-        UIStoryboard *board = [UIStoryboard storyboardWithName:@"Purchaser" bundle:nil];
-        VideoPlayerController *controller = [board instantiateViewControllerWithIdentifier:@"video_player_controller"];
-        controller.urlStr = _trackInfo.examVideo;
-        [self.navigationController pushViewController:controller animated:YES];
-    }
-    else if (7 == indexPath.row)
-    {
-        UIStoryboard *board = [UIStoryboard storyboardWithName:@"Purchaser" bundle:nil];
-        VideoPlayerController *controller = [board instantiateViewControllerWithIdentifier:@"video_player_controller"];
-        controller.urlStr = _trackInfo.spotVideo;
-        [self.navigationController pushViewController:controller animated:YES];
-    }
+//    if (6 == indexPath.row)
+//    {
+//        UIStoryboard *board = [UIStoryboard storyboardWithName:@"Purchaser" bundle:nil];
+//        VideoPlayerController *controller = [board instantiateViewControllerWithIdentifier:@"video_player_controller"];
+//        controller.urlStr = _trackInfo.examVideo;
+//        
+//        controller.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:controller animated:YES];
+//        
+//    } else if (7 == indexPath.row) {
+//        UIStoryboard *board = [UIStoryboard storyboardWithName:@"Purchaser" bundle:nil];
+//        VideoPlayerController *controller = [board instantiateViewControllerWithIdentifier:@"video_player_controller"];
+//        controller.urlStr = _trackInfo.spotVideo;
+//        
+//        controller.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:controller animated:YES];
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

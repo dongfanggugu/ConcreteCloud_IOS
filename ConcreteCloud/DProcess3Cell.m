@@ -139,7 +139,7 @@
 
 - (void)setOtherRole
 {
-    _btnCarry.hidden = NO;
+    _btnCarry.hidden = YES;
     _btnDetail.hidden = YES;
 }
 

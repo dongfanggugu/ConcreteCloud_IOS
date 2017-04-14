@@ -19,6 +19,8 @@
 
 + (UIColor *)getColorByRGB:(NSString *)RGB;
 
++ (NSString *)getCurrentTime;
+
 /**
  将字符串把给定的分隔符转换为回车换行
  **/

@@ -25,6 +25,7 @@
 #import "SupOrderDisCell.h"
 #import "KeyValueCell.h"
 #import "SupOrderConfirmRequest.h"
+#import "AProcess3HistoryCell.h"
 
 
 @interface SupOrderTraceController()<UITableViewDelegate, UITableViewDataSource, PullTableViewDelegate,
@@ -161,8 +162,7 @@
 {
     NSInteger state = [_orderInfo.isComplete integerValue];
     
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         SupOrderReceiveCell *cell = [SupOrderReceiveCell cellFromNib];
         
         cell.lbDate.text = _orderInfo.createTime;
@@ -170,110 +170,106 @@
         cell.lbName.text = _orderInfo.userName;
         cell.lbTel.text = _orderInfo.tel;
         cell.lbAddress.text = _orderInfo.address;
-        
-        if (0 == state)
-        {
-            [cell setCurrentMode];
-        }
-        else
-        {
-            [cell setPassMode];
-        }
+        [cell setPassMode];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         SupOrderDealCell *cell = [SupOrderDealCell cellFromNib];
         
         cell.delegate = self;
         
-        if (state < 1)
-        {
+        if (0 == state) {
             [cell setCurrentMode];
-        }
-        else
-        {
+            
+            if (Status_History == _traceStatus) {
+                cell.btnOk.hidden = YES;
+                cell.btnCancel.hidden = YES;
+            }
+            
+        } else {
             NSInteger confirm = [_orderInfo.isAffirm integerValue];
             [cell setPassMode:2 == confirm ? NO : YES];
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (2 == indexPath.row)
-    {
+        
+    } else if (2 == indexPath.row) {
         SupOrderDisCell *cell = [SupOrderDisCell cellFromNib];
         cell.delegate = self;
         
-        if (state < 1)
+        if (0 == state)
         {
             [cell setFutureMode];
-        }
-        else if (1 == state)
-        {
+        } else if (1 == state) {
             //确认结果
             NSInteger confirm = [_orderInfo.isAffirm integerValue];
             
-            if (1 == confirm)
-            {
+            if (1 == confirm) {
                 [cell setCurrentMode];
-            }
-            else if (2 == confirm)
-            {
+                
+            } else if (2 == confirm) {
                 [cell setFutureMode];
             }
-
             
-        }
-        else
-        {
+        } else {
             [cell setPassMode];
         }
         
+        if (Status_History == _traceStatus) {
+            cell.btnDis.hidden = YES;
+        }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }
-    else if (3 == indexPath.row)
-    {
-        PProcess3Cell *cell = [PProcess3Cell cellFromNib];
-        cell.goodsName = _orderInfo.goodsName;
         
-        _cell = cell;
+    } else if (3 == indexPath.row) {
         
-        [cell setTotal:100 complete:0 way:0];
-        
-        
-        if (state < 2)
-        {
-            [cell setFutureMode];
+        if (Status_History == _traceStatus) {
+            
+            AProcess3HistoryCell *cell = [AProcess3HistoryCell cellFromNib];
+            
+            cell.lbDate.text = _orderInfo.confirmTime;
+            
+            cell.btnDetail.hidden = YES;
+            
+            return cell;
+            
+        } else {
+            PProcess3Cell *cell = [PProcess3Cell cellFromNib];
+            cell.goodsName = _orderInfo.goodsName;
+            
+            _cell = cell;
+            
+            [cell setTotal:100 complete:0 way:0];
+            
+            
+            if (state < 2) {
+                [cell setFutureMode];
+                
+            } else if (2 == state) {
+                [cell setCurrentMode];
+                CGFloat total = [_orderInfo.number floatValue];
+                [cell setTotal:total complete:_complete way:_way];
+                
+            } else {
+                [cell setPassMode];
+                CGFloat total = [_orderInfo.number floatValue];
+                [cell setTotal:total complete:_complete way:_way];
+            }
+            
+            cell.delegate = self;
+            
+            [self getTask:cell];
+            
+            [cell setSupplierMode];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
         }
-        else if (2 == state)
-        {
-            [cell setCurrentMode];
-            CGFloat total = [_orderInfo.number floatValue];
-            [cell setTotal:total complete:_complete way:_way];
-        }
-        else
-        {
-            [cell setPassMode];
-            CGFloat total = [_orderInfo.number floatValue];
-            [cell setTotal:total complete:_complete way:_way];
-        }
-        
-        cell.delegate = self;
-        
-        [self getTask:cell];
-        
-        [cell setSupplierMode];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        return cell;
-    }
-    else if (4 == indexPath.row)
-    {
+    } else if (4 == indexPath.row) {
         PProcess4Cell *cell = [PProcess4Cell cellFromNib];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -295,24 +291,25 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row)
-    {
+    if (0 == indexPath.row) {
         return [SupOrderReceiveCell cellHight];
-    }
-    else if (1 == indexPath.row)
-    {
+        
+    } else if (1 == indexPath.row) {
         return [SupOrderDealCell cellHeight];
-    }
-    else if (2 == indexPath.row)
-    {
+        
+    } else if (2 == indexPath.row) {
         return [SupOrderDisCell cellHeight];
-    }
-    else if (3 == indexPath.row)
-    {
-        return [PProcess3Cell cellHeight];
-    }
-    else if (4 == indexPath.row)
-    {
+        
+    } else if (3 == indexPath.row) {
+        
+        if (Status_History == _traceStatus) {
+            return [AProcess3HistoryCell cellHeight];
+            
+        } else {
+            return [PProcess3Cell cellHeight];
+        }
+        
+    } else if (4 == indexPath.row) {
         return [PProcess4Cell cellHeight];
     }
     

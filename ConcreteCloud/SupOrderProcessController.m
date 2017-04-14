@@ -16,7 +16,7 @@
 
 @interface SupOrderProcessController()<SupOrderTraceControllerDelegate>
 {
-    UIViewController *_curController;
+    __weak UIViewController *_curController;
 }
 
 @end
@@ -35,6 +35,8 @@
 {
     SupOrderTraceController *controller = [[SupOrderTraceController alloc] init];
     controller.orderInfo = _orderInfo;
+    controller.traceStatus = _traceStatus;
+    
     [self addChildViewController:controller];
     CGRect frame = controller.view.frame;
     frame.origin.x = 0;
@@ -59,7 +61,6 @@
 
 - (void)onClickLeftSegment
 {
-    NSLog(@"amount:%ld", self.childViewControllers.count);
     [self transitionFromViewController:[self.childViewControllers objectAtIndex:1]
                       toViewController:[self.childViewControllers objectAtIndex:0]
                               duration:0 options:UIViewAnimationOptionTransitionNone animations:^{
@@ -71,7 +72,6 @@
 
 - (void)onClickRightSegment
 {
-    NSLog(@"amount:%ld", self.childViewControllers.count);
     [self transitionFromViewController:[self.childViewControllers objectAtIndex:0]
                       toViewController:[self.childViewControllers objectAtIndex:1]
                               duration:0 options:UIViewAnimationOptionTransitionNone animations:^{
@@ -90,7 +90,7 @@
     controller.supplierId = _orderInfo.supplierId;
     controller.orderId = _orderInfo.orderId;
     
-    self.hidesBottomBarWhenPushed = YES;
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -101,7 +101,7 @@
     controller.supplierId = _orderInfo.supplierId;
     controller.orderId = _orderInfo.orderId;
     
-    self.hidesBottomBarWhenPushed = YES;
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -110,7 +110,7 @@
     VehicleDispatchController *controller = [[VehicleDispatchController alloc] init];
     controller.orderInfo = _orderInfo;
     
-    self.hidesBottomBarWhenPushed = YES;
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 

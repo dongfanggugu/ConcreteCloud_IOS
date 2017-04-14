@@ -60,6 +60,8 @@
     _tableView.dataSource = self;
     _tableView.bounces = NO;
     
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     _mapView.delegate = self;
     _mapView.zoomLevel = 15;
 
@@ -107,17 +109,15 @@
     if (4 == type)
     {
         return [UIImage imageNamed:@"icon_car_type4"];
-    }
-    else if (5 == type)
-    {
+        
+    } else if (5 == type) {
         return [UIImage imageNamed:@"icon_car_type5"];
-    }
-    else if (6 == type)
-    {
+        
+    } else if (6 == type) {
         return [UIImage imageNamed:@"icon_car_type6"];
     }
     
-    return nil;
+    return [UIImage imageNamed:@"icon_car_type4"];
 }
 #pragma mark - Network Request
 
@@ -177,8 +177,7 @@
 
 - (void)markVehicles
 {
-    for (PTrackInfo *info in _processInfo.info)
-    {
+    for (PTrackInfo *info in _processInfo.info) {
         VehicleMapAnnotation *marker = [[VehicleMapAnnotation alloc] initWithLatitude:info.lat lng:info.lng ];
         marker.title = @"vehicle";
         marker.info = info;
@@ -192,31 +191,27 @@
 {
     NSString *title = annotation.title;
     
-    if ([title isEqualToString:@"supplier"])
-    {
+    if ([title isEqualToString:@"supplier"]) {
         BMKAnnotationView *supplierView = [[BMKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"supplier"];
         supplierView.image = [UIImage imageNamed:@"icon_supplier"];
         
         supplierView.canShowCallout = NO;
         return supplierView;
-    }
-    else if ([title isEqualToString:@"site"])
-    {
+        
+    } else if ([title isEqualToString:@"site"]) {
         BMKAnnotationView *siteView = [[BMKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"supplier"];
         siteView.image = [UIImage imageNamed:@"icon_build_site"];
         
         siteView.canShowCallout = NO;
         return siteView;
-    }
-    else if ([title isEqualToString:@"vehicle"])
-    {
+        
+    } else if ([title isEqualToString:@"vehicle"]) {
         VehicleMapAnnotation *ann = (VehicleMapAnnotation *)annotation;
         PTrackInfo *info = ann.info;
         
         VehicleAnnotationView *vehicleView = (VehicleAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"vehicle"];
         
-        if (nil == vehicleView)
-        {
+        if (nil == vehicleView) {
             vehicleView = [[VehicleAnnotationView alloc] initWithAnnotation:annotation
                                                                                reuseIdentifier:@"vehicle" image:[self getVehicleImage:info.cls]];
         }
@@ -257,19 +252,18 @@
 {
     TrackInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:[TrackInfoCell identifier]];
     
-    if (nil == cell)
-    {
+    if (!cell) {
         cell = [TrackInfoCell cellFromNib];
     }
     
     PTrackInfo *info = _arrayTrack[indexPath.row];
     
-    cell.lbTime.text = [NSString stringWithFormat:@"%ld分钟", info.arrvieTime.integerValue];
+    cell.lbTime.text = [NSString stringWithFormat:@"%ld分钟", info.arriveTime.integerValue];
     cell.lbType.text = [self getVehicleType:info.cls];
     
     cell.lbPlate.text = info.plateNum;
     cell.lbDriver.text = info.driverName;
-    cell.lbDistance.text = [NSString stringWithFormat:@"%.1lf公里", info.distance.floatValue];
+    cell.lbDistance.text = [NSString stringWithFormat:@"%.1lf公里", info.distance];
     
     return cell;
 }
@@ -309,7 +303,7 @@
         controller.supplierLat = weakSelf.processInfo.supplier.lat;
         controller.supplierLng = weakSelf.processInfo.supplier.lng;
         
-        weakSelf.hidesBottomBarWhenPushed = YES;
+        controller.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:controller animated:YES];
     }];
     

@@ -209,8 +209,8 @@
         if ([_recordSession canAddOutput:self.videoOutput]) {
             [_recordSession addOutput:self.videoOutput];
             //设置视频的分辨率
-            _cx = 480;
-            _cy = 640;
+            _cx = 288;
+            _cy = 352;
         }
         //添加音频输出
         if ([_recordSession canAddOutput:self.audioOutput]) {

@@ -40,7 +40,7 @@
 
 #pragma mark - PSStaisticsController
 
-@interface PStatisticsController()<ListDialogViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface PStatisticsController() <ListDialogViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *btnSupplier;
 

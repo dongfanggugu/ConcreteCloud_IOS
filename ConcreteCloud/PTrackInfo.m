@@ -14,9 +14,12 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
     self = [super initWithDictionary:dictionary];
-    if (self)
-    {
-        self.processId = dictionary[@"id"];
+    
+    if (self) {
+        
+        if (!self.processId) {
+            self.processId = dictionary[@"id"];
+        }
     }
     
     return self;

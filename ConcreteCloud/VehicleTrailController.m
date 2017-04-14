@@ -73,7 +73,8 @@
     request.taskId = _processId;
     request.type = @"B";
     
-    [[HttpClient shareClient] view:self.view post:URL_VEHICLE_TRAIL parameters:[request parsToDictionary] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient shareClient] view:self.view post:URL_VEHICLE_TRAIL parameters:[request parsToDictionary]
+                           success:^(NSURLSessionDataTask *task, id responseObject) {
         ResponseArray *response = [[ResponseArray alloc] initWithDictionary:responseObject];
         [_arrayTrail addObjectsFromArray:[response getVehicleTrailArray]];
         [self markSite];
@@ -111,13 +112,11 @@
     
     marker.title = @"site";
     [_mapView addAnnotation:marker];
-    [_mapView setCenterCoordinate:coor animated:YES];
 }
 
 - (void)markVehicle
 {
-    if (0 == _arrayTrail.count)
-    {
+    if (0 == _arrayTrail.count) {
         return;
     }
     CLLocationCoordinate2D coor;
@@ -129,6 +128,8 @@
     
     marker.title = @"vehicle";
     [_mapView addAnnotation:marker];
+    
+    [_mapView setCenterCoordinate:coor animated:YES];
 }
 
 - (void)markTrail
@@ -189,7 +190,7 @@
 {
     BMKPolylineView *polylineView = [[BMKPolylineView alloc] initWithOverlay:overlay];
     polylineView.strokeColor = [UIColor blueColor];
-    polylineView.lineDash = YES;
+    polylineView.lineDash = NO;
     polylineView.lineWidth = 6;
     
     return polylineView;

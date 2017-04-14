@@ -13,6 +13,7 @@
 #import "CheckController.h"
 #import "MoreController.h"
 #import "StatisticsController.h"
+#import "DOrderController.h"
 
 @interface OthersMainController()
 
@@ -33,7 +34,8 @@
     UIViewController *purchase = [boardP instantiateViewControllerWithIdentifier:@"p_other_order"];
     
     UIStoryboard *boardD = [UIStoryboard storyboardWithName:@"Dispatcher" bundle:nil];
-    UIViewController *dispatch = [boardD instantiateViewControllerWithIdentifier:@"d_order_controller"];
+    DOrderController *dispatch = [boardD instantiateViewControllerWithIdentifier:@"d_order_controller"];
+    dispatch.role = Role_Hzs_Other;
     
     UIViewController *check = [[CheckController alloc] init];
     
@@ -63,13 +65,13 @@
 - (void)initTabBar
 {
     UITabBar *tabBar = self.tabBar;
-    [[tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"mainpage"]];
+    [[tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"icon_purchase_order"]];
     [[tabBar.items objectAtIndex:0] setTitle:@"采购订单"];
     
-    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_my_order"]];
+    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_concrete_order"]];
     [[tabBar.items objectAtIndex:1] setTitle:@"混凝土订单"];
     
-    [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_other_order"]];
+    [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_in_check"]];
     [[tabBar.items objectAtIndex:2] setTitle:@"检验"];
     
     [[tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"icon_statistics"]];

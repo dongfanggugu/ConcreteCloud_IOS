@@ -39,6 +39,7 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
 
 @property (weak, nonatomic) DProcess3Cell *cell;
 
+
 @end
 
 
@@ -75,6 +76,7 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
     CGFloat total = _orderInfo.number;
     [_cell setTotal:total complete:_complete way:_way];
 }
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -189,7 +191,9 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
                 [cell setPassMode];
             }
             
-            if (![[Config shareConfig] getOperable]) {
+            if (![[Config shareConfig] getOperable]
+                || Role_A_Checker == _role
+                || Role_Hzs_Other == _role) {
                 cell.btnOK.hidden = YES;
                 cell.btnCancel.hidden = YES;
             }
@@ -313,7 +317,7 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
                 [cell setSiteRole];
             }
             
-            if (![[Config shareConfig] getOperable]) {
+            if (_role != Role_Dispather) {
                 [cell setOtherRole];
             }
             
@@ -348,7 +352,7 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
             [cell setSiteRole];
         }
         
-        if (![[Config shareConfig] getOperable]) {
+        if (_role != Role_Dispather) {
             [cell setFutureMode];
         }
         
@@ -394,7 +398,13 @@ DProcess1CellDelegate, DProcess3CellDelegate, PProcess4CellDelegate, AProcess3Hi
             
         } else {
             if (Status_Process == _traceStatus) {
-                return [DProcess3Cell cellHeight];
+                
+                if (Role_Dispather == _role) {
+                    return [DProcess3Cell cellHeight];
+                    
+                } else {
+                    return [DProcess3Cell cellHeightSite];
+                }
                 
             } else if (Status_History == _traceStatus) {
                 return [AProcess3HistoryCell cellHeight];

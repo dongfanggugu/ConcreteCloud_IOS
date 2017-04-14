@@ -74,6 +74,8 @@
 //剩余到达时间
 @property (assign, nonatomic) NSInteger arriveTime;
 
+@property (assign, nonatomic) CGFloat distance;
+
 @property (strong, nonatomic) DOrderInfo *hzs_Order;
 
 @end

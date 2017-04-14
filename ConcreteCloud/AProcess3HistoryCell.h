@@ -26,4 +26,6 @@
 
 @property (weak, nonatomic) id<AProcess3HistoryCellDelegate> delegate;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnDetail;
+
 @end

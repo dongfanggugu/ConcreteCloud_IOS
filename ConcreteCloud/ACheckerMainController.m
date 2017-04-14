@@ -10,6 +10,7 @@
 #import "ACheckerMainController.h"
 #import "PMainpageController.h"
 #import "BaseNavigationController.h"
+#import "DOrderController.h"
 
 @interface ACheckerMainController()
 
@@ -35,7 +36,8 @@
     
     UIStoryboard *disBoard = [UIStoryboard storyboardWithName:@"Dispatcher" bundle:nil];
     
-    UIViewController *order = [disBoard instantiateViewControllerWithIdentifier:@"d_order_controller"];
+    DOrderController *order = [disBoard instantiateViewControllerWithIdentifier:@"d_order_controller"];
+    order.role = Role_A_Checker;
     
     UIViewController *more = [board instantiateViewControllerWithIdentifier:@"acheck_more_controller"];
     
@@ -59,16 +61,16 @@
 - (void)initTabBar
 {
     UITabBar *tabBar = self.tabBar;
-    [[tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"mainpage"]];
-    [[tabBar.items objectAtIndex:0] setTitle:@"检验任务"];
+    [[tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"icon_out_check"]];
+    [[tabBar.items objectAtIndex:0] setTitle:@"出站检验"];
     
-    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_my_order"]];
+    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_site_check"]];
     [[tabBar.items objectAtIndex:1] setTitle:@"现场检验"];
     
-    [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_other_order"]];
+    [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_history"]];
     [[tabBar.items objectAtIndex:2] setTitle:@"历史"];
     
-    [[tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"icon_statistics"]];
+    [[tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"icon_concrete_order"]];
     [[tabBar.items objectAtIndex:3] setTitle:@"混凝土订单"];
     
     [[tabBar.items objectAtIndex:4] setImage:[UIImage imageNamed:@"icon_more_normal"]];

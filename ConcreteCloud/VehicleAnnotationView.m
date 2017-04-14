@@ -18,8 +18,8 @@
 - (id)initWithAnnotation:(id<BMKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier image:(UIImage *)image
 {
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
-    if (self)
-    {
+    
+    if (self) {
         self.canShowCallout = NO;
         self.centerOffset = CGPointMake(0, 0);
         self.frame = CGRectMake(0, 0, 20, 20);
@@ -73,8 +73,7 @@
 {
     _info = info;
     
-    if (_renterView)
-    {
+    if (_renterView) {
         _renterView.lbRenter.text = info.plateNum;
         
         CGRect frame = _renterView.frame;

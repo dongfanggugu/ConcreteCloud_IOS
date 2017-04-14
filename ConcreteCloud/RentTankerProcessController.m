@@ -23,22 +23,19 @@
 #import <AVFoundation/AVFoundation.h>
 #import "Location.h"
 
-typedef NS_ENUM(NSInteger, RENT_WORK_STATE)
-{
+typedef NS_ENUM(NSInteger, RENT_WORK_STATE) {
     RELAX,
     BUSY
 };
 
-typedef NS_ENUM(NSInteger, RENT_VEHICLE_STATE)
-{
+typedef NS_ENUM(NSInteger, RENT_VEHICLE_STATE) {
     VEHICLE_RELAX,
     VEHICLE_BUSY
 };
 
 @interface RentTankerProcessController()<RentVehicleControllerDelegate, RentTankerRelaxControllerDelegate,
                         TankerOnWayControllerDelegate, TankerArrivedControllerDelegate,
-                        VideoRecordControllerDelegate, AVAudioPlayerDelegate>
-{
+                        VideoRecordControllerDelegate, AVAudioPlayerDelegate> {
     UIButton *_btnState;
     
     UILabel *_lbState;
@@ -346,21 +343,23 @@ typedef NS_ENUM(NSInteger, RENT_VEHICLE_STATE)
 {
     _workState = state;
     
-    if (RELAX == _workState)
-    {
+    if (RELAX == _workState) {
         [_btnState setImage:[UIImage imageNamed:@"icon_relax"] forState:UIControlStateNormal];
         _lbState.text = @"下班";
         
         _btnVehicleState.hidden = YES;
         _lbVehicleState.hidden = YES;
-    }
-    else
-    {
+        
+        [[Config shareConfig] setOperable:NO];
+        
+    } else {
         [_btnState setImage:[UIImage imageNamed:@"icon_busy"] forState:UIControlStateNormal];
         _lbState.text = @"上班";
         
         _btnVehicleState.hidden = NO;
         _lbVehicleState.hidden = NO;
+        
+        self.vehicleState = VEHICLE_RELAX;
     }
 }
 
@@ -368,17 +367,18 @@ typedef NS_ENUM(NSInteger, RENT_VEHICLE_STATE)
 {
     _vehicleState = vehicleState;
     
-    if (VEHICLE_RELAX == _vehicleState)
-    {
+    if (VEHICLE_RELAX == _vehicleState) {
         [_btnVehicleState setImage:[UIImage imageNamed:@"icon_relax"] forState:UIControlStateNormal];
         _lbVehicleState.text = @"闲";
         
+        [[Config shareConfig] setOperable:NO];
         [self startLocationService];
-    }
-    else
-    {
+        
+    } else {
         [_btnVehicleState setImage:[UIImage imageNamed:@"icon_busy"] forState:UIControlStateNormal];
         _lbVehicleState.text = @"忙";
+        
+        [[Config shareConfig] setOperable:YES];
         
         [self stopLocationService];
     }
@@ -416,8 +416,7 @@ typedef NS_ENUM(NSInteger, RENT_VEHICLE_STATE)
 
 - (void)changeState
 {
-    if (RELAX == _workState)
-    {
+    if (RELAX == _workState) {
         RentVehicleController *controller = [[RentVehicleController alloc] init];
         controller.vehicleType = TANKER;
         controller.delegate = self;
@@ -425,11 +424,9 @@ typedef NS_ENUM(NSInteger, RENT_VEHICLE_STATE)
         self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
         self.hidesBottomBarWhenPushed = NO;
-    }
-    else
-    {
-        if (![_curController isKindOfClass:[RentTankerRelaxController class]])
-        {
+        
+    } else {
+        if (![_curController isKindOfClass:[RentTankerRelaxController class]]) {
             [HUDClass showHUDWithText:@"运输单执行中,无法下班"];
             return;
         }
@@ -442,8 +439,8 @@ typedef NS_ENUM(NSInteger, RENT_VEHICLE_STATE)
             self.workState = RELAX;
             
             _vehicleInfo = nil;
-            if (_delegate && [_delegate respondsToSelector:@selector(onGetVehicle:)])
-            {
+            
+            if (_delegate && [_delegate respondsToSelector:@selector(onGetVehicle:)]) {
                 [_delegate onGetVehicle:nil];
             }
             
@@ -486,14 +483,12 @@ typedef NS_ENUM(NSInteger, RENT_VEHICLE_STATE)
         
         _vehicleInfo = [response getVehicleInfo];
         
-        if (_vehicleInfo)
-        {
+        if (_vehicleInfo) {
             self.workState = BUSY;
             
             [self getUnfinishedTask];
-        }
-        else
-        {
+            
+        } else {
             self.workState = RELAX;
             [self relax];
         }
@@ -509,25 +504,21 @@ typedef NS_ENUM(NSInteger, RENT_VEHICLE_STATE)
         SPumpListResponse *response = [[SPumpListResponse alloc] initWithDictionary:responseObject];
         NSArray<DTrackInfo *> *array = [response getPumpList];
         
-        if (!array || 0 == array.count)
-        {
+        if (!array || 0 == array.count) {
             self.vehicleState = VEHICLE_RELAX;
             [self relax];
-        }
-        else
-        {
+            
+        } else {
             self.vehicleState = VEHICLE_BUSY;
             
             DTrackInfo *info = array[0];
             
             CGFloat state = info.state.floatValue;
             
-            if (state < 2.5 && state > 0)
-            {
+            if (state < 2.5 && state > 0) {
                 [self onWay:info];
-            }
-            else
-            {
+                
+            } else {
                 [self arrived:info];
             }
         }

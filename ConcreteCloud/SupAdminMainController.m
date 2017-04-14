@@ -60,13 +60,13 @@
     [[tabBar.items objectAtIndex:0] setImage:[UIImage imageNamed:@"mainpage"]];
     [[tabBar.items objectAtIndex:0] setTitle:@"首页"];
     
-    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_my_order"]];
+    [[tabBar.items objectAtIndex:1] setImage:[UIImage imageNamed:@"icon_order"]];
     [[tabBar.items objectAtIndex:1] setTitle:@"订单"];
     
-    [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_other_order"]];
+    [[tabBar.items objectAtIndex:2] setImage:[UIImage imageNamed:@"icon_task"]];
     [[tabBar.items objectAtIndex:2] setTitle:@"运输单"];
     
-    [[tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"icon_statistics"]];
+    [[tabBar.items objectAtIndex:3] setImage:[UIImage imageNamed:@"icon_history"]];
     [[tabBar.items objectAtIndex:3] setTitle:@"历史"];
     
     [[tabBar.items objectAtIndex:4] setImage:[UIImage imageNamed:@"icon_more_normal"]];

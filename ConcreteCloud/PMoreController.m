@@ -103,7 +103,7 @@
         UIStoryboard *board = [UIStoryboard storyboardWithName:@"Dispatcher" bundle:nil];
         
         DOrderController *controller = [board instantiateViewControllerWithIdentifier:@"d_order_controller"];
-        controller.enterType = Purchaser;
+        controller.role = Role_Purchaser;
         
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];

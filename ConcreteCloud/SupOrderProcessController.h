@@ -16,6 +16,8 @@
 
 @property (strong, nonatomic) POrderInfo *orderInfo;
 
+@property (assign, nonatomic) G_Order_Trace_Status traceStatus;
+
 @end
 
 

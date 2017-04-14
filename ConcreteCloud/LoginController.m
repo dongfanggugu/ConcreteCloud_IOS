@@ -24,6 +24,7 @@
 #import "BCheckerMainController.h"
 #import "RegisterController.h"
 #import "DialogEditView.h"
+#import "WebViewController.h"
 
 
 @interface LoginController()<DialogEditViewDelegate, UITextFieldDelegate>
@@ -125,6 +126,10 @@
     RegisterController *controller = [[RegisterController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];;
     controller.navigationController.navigationBar.hidden = NO;
+    
+//    WebViewController *controller = [[WebViewController alloc] init];
+//    [self.navigationController pushViewController:controller animated:YES];;
+//    controller.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)login

@@ -15,9 +15,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 
-@property (weak, nonatomic) IBOutlet UIButton *btnOk;
-
-@property (weak, nonatomic) IBOutlet UIButton *btnCancel;
 
 @end
 
