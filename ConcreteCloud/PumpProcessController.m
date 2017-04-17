@@ -73,12 +73,13 @@ typedef NS_ENUM(NSInteger, WORK_STATE)
 
 - (void)relax
 {
-    if (_curController)
-    {
+    if (_curController) {
         [_curController.view removeFromSuperview];
         [_curController removeFromParentViewController];
         _curController = nil;
     }
+    
+    [self hideWorkState];
     
     PumpRelaxController *controller = [[PumpRelaxController alloc] init];
     controller.delegate = self;
@@ -99,12 +100,13 @@ typedef NS_ENUM(NSInteger, WORK_STATE)
 
 - (void)onWay:(DTrackInfo *)trackInfo
 {
-    if (_curController)
-    {
+    if (_curController) {
         [_curController.view removeFromSuperview];
         [_curController removeFromParentViewController];
         _curController = nil;
     }
+    
+    [self showWorkState];
     
     TankerOnWayController *controller = [[TankerOnWayController alloc] init];
     controller.trackInfo = trackInfo;
@@ -126,12 +128,13 @@ typedef NS_ENUM(NSInteger, WORK_STATE)
 
 - (void)arrived:(DTrackInfo *)trackInfo
 {
-    if (_curController)
-    {
+    if (_curController) {
         [_curController.view removeFromSuperview];
         [_curController removeFromParentViewController];
         _curController = nil;
     }
+    
+    [self showWorkState];
     
     TankerArrivedController *controller = [[TankerArrivedController alloc] init];
     controller.trackInfo = trackInfo;
@@ -230,6 +233,18 @@ typedef NS_ENUM(NSInteger, WORK_STATE)
         }];
         self.workState = RELAX;
     }
+}
+
+- (void)hideWorkState
+{
+    _btnState.hidden = YES;
+    _lbState.hidden = YES;
+}
+
+- (void)showWorkState
+{
+    _btnState.hidden = NO;
+    _lbState.hidden = NO;
 }
 
 #pragma mark - Network Request

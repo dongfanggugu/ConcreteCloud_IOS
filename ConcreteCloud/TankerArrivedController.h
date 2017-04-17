@@ -23,6 +23,8 @@ typedef NS_ENUM(NSInteger, Arrived_Type)
 
 - (void)onClickHzs;
 
+- (void)onClickCancel;
+
 @optional
 
 - (void)onClickRecord:(DTrackInfo *)trackInfo;

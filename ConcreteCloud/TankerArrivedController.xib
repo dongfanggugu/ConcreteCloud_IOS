@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TankerArrivedController">
             <connections>
                 <outlet property="btnNav" destination="p6e-YQ-gxc" id="sXb-hw-LF3"/>
+                <outlet property="btnPlan" destination="VrW-VV-sS1" id="FNR-AA-MzM"/>
                 <outlet property="tableView" destination="1rJ-df-kMI" id="XI2-Zn-H3Y"/>
                 <outlet property="view" destination="Kgn-qR-LMH" id="3oy-rp-Pv7"/>
             </connections>
@@ -32,7 +33,7 @@
                                 <constraint firstAttribute="width" constant="2" id="o0Z-wA-T7o"/>
                             </constraints>
                         </view>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSP-zH-RAo">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSP-zH-RAo">
                             <rect key="frame" x="326" y="5" width="3" height="30"/>
                             <color key="backgroundColor" red="0.0" green="0.4941176471" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -59,7 +60,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <state key="normal" title="导航"/>
                         </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrW-VV-sS1">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrW-VV-sS1">
                             <rect key="frame" x="258" y="5" width="60" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="BqN-iU-Ivx"/>

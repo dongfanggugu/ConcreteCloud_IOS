@@ -328,4 +328,7 @@
 //检测版本
 #define URL_VERSION_CHECK @"checkVersion"
 
+//租赁泵车取消任务
+#define URL_RENT_PUMP_CANCEL @"deleteHzsOrderProcess"
+
 #endif /* NetConstant_h */

@@ -524,6 +524,9 @@
 		65FE081A1E9F5699002C9397 /* icon_concrete_order.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE08191E9F5699002C9397 /* icon_concrete_order.png */; };
 		65FE081C1E9F5713002C9397 /* icon_purchase_order.png in Resources */ = {isa = PBXBuildFile; fileRef = 65FE081B1E9F5713002C9397 /* icon_purchase_order.png */; };
 		65FE089B1EA09F17002C9397 /* BackgroundRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE089A1EA09F17002C9397 /* BackgroundRunner.m */; };
+		65FE089E1EA4A5C1002C9397 /* RoutePlanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE089D1EA4A5C1002C9397 /* RoutePlanController.m */; };
+		65FE08A01EA4AE46002C9397 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65FE089F1EA4AE46002C9397 /* mapapi.bundle */; };
+		65FE08A31EA4AEB6002C9397 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08A21EA4AEB6002C9397 /* UIImage+Rotate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1405,6 +1408,11 @@
 		65FE081B1E9F5713002C9397 /* icon_purchase_order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_purchase_order.png; sourceTree = "<group>"; };
 		65FE08991EA09F17002C9397 /* BackgroundRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundRunner.h; sourceTree = "<group>"; };
 		65FE089A1EA09F17002C9397 /* BackgroundRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundRunner.m; sourceTree = "<group>"; };
+		65FE089C1EA4A5C1002C9397 /* RoutePlanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutePlanController.h; sourceTree = "<group>"; };
+		65FE089D1EA4A5C1002C9397 /* RoutePlanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutePlanController.m; sourceTree = "<group>"; };
+		65FE089F1EA4AE46002C9397 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		65FE08A11EA4AEB6002C9397 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
+		65FE08A21EA4AEB6002C9397 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
 		76A1010F43B24895396CD804 /* Pods-ConcreteCloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteCloud.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConcreteCloud/Pods-ConcreteCloud.debug.xcconfig"; sourceTree = "<group>"; };
 		AC277797E21C5C4BE64493F4 /* libPods-ConcreteCloud.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ConcreteCloud.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9AB57BD53EC0483DC93E62 /* Pods-ConcreteCloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteCloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConcreteCloud/Pods-ConcreteCloud.release.xcconfig"; sourceTree = "<group>"; };
@@ -1748,6 +1756,7 @@
 				65D863781E7BCCC6006E7A1C /* chat_keyboard_normal.png */,
 				65FE08011E9F513C002C9397 /* icon_renter.png */,
 				65FE07FF1E9F511D002C9397 /* icon_order.png */,
+				65FE089F1EA4AE46002C9397 /* mapapi.bundle */,
 				65D863791E7BCCC6006E7A1C /* chat_voice_normal.png */,
 				65FE07FD1E9F5105002C9397 /* icon_project.png */,
 				65E3693B1E6E57B700E4CF04 /* date.png */,
@@ -1838,6 +1847,8 @@
 				658FE5EF1E9DC7D3002CA85F /* AddressLocationController.m */,
 				65FE07FA1E9F1E23002C9397 /* WebViewController.h */,
 				65FE07FB1E9F1E23002C9397 /* WebViewController.m */,
+				65FE089C1EA4A5C1002C9397 /* RoutePlanController.h */,
+				65FE089D1EA4A5C1002C9397 /* RoutePlanController.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2052,6 +2063,8 @@
 				65E581101DD93EA7007F53E1 /* Obj2Dic.h */,
 				65FE08991EA09F17002C9397 /* BackgroundRunner.h */,
 				65FE089A1EA09F17002C9397 /* BackgroundRunner.m */,
+				65FE08A11EA4AEB6002C9397 /* UIImage+Rotate.h */,
+				65FE08A21EA4AEB6002C9397 /* UIImage+Rotate.m */,
 				65E581111DD93EB2007F53E1 /* Obj2Dic.m */,
 				65E581001DD5937C007F53E1 /* HUDClass.h */,
 				65E581011DD5938A007F53E1 /* HUDClass.m */,
@@ -2744,6 +2757,7 @@
 				658450971E5A89B8003CFAA5 /* CZBInfoView.xib in Resources */,
 				658450821E5A7167003CFAA5 /* icon_lease.png in Resources */,
 				65FE080A1E9F52C0002C9397 /* icon_process.png in Resources */,
+				65FE08A01EA4AE46002C9397 /* mapapi.bundle in Resources */,
 				65FE081C1E9F5713002C9397 /* icon_purchase_order.png in Resources */,
 				65698F651E60150000B21D1B /* ASiteCheckInfoCell.xib in Resources */,
 				652FF2FD1E8B907F00CF98A4 /* ReceiverVoiceNodeDownloading.png in Resources */,
@@ -3082,6 +3096,7 @@
 				65C310751DF509B5005F4BA8 /* ResponseHead.m in Sources */,
 				658450B31E5AC21F003CFAA5 /* RentVehicleType.m in Sources */,
 				65EEEBBD1E77DF490095432B /* SupOrderTraceController.m in Sources */,
+				65FE089E1EA4A5C1002C9397 /* RoutePlanController.m in Sources */,
 				650BD12E1E9C71A700FEC425 /* AProcess3HistoryCell.m in Sources */,
 				65B68B961E5BCE6A0092C13A /* HzsInfoView.m in Sources */,
 				65D863851E7F670C006E7A1C /* JZLocationConverter.m in Sources */,
@@ -3205,6 +3220,7 @@
 				65EA42B51DE5340900BC48BB /* SnapTitleView.m in Sources */,
 				65698F6E1E63AF8C00B21D1B /* ACheckHistoryController.m in Sources */,
 				65515BB31E790CD300386A0C /* SupDisVehicleRequest.m in Sources */,
+				65FE08A31EA4AEB6002C9397 /* UIImage+Rotate.m in Sources */,
 				65515BC91E7924FC00386A0C /* SelVehicleRequest.m in Sources */,
 				65EEEB741E7693C70095432B /* RentDriverInfoController.m in Sources */,
 				65D863901E80B6B9006E7A1C /* RegisterController.m in Sources */,

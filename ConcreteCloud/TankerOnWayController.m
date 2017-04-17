@@ -17,6 +17,7 @@
 #import <MapKit/MKTypes.h>
 #import <AVFoundation/AVFoundation.h>
 #import "Location.h"
+#import "RoutePlanController.h"
 
 
 
@@ -154,7 +155,7 @@
     _tableView.bounces = NO;
     _tableView.dataSource = self;
     
-    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 80)];
+    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 160)];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
     
@@ -162,6 +163,7 @@
     btn.layer.cornerRadius = 5;
     
     btn.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
+     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn setTitle:@"到达工程" forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
     [btn addTarget:self action:@selector(clickArrived) forControlEvents:UIControlEventTouchUpInside];
@@ -171,8 +173,35 @@
     btn.center = CGPointMake(self.screenWidth / 2, 40);
     [footView addSubview:btn];
     
+    
+    //如果是租赁泵车,添加任务取消按钮
+    NSString *role = [[Config shareConfig] getRole];
+    
+    if ([role isEqualToString:RENT_PUMP]) {
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+        
+        btn.layer.masksToBounds = YES;
+        btn.layer.cornerRadius = 5;
+        
+        btn.backgroundColor = [Utils getColorByRGB:@"#CCCCCC"];
+        
+        [btn setTitleColor:[Utils getColorByRGB:TITLE_COLOR] forState:UIControlStateNormal];
+        
+        [btn setTitle:@"取消任务" forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:13];
+        [btn addTarget:self action:@selector(clickCancel) forControlEvents:UIControlEventTouchUpInside];
+        
+        _tableView.tableFooterView = footView;
+        
+        btn.center = CGPointMake(self.screenWidth / 2, 90);
+        [footView addSubview:btn];
+    }
+    
     //导航功能
     [_btnNav addTarget:self action:@selector(navigation) forControlEvents:UIControlEventTouchUpInside];
+    
+    //路径规划
+    [_btnPlan addTarget:self action:@selector(routePlan) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
@@ -334,6 +363,21 @@
 
 #pragma mark - 导航
 
+- (void)routePlan
+{
+    RoutePlanController *controller = [[RoutePlanController alloc] init];
+    
+    CLLocationCoordinate2D coorEnd;
+    
+    coorEnd.latitude = _trackInfo.hzs_Order.siteLat;
+    coorEnd.longitude = _trackInfo.hzs_Order.siteLng;
+    
+    controller.destination = coorEnd;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 - (void)navigation
 {
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"导航" message:@"选择您的导航应用"
@@ -462,6 +506,58 @@
         
     }];
     
+}
+
+- (void)clickCancel
+{
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要取消任务?"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+
+    [controller addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self taskCancel];
+    }]];
+    
+    [controller addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)taskCancel
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"id"] = _trackInfo.trackId;
+    
+    [[HttpClient shareClient] view:self.view post:URL_RENT_PUMP_CANCEL parameters:param
+                           success:^(NSURLSessionDataTask *task, id responseObject) {
+                               [[NSNotificationCenter defaultCenter] removeObserver:self];
+                               
+                               AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                               
+                               if (appDelegate.bgCheckTimer) {
+                                   [appDelegate.bgCheckTimer invalidate];
+                                   
+                                   appDelegate.bgCheckTimer = nil;
+                               }
+                               
+                               
+                               if (appDelegate.locationTimer) {
+                                   [appDelegate.locationTimer invalidate];
+                                   appDelegate.locationTimer = nil;
+                               }
+                               
+                               if (appDelegate.disAndTimeTimer) {
+                                   [appDelegate.disAndTimeTimer invalidate];
+                                   appDelegate.disAndTimeTimer = nil;
+                               }
+                               
+                               if (_delegate && [_delegate respondsToSelector:@selector(onClickCancel)]) {
+                                   [_delegate onClickCancel];
+                               }
+                           } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                               
+                           }];
 }
 
 #pragma mark - UITableViewDelegate

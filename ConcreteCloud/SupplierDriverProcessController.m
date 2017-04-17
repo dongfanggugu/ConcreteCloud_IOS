@@ -19,6 +19,7 @@
 #import <MapKit/MKTypes.h>
 #import "Location.h"
 #import <BaiduMapAPI_Search/BMKRouteSearch.h>
+#import "RoutePlanController.h"
 
 
 @interface SupplierDriverProcessController()<UITableViewDelegate, UITableViewDataSource, PullTableViewDelegate,
@@ -375,15 +376,29 @@
         label.center = CGPointMake(90, 20);
         [headerView addSubview:label];
         
-        UIButton *btnNavi = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 24)];
+        UIButton *btnNavi = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 24)];
         [btnNavi setTitle:@"导航" forState:UIControlStateNormal];
         btnNavi.titleLabel.font = [UIFont systemFontOfSize:13];
         [btnNavi setTitleColor:[Utils getColorByRGB:TITLE_COLOR] forState:UIControlStateNormal];
-        btnNavi.center = CGPointMake(self.screenWidth - 30, 20);
+        btnNavi.center = CGPointMake(self.screenWidth - 20, 20);
         
         [btnNavi addTarget:self action:@selector(navigation) forControlEvents:UIControlEventTouchUpInside];
-        
         [headerView addSubview:btnNavi];
+        
+        UIView *sepView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 3, 30)];
+        sepView.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
+        sepView.center = CGPointMake(self.screenWidth - 44, 20);
+        [headerView addSubview:sepView];
+        
+        UIButton *btnPlan = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 24)];
+        [btnPlan setTitle:@"路径规划" forState:UIControlStateNormal];
+        btnPlan.titleLabel.font = [UIFont systemFontOfSize:13];
+        [btnPlan setTitleColor:[Utils getColorByRGB:TITLE_COLOR] forState:UIControlStateNormal];
+        btnPlan.center = CGPointMake(self.screenWidth - 83, 20);
+        
+        [btnPlan addTarget:self action:@selector(routePlan) forControlEvents:UIControlEventTouchUpInside];
+        
+        [headerView addSubview:btnPlan];
         
         
         _tableView.tableHeaderView = headerView;
@@ -798,6 +813,22 @@
 
 
 #pragma mark - 导航
+
+
+- (void)routePlan
+{
+    RoutePlanController *controller = [[RoutePlanController alloc] init];
+    
+    CLLocationCoordinate2D coorEnd;
+    
+    coorEnd.latitude = _hzsInfo.lat;
+    coorEnd.longitude = _hzsInfo.lng;
+    
+    controller.destination = coorEnd;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 - (void)navigation
 {

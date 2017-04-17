@@ -17,6 +17,9 @@
 
 - (void)onClickArrived:(DTrackInfo *)trackInfo;
 
+@optional
+- (void)onClickCancel;
+
 @end
 
 @interface TankerOnWayController : BaseViewController

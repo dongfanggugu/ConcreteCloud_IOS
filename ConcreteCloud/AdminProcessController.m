@@ -127,8 +127,7 @@ VideoRecordControllerDelegate>
 
 - (void)pumpRelax
 {
-    if (_curController)
-    {
+    if (_curController) {
         [_curController.view removeFromSuperview];
         [_curController removeFromParentViewController];
         _curController = nil;
@@ -155,8 +154,7 @@ VideoRecordControllerDelegate>
 
 - (void)onWay:(DTrackInfo *)trackInfo
 {
-    if (_curController)
-    {
+    if (_curController) {
         [_curController.view removeFromSuperview];
         [_curController removeFromParentViewController];
         _curController = nil;
@@ -397,14 +395,12 @@ VideoRecordControllerDelegate>
         
         _vehicleInfo = [response getVehicleInfo];
         
-        if (_vehicleInfo)
-        {
+        if (_vehicleInfo) {
             self.workState = BUSY;
             
             [self getUnfinishedTask];
-        }
-        else
-        {
+            
+        } else {
             self.workState = RELAX;
             [self tankerRelax];
         }
@@ -420,8 +416,10 @@ VideoRecordControllerDelegate>
         SPumpListResponse *response = [[SPumpListResponse alloc] initWithDictionary:responseObject];
         NSArray<DTrackInfo *> *array = [response getPumpList];
         
-        if (!array || 0 == array.count)
-        {
+        if (!array || 0 == array.count) {
+            
+             self.vehicleState = VEHICLE_RELAX;
+            
             NSInteger vehicleType = _vehicleInfo.cls.integerValue;
             
             if (3 == vehicleType) {
@@ -431,9 +429,9 @@ VideoRecordControllerDelegate>
                 [self tankerRelax];
             }
             
-        }
-        else
-        {
+        } else {
+            self.vehicleState = VEHICLE_BUSY;
+            
             DTrackInfo *info = array[0];
             
             CGFloat state = info.state.floatValue;

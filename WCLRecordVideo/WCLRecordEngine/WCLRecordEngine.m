@@ -403,7 +403,7 @@
 {
     NSError *error;
     
-    CMTime frameDuration = CMTimeMake(1, 15);
+    CMTime frameDuration = CMTimeMake(1, 20);
     
     NSArray *supportedFrameRateRanges = [videoDevice.activeFormat videoSupportedFrameRateRanges];
     
@@ -471,7 +471,7 @@
 
 #pragma mark - 写入数据
 - (void) captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
-    NSLog(@"zhenhao");
+    NSLog(@"changhao");
     BOOL isVideo = YES;
     @synchronized(self) {
         if (!self.isCapturing  || self.isPaused) {

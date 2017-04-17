@@ -556,7 +556,7 @@ typedef NS_ENUM(NSInteger, RENT_VEHICLE_STATE) {
     controller.videoKey = trackInfo.trackId;
     controller.delegate = self;
     
-    self.hidesBottomBarWhenPushed = YES;
+    controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
 }
 

@@ -236,8 +236,7 @@ TankerOnWayControllerDelegate, TankerArrivedControllerDelegate, AVAudioPlayerDel
 
 - (void)onWay:(DTrackInfo *)trackInfo
 {
-    if (_curController)
-    {
+    if (_curController) {
         [_curController.view removeFromSuperview];
         [_curController removeFromParentViewController];
         _curController = nil;
@@ -263,8 +262,7 @@ TankerOnWayControllerDelegate, TankerArrivedControllerDelegate, AVAudioPlayerDel
 
 - (void)arrived:(DTrackInfo *)trackInfo
 {
-    if (_curController)
-    {
+    if (_curController) {
         [_curController.view removeFromSuperview];
         [_curController removeFromParentViewController];
         _curController = nil;
@@ -563,6 +561,11 @@ TankerOnWayControllerDelegate, TankerArrivedControllerDelegate, AVAudioPlayerDel
 - (void)onClickArrived:(DTrackInfo *)trackInfo
 {
     [self arrived:trackInfo];
+}
+
+- (void)onClickCancel
+{
+    [self relax];
 }
 
 #pragma mark - TankerArrivedControllerDelegate

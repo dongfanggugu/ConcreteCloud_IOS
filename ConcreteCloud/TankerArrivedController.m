@@ -19,6 +19,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "Location.h"
 #import "AppDelegate.h"
+#import "RoutePlanController.h"
 
 
 @interface TankerArrivedController()<UITableViewDelegate, UITableViewDataSource, AVAudioPlayerDelegate,
@@ -30,9 +31,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnPlan;
 
-@property (strong, nonatomic) IBOutlet UIButton *btnHzs;
+@property (strong, nonatomic) UIButton *btnHzs;
 
-@property (strong, nonatomic) IBOutlet UIButton *btnBack;
+@property (strong, nonatomic) UIButton *btnBack;
 
 @property (nonatomic, strong) AVAudioPlayer *avAudioPlayer;
 
@@ -372,6 +373,8 @@
     
     CGFloat state = _trackInfo.state.floatValue;
     
+    
+    //罐车,并且没有退货,显示退货按钮
     if (state != -1 && _arrayType == ARRIVED_TANKER) {
         _btnBack = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
         
@@ -389,9 +392,27 @@
     
     //导航功能
     [_btnNav addTarget:self action:@selector(navigation) forControlEvents:UIControlEventTouchUpInside];
+    
+    //路径规划
+    [_btnPlan addTarget:self action:@selector(routePlan) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - 导航
+
+- (void)routePlan
+{
+    RoutePlanController *controller = [[RoutePlanController alloc] init];
+    
+    CLLocationCoordinate2D coorEnd;
+    
+    coorEnd.latitude = _trackInfo.hzs_Order.siteLat;
+    coorEnd.longitude = _trackInfo.hzs_Order.siteLng;
+    
+    controller.destination = coorEnd;
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 - (void)navigation
 {
