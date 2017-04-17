@@ -113,7 +113,7 @@
 }
 
 //通过这个方法写入数据
-- (BOOL)encodeFrame:(CMSampleBufferRef) sampleBuffer isVideo:(BOOL)isVideo {
+- (BOOL)encodeFrame:(CMSampleBufferRef)sampleBuffer isVideo:(BOOL)isVideo {
     //数据是否准备写入
     if (CMSampleBufferDataIsReady(sampleBuffer)) {
         //写入状态为未知,保证视频先写入

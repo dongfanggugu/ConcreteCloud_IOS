@@ -225,7 +225,7 @@
         
         if (0 == url.length)
         {
-            [HUDClass showHUDWithLabel:@"视频上传失败,请退出后重新进入录制上传" view:self.view];
+            [HUDClass showHUDWithText:@"视频上传失败,请退出后重新进入录制上传"];
             return;
         }
         
@@ -237,7 +237,7 @@
         
         
     } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-        [HUDClass showHUDWithLabel:@"视频上传失败,请退出后重新进入录制上传" view:self.view];
+        [HUDClass showHUDWithText:@"视频上传失败,请退出后重新进入录制上传"];
     }];
 }
 

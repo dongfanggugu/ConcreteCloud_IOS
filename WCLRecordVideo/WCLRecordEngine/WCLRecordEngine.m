@@ -200,6 +200,9 @@
         //添加后置摄像头的输出
         if ([_recordSession canAddInput:self.backCameraInput]) {
             [_recordSession addInput:self.backCameraInput];
+            
+            //设置帧率
+            [self setFPS:[self backCamera]];
         }
         //添加后置麦克风的输出
         if ([_recordSession canAddInput:self.audioMicInput]) {
@@ -209,8 +212,8 @@
         if ([_recordSession canAddOutput:self.videoOutput]) {
             [_recordSession addOutput:self.videoOutput];
             //设置视频的分辨率
-            _cx = 288;
-            _cy = 352;
+            _cx = 480;
+            _cy = 640;
         }
         //添加音频输出
         if ([_recordSession canAddOutput:self.audioOutput]) {
@@ -268,6 +271,8 @@
                                         [NSNumber numberWithInt:kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange], kCVPixelBufferPixelFormatTypeKey,
                                         nil];
         _videoOutput.videoSettings = setcapSettings;
+        
+        //_videoOutput.minFrameDuration = CMTimeMake(1, 15);
     }
     return _videoOutput;
 }
@@ -354,7 +359,10 @@
 
 //返回后置摄像头
 - (AVCaptureDevice *)backCamera {
-    return [self cameraWithPosition:AVCaptureDevicePositionBack];
+    
+    AVCaptureDevice *device = [self cameraWithPosition:AVCaptureDevicePositionBack];
+    
+    return device;
 }
 
 
@@ -381,6 +389,7 @@
 - (AVCaptureDevice *)cameraWithPosition:(AVCaptureDevicePosition) position {
     //返回和视频录制相关的所有默认设备
     NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    
     //遍历这些设备返回跟position相关的设备
     for (AVCaptureDevice *device in devices) {
         if ([device position] == position) {
@@ -388,6 +397,32 @@
         }
     }
     return nil;
+}
+
+- (void)setFPS:(AVCaptureDevice *)videoDevice
+{
+    NSError *error;
+    
+    CMTime frameDuration = CMTimeMake(1, 15);
+    
+    NSArray *supportedFrameRateRanges = [videoDevice.activeFormat videoSupportedFrameRateRanges];
+    
+    BOOL frameRateSupported = NO;
+    
+    for (AVFrameRateRange *range in supportedFrameRateRanges) {
+        
+        if (CMTIME_COMPARE_INLINE(frameDuration, >=, range.minFrameDuration)
+            && CMTIME_COMPARE_INLINE(frameDuration, <=, range.maxFrameDuration)) {
+            frameRateSupported = YES;
+        }
+    }
+    
+    
+    if (frameRateSupported && [videoDevice lockForConfiguration:&error]) {
+        [videoDevice setActiveVideoMaxFrameDuration:frameDuration];
+        [videoDevice setActiveVideoMinFrameDuration:frameDuration];
+        [videoDevice unlockForConfiguration];
+    }
 }
 
 //开启闪光灯
@@ -436,6 +471,7 @@
 
 #pragma mark - 写入数据
 - (void) captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+    NSLog(@"zhenhao");
     BOOL isVideo = YES;
     @synchronized(self) {
         if (!self.isCapturing  || self.isPaused) {

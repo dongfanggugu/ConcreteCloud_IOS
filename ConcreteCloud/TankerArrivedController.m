@@ -367,7 +367,7 @@
     _btnHzs.titleLabel.font = [UIFont systemFontOfSize:13];
     [_btnHzs addTarget:self action:@selector(clickHzs) forControlEvents:UIControlEventTouchUpInside];
     
-    _btnHzs.center = CGPointMake(self.view.frame.size.width / 2, 30);
+    _btnHzs.center = CGPointMake(self.screenWidth / 2, 30);
     [footView addSubview:_btnHzs];
     
     CGFloat state = _trackInfo.state.floatValue;
