@@ -239,6 +239,12 @@
     
     _arrayLevel = [NSMutableArray array];
     
+    _arraySzzl = [NSMutableArray array];
+    
+    _arrayJzfs = [NSMutableArray array];
+    
+    _arrayTsxm = [NSMutableArray array];
+    
     _arrayKsdj = [NSMutableArray array];
     
     _arraySlump = [NSMutableArray array];
@@ -304,102 +310,54 @@
         }
         
     } else if (1 == indexPath.row) {
-        
-        if ([_goodsName isEqualToString:HNT]) {
-            
-            if (_hntLevelCell) {
-                return _hntLevelCell;
-                
-            } else {
-                
-                SelectableCell *cell = [SelectableCell viewFromNib];
-                
-                _hntLevelCell = cell;
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
-                cell.lbKey.text = @"强度等级";
-                
-                
-                DicRequest *request = [[DicRequest alloc] init];
-                request.type = LEVEL;
-                
-                request.hzsId = _hzsInfo.hzsId;
-                
-                request.siteName = [[Config shareConfig] getBranchName];
-                
-                __weak typeof(self) weakSelf = self;
-                
-                [[HttpClient shareClient] view:self.view post:URL_GET_REMOTE_DIC parameters:[request parsToDictionary]
-                                       success:^(NSURLSessionDataTask *task, id responseObject) {
-                                           DicResponse *response = [[DicResponse alloc] initWithDictionary:responseObject];
-                                           [_arrayLevel removeAllObjects];
-                                           [_arrayLevel addObjectsFromArray:response.body];
-                                           
-                                           if (0 == _arrayLevel.count) {
-                                               return;
-                                           }
-                                           _level = _arrayLevel[0].value;
-                                           
-                                           [cell setData:[_arrayLevel copy]];
-                                           
-                                           [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
-                                               
-                                               weakSelf.level = content;
-                                           }];
-                                           
-                                           
-                                       } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-                                           
-                                       }];
-                return cell;
-            }
+        if (_hntLevelCell) {
+            return _hntLevelCell;
             
         } else {
             
-            if (_sjqddjCell) {
-                return _sjqddjCell;
-                
-            } else {
-                
-                SelectableCell *cell = [SelectableCell viewFromNib];
-                _sjqddjCell = cell;
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.lbKey.text = @"强度等级";
-                
-                DicRequest *request = [[DicRequest alloc] init];
-                request.type = SJQDDJ;
-                request.hzsId = _hzsInfo.hzsId;
-                
-                request.siteName = [[Config shareConfig] getBranchName];
-                
-                __weak typeof(self) weakSelf = self;
-                
-                [[HttpClient shareClient] view:self.view post:URL_GET_REMOTE_DIC parameters:[request parsToDictionary]
-                                       success:^(NSURLSessionDataTask *task, id responseObject) {
-                                           DicResponse *response = [[DicResponse alloc] initWithDictionary:responseObject];
-                                           [_arrayLevel removeAllObjects];
-                                           [_arrayLevel addObjectsFromArray:response.body];
+            SelectableCell *cell = [SelectableCell viewFromNib];
+            
+            _hntLevelCell = cell;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            cell.lbKey.text = @"强度等级";
+            
+            
+            DicRequest *request = [[DicRequest alloc] init];
+            request.type = LEVEL;
+            
+            request.hzsId = _hzsInfo.hzsId;
+            
+            request.siteName = [[Config shareConfig] getBranchName];
+            
+            __weak typeof(self) weakSelf = self;
+            
+            [[HttpClient shareClient] view:self.view post:URL_GET_REMOTE_DIC parameters:[request parsToDictionary]
+                                   success:^(NSURLSessionDataTask *task, id responseObject) {
+                                       DicResponse *response = [[DicResponse alloc] initWithDictionary:responseObject];
+                                       [_arrayLevel removeAllObjects];
+                                       [_arrayLevel addObjectsFromArray:response.body];
+                                       
+                                       if (0 == _arrayLevel.count) {
+                                           return;
+                                       }
+                                       _level = _arrayLevel[0].value;
+                                       
+                                       [cell setData:[_arrayLevel copy]];
+                                       
+                                       [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
                                            
-                                           _level = _arrayLevel[0].value;
-                                           
-                                           [cell setData:[_arrayLevel copy]];
-                                           
-                                           [cell setAfterSelectedListener:^(NSString *key, NSString *content) {
-                                               
-                                               weakSelf.level = content;
-                                           }];
-                                           
-                                           
-                                       } failure:^(NSURLSessionDataTask *task, NSError *errr) {
-                                           
+                                           weakSelf.level = content;
                                        }];
-                
-                return cell;
-                
-            }
+                                       
+                                       
+                                   } failure:^(NSURLSessionDataTask *task, NSError *errr) {
+                                       
+                                   }];
+            return cell;
         }
+        
     } else if (2 == indexPath.row) {
         if (_ksdjCell) {
             return _ksdjCell;
@@ -474,11 +432,11 @@
                                        [_arraySzzl removeAllObjects];
                                        [_arraySzzl addObjectsFromArray:response.body];
                                        
-                                       if (0 == _arrayKsdj) {
+                                       if (0 == _arraySzzl.count) {
                                            return;
                                        }
                                        
-                                       _szzl = _arrayKsdj[0].value;
+                                       _szzl = _arraySzzl[0].value;
                                        
                                        [cell setData:[_arraySzzl copy]];
                                        
