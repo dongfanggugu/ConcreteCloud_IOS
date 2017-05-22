@@ -13,7 +13,11 @@
 
 @interface DicRequest : Request
 
-@property (strong, nonatomic) NSString *type;
+@property (copy, nonatomic) NSString *type;
+
+@property (copy, nonatomic) NSString *hzsId;
+
+@property (copy, nonatomic) NSString *siteName;
 
 @end
 

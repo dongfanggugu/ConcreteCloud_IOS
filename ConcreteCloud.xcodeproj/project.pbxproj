@@ -285,6 +285,7 @@
 		658450BF1E5AD54C003CFAA5 /* SMainpageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658450BE1E5AD54C003CFAA5 /* SMainpageController.m */; };
 		658450C11E5BC07E003CFAA5 /* SOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658450C01E5BC07E003CFAA5 /* SOrderItemCell.xib */; };
 		658450C41E5BC200003CFAA5 /* SOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 658450C31E5BC200003CFAA5 /* SOrderItemCell.m */; };
+		658CB5611ED2BD7400A29498 /* SOrderAddConfirm2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CB5601ED2BD7400A29498 /* SOrderAddConfirm2Controller.m */; };
 		658FE5EA1E9DB8A0002CA85F /* AddressShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5E91E9DB8A0002CA85F /* AddressShowController.m */; };
 		658FE5ED1E9DBFFD002CA85F /* AddressModifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5EC1E9DBFFD002CA85F /* AddressModifyController.m */; };
 		658FE5F01E9DC7D3002CA85F /* AddressLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658FE5EF1E9DC7D3002CA85F /* AddressLocationController.m */; };
@@ -527,6 +528,7 @@
 		65FE089E1EA4A5C1002C9397 /* RoutePlanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE089D1EA4A5C1002C9397 /* RoutePlanController.m */; };
 		65FE08A01EA4AE46002C9397 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65FE089F1EA4AE46002C9397 /* mapapi.bundle */; };
 		65FE08A31EA4AEB6002C9397 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE08A21EA4AEB6002C9397 /* UIImage+Rotate.m */; };
+		65FE09131EB97ABF002C9397 /* SOrderAdd2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FE09121EB97ABF002C9397 /* SOrderAdd2Controller.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1007,6 +1009,8 @@
 		658450C01E5BC07E003CFAA5 /* SOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SOrderItemCell.xib; sourceTree = "<group>"; };
 		658450C21E5BC1F1003CFAA5 /* SOrderItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SOrderItemCell.h; sourceTree = "<group>"; };
 		658450C31E5BC200003CFAA5 /* SOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOrderItemCell.m; sourceTree = "<group>"; };
+		658CB55F1ED2BD7400A29498 /* SOrderAddConfirm2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOrderAddConfirm2Controller.h; sourceTree = "<group>"; };
+		658CB5601ED2BD7400A29498 /* SOrderAddConfirm2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOrderAddConfirm2Controller.m; sourceTree = "<group>"; };
 		658FE5E81E9DB8A0002CA85F /* AddressShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressShowController.h; sourceTree = "<group>"; };
 		658FE5E91E9DB8A0002CA85F /* AddressShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressShowController.m; sourceTree = "<group>"; };
 		658FE5EB1E9DBFFD002CA85F /* AddressModifyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModifyController.h; sourceTree = "<group>"; };
@@ -1413,6 +1417,8 @@
 		65FE089F1EA4AE46002C9397 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		65FE08A11EA4AEB6002C9397 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
 		65FE08A21EA4AEB6002C9397 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
+		65FE09111EB97ABF002C9397 /* SOrderAdd2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOrderAdd2Controller.h; sourceTree = "<group>"; };
+		65FE09121EB97ABF002C9397 /* SOrderAdd2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOrderAdd2Controller.m; sourceTree = "<group>"; };
 		76A1010F43B24895396CD804 /* Pods-ConcreteCloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteCloud.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConcreteCloud/Pods-ConcreteCloud.debug.xcconfig"; sourceTree = "<group>"; };
 		AC277797E21C5C4BE64493F4 /* libPods-ConcreteCloud.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ConcreteCloud.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9AB57BD53EC0483DC93E62 /* Pods-ConcreteCloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConcreteCloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConcreteCloud/Pods-ConcreteCloud.release.xcconfig"; sourceTree = "<group>"; };
@@ -1691,6 +1697,10 @@
 				65489FF81E84C2DC0071FBCA /* SiteAOrderOverViewController.m */,
 				658FE5FA1E9E11F6002CA85F /* SiteStaffDetailController.h */,
 				658FE5FB1E9E11F6002CA85F /* SiteStaffDetailController.m */,
+				65FE09111EB97ABF002C9397 /* SOrderAdd2Controller.h */,
+				65FE09121EB97ABF002C9397 /* SOrderAdd2Controller.m */,
+				658CB55F1ED2BD7400A29498 /* SOrderAddConfirm2Controller.h */,
+				658CB5601ED2BD7400A29498 /* SOrderAddConfirm2Controller.m */,
 			);
 			name = Site;
 			sourceTree = "<group>";
@@ -3037,6 +3047,7 @@
 				65E581021DD5938A007F53E1 /* HUDClass.m in Sources */,
 				657FBC6B1E31E2000029C41C /* PProcess3Cell.m in Sources */,
 				651779B81E01363100A759AC /* POrderAddRequest.m in Sources */,
+				65FE09131EB97ABF002C9397 /* SOrderAdd2Controller.m in Sources */,
 				65E3693A1E6E4ED400E4CF04 /* QueryView.m in Sources */,
 				6548A0021E84EBD90071FBCA /* SupplierMapAnnotation.m in Sources */,
 				657EA14B1E554356000AC433 /* UpdateMsgRequest.m in Sources */,
@@ -3121,6 +3132,7 @@
 				65698F3F1E5EC6F400B21D1B /* PumpInfoCell.m in Sources */,
 				655DDB421E55E78B00848D7C /* DOrderDetailRequest.m in Sources */,
 				65515BBB1E7910CB00386A0C /* SupDisVehicleCell.m in Sources */,
+				658CB5611ED2BD7400A29498 /* SOrderAddConfirm2Controller.m in Sources */,
 				65ADC6851E49AEF40020FF69 /* VehicleInfoView.m in Sources */,
 				65EEEB201E70E9E50095432B /* RentVehicleController.m in Sources */,
 				6584508B1E5A7F4C003CFAA5 /* RentVehicleInfo.m in Sources */,

@@ -16,13 +16,11 @@
 {
     NSString *server = [[Config shareConfig] getServer];
     
-    if (0 == server)
-    {
-        server = @"119.57.248.130:8080";
+    if (0 == server) {
+        server = @"101.201.252.84:8080";
     }
     
-    if (![server containsString:@":"])
-    {
+    if (![server containsString:@":"]) {
         server = [NSString stringWithFormat:@"%@:8080", server];
     }
     

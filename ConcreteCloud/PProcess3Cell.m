@@ -174,12 +174,6 @@
     UIView *viewComplete = [[UIView alloc] initWithFrame:frame];
     viewComplete.backgroundColor = [Utils getColorByRGB:TITLE_COLOR];
     [_viewTotal addSubview:viewComplete];
-    
-    CGFloat w1 = _viewTotal.frame.size.width;
-    CGFloat w2 = viewComplete.frame.size.width;
-    
-    NSLog(@"w1:%.1lf, w2:%.1lf", w1, w2);
-    
 }
 
 - (UIImage *)getVehicleImage:(NSString *)cls

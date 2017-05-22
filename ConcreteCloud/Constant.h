@@ -86,6 +86,15 @@ typedef NS_ENUM(NSInteger, G_Segment) {
 //抗渗等级
 #define KSDJ @"ksdj"
 
+//石子种类
+#define SZZL @"szzl"
+
+//浇筑方式
+#define JZFS @"jzfs"
+
+//特殊项目
+#define TSXM @"tsxm"
+
 //砂浆强度等级
 #define SJQDDJ @"sjqddj"
 

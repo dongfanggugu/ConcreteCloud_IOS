@@ -24,7 +24,9 @@
 
 + (NSString *)getIdentifier;
 
-- (void)setView:(UIView *)view data:(NSArray<ListDialogDataDelegate> *)arrayData;
+- (void)setView:(UIView *)view data:(NSArray<ListDialogDataDelegate> *)arrayData __deprecated_msg("已过期");
+
+- (void)setData:(NSArray<id<ListDialogDataDelegate>> *)arrayData;
 
 - (NSString *)getContentValue;
 

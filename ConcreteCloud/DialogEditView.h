@@ -21,9 +21,9 @@
 
 - (void)show;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbTitle;
-
 @property (weak, nonatomic) IBOutlet UITextField *tfContent;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 
 @property (weak, nonatomic) id<DialogEditViewDelegate> delegate;
 

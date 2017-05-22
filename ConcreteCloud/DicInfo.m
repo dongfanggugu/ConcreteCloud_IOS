@@ -14,9 +14,21 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
     self = [super initWithDictionary:dictionary];
-    if (self)
-    {
+    
+    if (self) {
         self.dicId = [dictionary objectForKey:@"id"];
+        
+        if (!self.name) {
+            self.name = dictionary[@"pricingName"];
+        }
+        
+        if (!self.value) {
+            self.value = dictionary[@"pricingItem"];
+        }
+        
+        if (!self.type) {
+            self.type = dictionary[@"pricingType"];
+        }
     }
     
     return self;

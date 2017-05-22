@@ -331,4 +331,7 @@
 //租赁泵车取消任务
 #define URL_RENT_PUMP_CANCEL @"deleteHzsOrderProcess"
 
+//对接金钻石之后获取A单商品字典表
+#define URL_GET_REMOTE_DIC @"getProductionDictionary"
+
 #endif /* NetConstant_h */

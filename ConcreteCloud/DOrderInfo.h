@@ -25,6 +25,18 @@
 //抗渗等级
 @property (copy, nonatomic) NSString *ksdj;
 
+//浇筑方式
+@property (copy, nonatomic) NSString *jzfs;
+
+//石子种类
+@property (copy, nonatomic) NSString *szzl;
+
+//特殊项目
+@property (copy, nonatomic) NSString *tsxm;
+
+//生产调度
+@property (copy, nonatomic) NSString *scdd;
+
 //完成时间
 @property (copy, nonatomic) NSString *completeTime;
 
@@ -129,6 +141,9 @@
 
 //发送完成时间
 @property (copy, nonatomic) NSString *sendCompleteTime;
+
+//是否冬施
+@property (assign, nonatomic) NSInteger ds;
 
 //公司名称
 @property (copy, nonatomic) NSString *companyName;

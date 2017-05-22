@@ -16,6 +16,7 @@
 #import "HzsAnnotationView.h"
 #import "SOrderAddController.h"
 #import "SiteAOrderOverViewController.h"
+#import "SOrderAdd2Controller.h"
 
 
 #pragma mark - HzsInfoCell
@@ -249,15 +250,23 @@
         
         BOOL auth = info.authorization;
         
-        if (auth)
-        {
-            SOrderAddController *controller = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"s_order_add_controller"];
-            controller.hzsInfo = info;
-            controller.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:controller animated:YES];
-        }
-        else
-        {
+        if (auth) {
+            
+            if (0 == info.productionUrl.length) {
+                SOrderAddController *controller = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"s_order_add_controller"];
+                controller.hzsInfo = info;
+                controller.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:controller animated:YES];
+            
+            } else {
+                SOrderAdd2Controller *controller = [[SOrderAdd2Controller alloc] init];
+                controller.hzsInfo = info;
+                controller.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:controller animated:YES];
+            }
+            
+            
+        } else {
             NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", info.tel]];
             
             UIWebView *phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];

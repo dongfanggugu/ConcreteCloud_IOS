@@ -30,6 +30,8 @@
 
 @property (assign, nonatomic) BOOL authorization;
 
+@property (copy, nonatomic) NSString *productionUrl;
+
 @end
 
 

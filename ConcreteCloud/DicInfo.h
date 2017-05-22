@@ -14,13 +14,13 @@
 
 @interface DicInfo : Jastor <ListDialogDataDelegate>
 
-@property (strong, nonatomic) NSString *dicId;
+@property (copy, nonatomic) NSString *dicId;
 
-@property (strong, nonatomic) NSString *name;
+@property (copy, nonatomic) NSString *name;
 
-@property (strong, nonatomic) NSString *type;
+@property (copy, nonatomic) NSString *type;
 
-@property (strong, nonatomic) NSString *value;
+@property (copy, nonatomic) NSString *value;
 
 @end
 

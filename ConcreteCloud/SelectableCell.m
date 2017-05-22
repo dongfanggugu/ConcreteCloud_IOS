@@ -62,8 +62,21 @@
 
 - (void)setView:(UIView *)view data:(NSArray<id<ListDialogDataDelegate>> *)arrayData
 {
-    if (nil == view || nil == arrayData || 0 == arrayData.count)
-    {
+    if (nil == arrayData || 0 == arrayData.count) {
+        return;
+    }
+    _arrayData = arrayData;
+    
+    id<ListDialogDataDelegate> info = arrayData[0];
+    _key = [info getKey];
+    _content = [info getShowContent];
+    
+    _lbContent.text = _content;
+}
+
+- (void)setData:(NSArray<id<ListDialogDataDelegate>> *)arrayData
+{
+    if (nil == arrayData || 0 == arrayData.count) {
         return;
     }
     _arrayData = arrayData;
